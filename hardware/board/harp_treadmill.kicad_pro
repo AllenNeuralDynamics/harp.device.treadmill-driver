@@ -239,7 +239,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "magneto_brake_driver.kicad_pro",
+    "filename": "harp_treadmill.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -320,6 +320,14 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       ""
+    ],
+    [
+      "93b3207b-e1ce-46d7-a52b-3e8fb1ae6901",
+      "Torque Load Sensing"
+    ],
+    [
+      "4d27c546-69b8-415d-ad57-797194b34e8d",
+      "Torque Load Driving"
     ]
   ],
   "text_variables": {}
