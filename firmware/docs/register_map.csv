@@ -1,0 +1,6 @@
+Register, Size, Read-Only, Name, Description
+0x32, U16, , TORQUE_SENSOR_RAW, raw measurement of the treadmill angular torque sensor.
+0x33, U16, , TORQUE_LOAD_CURRENT_RAW, raw measurement of the output current applied to the variable torque load.
+0x34, U32, , ENCODER_MEAS_RAW, raw measurement of the treadmill encoder (800 ticks per revolution).
+0x35, U32, , TORQUE_LOAD_SETPOINT_RAW, raw setpoint for the torque load.
+0x36, U8, , SUBSYSTEM_RESET, "Writing 1 to specific bits in this register will reset [0] the encoder count, [1] the torque load."
