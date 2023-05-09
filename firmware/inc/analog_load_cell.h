@@ -10,6 +10,8 @@ class AnalogLoadCell
 {
 public:
     AnalogLoadCell(uint8_t adc_pin);
+    // TODO: another constructor, where the adc data simply comes from
+    //  a memory address that DMA is continuously updating.
     ~AnalogLoadCell();
 
 /**

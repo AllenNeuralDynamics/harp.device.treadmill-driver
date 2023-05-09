@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-#set(DEBUG 1)
+set(DEBUG 1)
 
 include(pico-sdk/pico_sdk_init.cmake)
 
@@ -21,6 +21,11 @@ endif()
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/continuous_adc_polling.c
+)
+
+add_library(current_driver
+    src/current_driver.cpp
 )
 
 add_library(analog_load_cell
@@ -40,9 +45,10 @@ include_directories(inc)
 
 # Link libraries to the targets that need them.
 target_link_libraries(analog_load_cell pico_stdlib hardware_adc)
+target_link_libraries(current_driver pico_stdlib hardware_pwm)
 target_link_libraries(pio_encoder pico_stdlib hardware_pio)
-# TODO: add remaining libraries later!
-target_link_libraries(${PROJECT_NAME} pico_stdlib pio_encoder analog_load_cell)#harp_core harp_sync)
+target_link_libraries(${PROJECT_NAME}
+    pico_stdlib pio_encoder analog_load_cell current_driver hardware_dma harp_core harp_sync)
 
 # create map/bin/hex/uf2 file in addition to ELF.
 pico_add_extra_outputs(${PROJECT_NAME})

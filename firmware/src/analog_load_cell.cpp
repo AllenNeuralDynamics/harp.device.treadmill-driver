@@ -11,12 +11,10 @@ AnalogLoadCell::AnalogLoadCell(uint8_t adc_pin)
     adc_run(true); // init adc for continuous reading.
 }
 
-
 AnalogLoadCell::~AnalogLoadCell()
 {
     // TODO: If no other resources are using the ADC (i.e: no other pins were
-    // init), stop the adc.
-    // This is a bit heavy-handed.
+    // init), stop the adc. As-is: this is a bit heavy-handed.
     adc_run(false);
 }
 
