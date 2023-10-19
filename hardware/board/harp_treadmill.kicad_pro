@@ -339,11 +339,23 @@
     ],
     [
       "93b3207b-e1ce-46d7-a52b-3e8fb1ae6901",
-      "Torque Load Sensing"
+      "Torque Transducer Sensing"
     ],
     [
       "4d27c546-69b8-415d-ad57-797194b34e8d",
-      "Torque Load Driving"
+      "Magnetic Brake Control"
+    ],
+    [
+      "1f049e4e-eb8d-47d9-901f-1dd446bfea55",
+      "Power Supplies"
+    ],
+    [
+      "f31b18d7-1913-4a8e-8821-b91c30d18d00",
+      "Harp Core RP2040 + Isolated USB"
+    ],
+    [
+      "45528c19-905b-4605-ba1b-282fdcb272c9",
+      "Encoder"
     ]
   ],
   "text_variables": {}
