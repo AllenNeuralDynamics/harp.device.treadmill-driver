@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-set(DEBUG 1)
+set(DEBUG 0)
 
 include(pico-sdk/pico_sdk_init.cmake)
 
