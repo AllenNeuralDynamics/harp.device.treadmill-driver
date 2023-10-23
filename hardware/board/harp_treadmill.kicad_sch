@@ -101,12 +101,6 @@
     (uuid f7a02e3b-edd2-4113-b111-11091e87b9f1)
   )
 
-  (text "TODO: add AD8616\n\nDONE: bypass caps for both ADS7049 chips and literally everything else.\nDONE: harp core rp2040\nDONE: encoder with 3.3-5V logic level translation.\nDONE: power supplies for AFE.\nDONE: power supply for brake. Needs to be fixed @12v. or configurable?\n\n"
-    (at 88.265 158.115 0)
-    (effects (font (size 2 2) (thickness 0.4) bold) (justify left bottom))
-    (uuid 19042ce8-1683-494f-820c-907e7d78ca3e)
-  )
-
   (sheet (at 102.235 69.215) (size 15.875 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
