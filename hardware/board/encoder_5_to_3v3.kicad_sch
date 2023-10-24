@@ -687,7 +687,7 @@
   (symbol (lib_id "Device:C") (at 168.275 182.245 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 40e1be31-8c69-4a42-8239-76220d9f406e)
-    (property "Reference" "C27" (at 172.085 179.705 0)
+    (property "Reference" "C58" (at 172.085 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 174.625 184.785 0)
@@ -725,7 +725,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "C27") (unit 1)
+          (reference "C58") (unit 1)
         )
       )
     )
@@ -787,7 +787,7 @@
   (symbol (lib_id "Device:C") (at 122.555 182.245 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5b8a6b19-6ee1-4870-ac33-43a969fce851)
-    (property "Reference" "C3" (at 126.365 179.705 0)
+    (property "Reference" "C53" (at 126.365 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100nF" (at 128.905 184.785 0)
@@ -825,7 +825,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "C3") (unit 1)
+          (reference "C53") (unit 1)
         )
       )
     )
@@ -859,7 +859,7 @@
   (symbol (lib_id "Connector:Conn_01x04_Female") (at 168.275 93.345 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 67fbd054-dbdd-4a1f-804c-5473b3511cbb)
-    (property "Reference" "J?" (at 166.37 88.9 0)
+    (property "Reference" "J7" (at 166.37 88.9 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x04_Female" (at 170.18 95.885 0)
@@ -878,7 +878,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "J?") (unit 1)
+          (reference "J7") (unit 1)
         )
       )
     )
@@ -915,7 +915,7 @@
   (symbol (lib_id "Device:C") (at 147.955 182.245 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 81ad45d2-5046-46a5-8233-393713ffbf6f)
-    (property "Reference" "C33" (at 149.225 179.705 0)
+    (property "Reference" "C55" (at 149.225 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 149.225 184.785 0)
@@ -953,7 +953,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "C33") (unit 1)
+          (reference "C55") (unit 1)
         )
       )
     )
@@ -987,7 +987,7 @@
   (symbol (lib_id "Device:C") (at 130.81 182.245 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9bce0abe-ea65-4d95-b61d-4fe35704eab1)
-    (property "Reference" "C4" (at 132.08 179.705 0)
+    (property "Reference" "C54" (at 132.08 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1uF" (at 132.08 184.785 0)
@@ -1025,7 +1025,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "C4") (unit 1)
+          (reference "C54") (unit 1)
         )
       )
     )
@@ -1034,7 +1034,7 @@
   (symbol (lib_id "Logic_LevelTranslator:74LVCH2T45DC") (at 144.145 94.615 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9ce06e3f-1ee4-4bff-a3ce-a91705cd356d)
-    (property "Reference" "U?" (at 146.3391 106.68 0)
+    (property "Reference" "U15" (at 146.3391 106.68 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "74LVCH2T45DC" (at 146.3391 109.22 0)
@@ -1066,7 +1066,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "U?") (unit 1)
+          (reference "U15") (unit 1)
         )
       )
     )
@@ -1253,7 +1253,7 @@
   (symbol (lib_id "Device:C") (at 158.115 182.245 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f07ab911-5cf6-47a6-b06c-3513f7ddf868)
-    (property "Reference" "C26" (at 159.385 179.705 0)
+    (property "Reference" "C57" (at 159.385 179.705 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10uF" (at 159.385 184.785 0)
@@ -1288,7 +1288,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
-          (reference "C26") (unit 1)
+          (reference "C57") (unit 1)
         )
       )
     )

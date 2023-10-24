@@ -427,17 +427,17 @@
         )
       )
     )
-    (symbol "machine_agency_components:AD8221" (pin_names (offset 0.5)) (in_bom yes) (on_board yes)
+    (symbol "kicad_component_library:AD8226" (pin_names (offset 0.5)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (at 3.81 3.81 0)
         (effects (font (size 1.27 1.27)) (justify left))
       )
-      (property "Value" "AD8221" (at 3.81 -3.81 0)
+      (property "Value" "AD8226" (at 3.81 -3.81 0)
         (effects (font (size 1.27 1.27)) (justify left))
       )
       (property "Footprint" "Package_SO:MSOP-8_3x3mm_P0.65mm" (at -19.05 17.78 0)
         (effects (font (size 1.27 1.27)) (justify left) hide)
       )
-      (property "Datasheet" "https://www.mouser.com/datasheet/2/609/AD8221_EP-2821706.pdf" (at 0 19.05 0)
+      (property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/AD8226.pdf" (at 0 19.05 0)
         (effects (font (size 1.27 1.27)) hide)
       )
       (property "ki_keywords" "instrumentation opamp" (at 0 0 0)
@@ -449,7 +449,7 @@
       (property "ki_fp_filters" "MSOP*3x3mm*P0.65mm*" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (symbol "AD8221_0_1"
+      (symbol "AD8226_0_1"
         (polyline
           (pts
             (xy 8.89 0)
@@ -461,7 +461,7 @@
           (fill (type background))
         )
       )
-      (symbol "AD8221_1_1"
+      (symbol "AD8226_1_1"
         (pin input line (at -7.62 5.08 0) (length 2.54)
           (name "IN-" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
@@ -676,46 +676,6 @@
       (symbol "GND_1_1"
         (pin power_in line (at 0 0 270) (length 0) hide
           (name "GND" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "power:GNDA" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
-      (property "Reference" "#PWR" (at 0 -6.35 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Value" "GNDA" (at 0 -3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "power-flag" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Power symbol creates a global label with name \"GNDA\" , analog ground" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "GNDA_0_1"
-        (polyline
-          (pts
-            (xy 0 0)
-            (xy 0 -1.27)
-            (xy 1.27 -1.27)
-            (xy 0 -2.54)
-            (xy -1.27 -1.27)
-            (xy 0 -1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "GNDA_1_1"
-        (pin power_in line (at 0 0 270) (length 0) hide
-          (name "GNDA" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
         )
       )
@@ -1154,10 +1114,10 @@
     (uuid dc95bfc2-6a1b-4ca9-965c-73da01b18522)
   )
 
-  (symbol (lib_id "machine_agency_components:AD8221") (at 139.065 88.265 0) (unit 1)
+  (symbol (lib_id "kicad_component_library:AD8226") (at 139.065 88.265 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 00762a1b-43c7-4922-aca6-26f76c389f41)
-    (property "Reference" "U?" (at 141.605 81.915 0)
+    (property "Reference" "U7" (at 141.605 81.915 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "AD8226" (at 146.685 93.345 0)
@@ -1189,7 +1149,35 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "U?") (unit 1)
+          (reference "U7") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 165.735 100.965 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 00bb0a31-ecf7-4439-b55d-f249c4187515)
+    (property "Reference" "#PWR?" (at 165.735 107.315 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 163.83 104.775 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (at 165.735 100.965 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 165.735 100.965 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 63245c7d-7f4a-421c-b1c8-849892fcaff9))
+    (instances
+      (project "harp_treadmill"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "#PWR?") (unit 1)
+        )
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+          (reference "#PWR0116") (unit 1)
         )
       )
     )
@@ -1198,7 +1186,7 @@
   (symbol (lib_id "power:-5V") (at 139.065 116.205 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 013f115c-aee2-434d-9eef-f2bcbff302b6)
-    (property "Reference" "#PWR?" (at 139.065 118.745 0)
+    (property "Reference" "#PWR0122" (at 139.065 118.745 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "-5V" (at 139.065 121.285 0)
@@ -1214,7 +1202,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0122") (unit 1)
         )
       )
     )
@@ -1223,7 +1211,7 @@
   (symbol (lib_id "Device:C") (at 103.505 98.425 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 025e2ca5-4234-41f0-aaee-ffc9448717db)
-    (property "Reference" "C?" (at 106.68 97.155 0)
+    (property "Reference" "C22" (at 106.68 97.155 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 106.68 99.695 0)
@@ -1255,32 +1243,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GNDA") (at 150.495 71.755 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 0ba658cf-6198-402c-ac53-33bf1edc2b2c)
-    (property "Reference" "#PWR?" (at 156.845 71.755 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GNDA" (at 154.305 71.7549 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Footprint" "" (at 150.495 71.755 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 150.495 71.755 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 1cd66a6b-90c5-4519-a036-d369a54846b7))
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "C22") (unit 1)
         )
       )
     )
@@ -1289,7 +1252,7 @@
   (symbol (lib_id "Device:R") (at 196.215 78.105 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 158fb1c2-c092-49ca-a12c-48fa82514bf1)
-    (property "Reference" "R?" (at 199.39 78.105 0)
+    (property "Reference" "R16" (at 199.39 78.105 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 196.215 78.105 90)
@@ -1321,7 +1284,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R16") (unit 1)
         )
       )
     )
@@ -1330,7 +1293,7 @@
   (symbol (lib_id "Device:C_Polarized") (at 144.145 112.395 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1e66f48f-4710-45f5-a134-ccb2abf0969e)
-    (property "Reference" "C?" (at 140.335 111.125 90)
+    (property "Reference" "C26" (at 140.335 111.125 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10uF" (at 147.955 113.665 90)
@@ -1356,7 +1319,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C26") (unit 1)
         )
       )
     )
@@ -1402,7 +1365,7 @@
   (symbol (lib_id "Device:R") (at 240.03 90.805 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 31b08af5-5f77-4ed3-bd77-e3c4811a8332)
-    (property "Reference" "R?" (at 244.475 89.535 90)
+    (property "Reference" "R20" (at 244.475 89.535 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "49.9" (at 240.03 90.805 90)
@@ -1428,7 +1391,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R20") (unit 1)
         )
       )
     )
@@ -1437,7 +1400,7 @@
   (symbol (lib_id "Device:C") (at 144.145 106.045 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 33704b03-e465-4001-a51e-346fd3d5c893)
-    (property "Reference" "C?" (at 140.335 104.775 90)
+    (property "Reference" "C25" (at 140.335 104.775 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1uF" (at 147.955 107.315 90)
@@ -1454,20 +1417,20 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C25") (unit 1)
         )
       )
     )
   )
 
-  (symbol (lib_id "power:GNDA") (at 150.495 65.405 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 38785e27-2b9c-407f-aed9-723bfcbb599c)
+  (symbol (lib_id "power:GND") (at 150.495 65.405 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 3b661bc0-7db7-4d6c-acb2-c91949727113)
     (property "Reference" "#PWR?" (at 156.845 65.405 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GNDA" (at 154.305 65.4049 90)
-      (effects (font (size 1.27 1.27)) (justify right))
+    (property "Value" "GND" (at 154.305 67.31 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "" (at 150.495 65.405 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1475,36 +1438,14 @@
     (property "Datasheet" "" (at 150.495 65.405 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 8b212ce8-e59f-42e4-b93b-ca58d5444a8c))
+    (pin "1" (uuid 5e6b1553-40da-4d10-af57-80bbb7e3df46))
     (instances
       (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "#PWR?") (unit 1)
         )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GNDA") (at 150.495 106.045 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 39f70eff-f8f9-4096-a5e0-09ee1f3202ac)
-    (property "Reference" "#PWR?" (at 156.845 106.045 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GNDA" (at 154.305 106.0449 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Footprint" "" (at 150.495 106.045 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 150.495 106.045 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 5f059644-af00-4bb7-858d-0726911e74a5))
-    (instances
-      (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0117") (unit 1)
         )
       )
     )
@@ -1513,7 +1454,7 @@
   (symbol (lib_id "Device:R") (at 240.03 88.265 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3f013def-0572-4e12-a7ea-9a38dc9be5ec)
-    (property "Reference" "R?" (at 244.475 86.995 90)
+    (property "Reference" "R19" (at 244.475 86.995 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "49.9" (at 240.03 88.265 90)
@@ -1539,7 +1480,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R19") (unit 1)
         )
       )
     )
@@ -1548,7 +1489,7 @@
   (symbol (lib_id "Device:C") (at 144.145 65.405 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 41d9a0ec-47e5-4641-ba0c-70e92aaffd9f)
-    (property "Reference" "C?" (at 140.335 64.135 90)
+    (property "Reference" "C23" (at 140.335 64.135 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "0.1uF" (at 147.955 66.675 90)
@@ -1565,7 +1506,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C23") (unit 1)
         )
       )
     )
@@ -1599,35 +1540,10 @@
     )
   )
 
-  (symbol (lib_id "power:GNDA") (at 150.495 112.395 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 4c82aa18-1d4f-459b-b4b8-c08c78d0c790)
-    (property "Reference" "#PWR?" (at 156.845 112.395 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GNDA" (at 154.305 112.3949 90)
-      (effects (font (size 1.27 1.27)) (justify right))
-    )
-    (property "Footprint" "" (at 150.495 112.395 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 150.495 112.395 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid a891095b-6716-4624-8783-024b4282dfb3))
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "Device:R") (at 196.215 98.425 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4ffead75-77b5-4c2f-aef8-cd2871630203)
-    (property "Reference" "R?" (at 199.39 98.425 0)
+    (property "Reference" "R17" (at 199.39 98.425 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "100" (at 196.215 98.425 90)
@@ -1659,7 +1575,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R17") (unit 1)
         )
       )
     )
@@ -1668,7 +1584,7 @@
   (symbol (lib_id "Device:C") (at 196.215 88.265 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 50c47240-8e80-4e41-b13b-34c8b1667d93)
-    (property "Reference" "C?" (at 196.85 85.725 0)
+    (property "Reference" "C27" (at 196.85 85.725 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "300pF" (at 196.85 90.805 0)
@@ -1700,7 +1616,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C27") (unit 1)
         )
       )
     )
@@ -1709,7 +1625,7 @@
   (symbol (lib_id "Device:C") (at 103.505 88.265 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 54a009f8-64bf-4dfc-b3b3-d7ea6ebcfd69)
-    (property "Reference" "C?" (at 106.68 86.995 0)
+    (property "Reference" "C21" (at 106.68 86.995 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1000pF" (at 106.68 89.535 0)
@@ -1741,7 +1657,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C21") (unit 1)
         )
       )
     )
@@ -1750,7 +1666,7 @@
   (symbol (lib_id "Device:C") (at 103.505 78.105 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5b9339d7-8e71-4a8b-adfb-1bc52e7f6f60)
-    (property "Reference" "C?" (at 106.68 76.835 0)
+    (property "Reference" "C20" (at 106.68 76.835 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100pF" (at 106.68 79.375 0)
@@ -1782,7 +1698,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C20") (unit 1)
         )
       )
     )
@@ -1791,7 +1707,7 @@
   (symbol (lib_id "power:+5V") (at 78.105 81.915 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 680efd95-5e89-4585-8556-b7b485a85eb9)
-    (property "Reference" "#PWR?" (at 78.105 85.725 0)
+    (property "Reference" "#PWR0112" (at 78.105 85.725 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 78.105 76.835 0)
@@ -1807,7 +1723,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0112") (unit 1)
         )
       )
     )
@@ -1847,7 +1763,7 @@
   (symbol (lib_id "Connector:Conn_01x05_Female") (at 67.31 89.535 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7c1fca52-3c3b-4883-a1c3-36029221c76d)
-    (property "Reference" "J?" (at 67.945 81.915 0)
+    (property "Reference" "J3" (at 67.945 81.915 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "Conn_01x05_Female" (at 67.945 81.915 0)
@@ -1867,7 +1783,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "J?") (unit 1)
+          (reference "J3") (unit 1)
         )
       )
     )
@@ -1876,7 +1792,7 @@
   (symbol (lib_id "Device:R") (at 126.365 88.265 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 82a1655d-448f-4959-a0b1-2b7553fab0d2)
-    (property "Reference" "R?" (at 120.015 86.995 0)
+    (property "Reference" "R15" (at 120.015 86.995 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "499" (at 120.015 89.535 0)
@@ -1899,7 +1815,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R15") (unit 1)
         )
       )
     )
@@ -1936,7 +1852,7 @@
   (symbol (lib_id "Analog_ADC:ADS7049") (at 219.71 88.265 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9322524c-111e-46d2-b605-316f034481d5)
-    (property "Reference" "U?" (at 221.9041 96.52 0)
+    (property "Reference" "U8" (at 221.9041 96.52 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "ADS7049" (at 221.9041 99.06 0)
@@ -1971,7 +1887,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "U?") (unit 1)
+          (reference "U8") (unit 1)
         )
       )
     )
@@ -2000,6 +1916,34 @@
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
           (reference "#PWR05") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 150.495 112.395 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 9b8dfc14-2b4c-4eb9-a4e7-535a7dc4f9d2)
+    (property "Reference" "#PWR?" (at 156.845 112.395 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 154.305 114.3 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (at 150.495 112.395 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 150.495 112.395 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 6a2d59c4-ebe2-42ea-b3de-83602b4696d2))
+    (instances
+      (project "harp_treadmill"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "#PWR?") (unit 1)
+        )
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+          (reference "#PWR0124") (unit 1)
         )
       )
     )
@@ -2036,7 +1980,7 @@
   (symbol (lib_id "Device:C_Polarized") (at 144.145 71.755 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9ee79ba6-2df7-4308-9e0e-32a89aadb0bf)
-    (property "Reference" "C?" (at 140.335 70.485 90)
+    (property "Reference" "C24" (at 140.335 70.485 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10uF" (at 147.955 73.025 90)
@@ -2062,7 +2006,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "C?") (unit 1)
+          (reference "C24") (unit 1)
         )
       )
     )
@@ -2071,7 +2015,7 @@
   (symbol (lib_id "power:+5V") (at 139.065 61.595 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a3843713-4ba0-4777-aed8-9691482ed429)
-    (property "Reference" "#PWR?" (at 139.065 65.405 0)
+    (property "Reference" "#PWR0121" (at 139.065 65.405 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 139.065 56.515 0)
@@ -2087,7 +2031,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0121") (unit 1)
         )
       )
     )
@@ -2124,7 +2068,7 @@
   (symbol (lib_id "Device:R") (at 98.425 93.345 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b07f34dd-1b6c-463a-9fc3-16edcfa6d89b)
-    (property "Reference" "R?" (at 98.425 95.25 90)
+    (property "Reference" "R14" (at 98.425 95.25 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10K" (at 98.425 93.345 90)
@@ -2153,7 +2097,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R14") (unit 1)
         )
       )
     )
@@ -2162,7 +2106,7 @@
   (symbol (lib_id "Device:D_Zener") (at 165.735 94.615 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b9ccdb07-26ea-4761-ad36-c6c26d163692)
-    (property "Reference" "D?" (at 168.275 93.3449 90)
+    (property "Reference" "D5" (at 168.275 93.3449 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "D_Zener" (at 168.275 95.8849 90)
@@ -2188,7 +2132,35 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "D?") (unit 1)
+          (reference "D5") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 150.495 71.755 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid bbc5c692-2e13-4f3c-b5cf-4b148b538a45)
+    (property "Reference" "#PWR?" (at 156.845 71.755 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 154.305 73.66 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (at 150.495 71.755 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 150.495 71.755 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 687428e1-139d-4711-8534-651c418ca85c))
+    (instances
+      (project "harp_treadmill"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+          (reference "#PWR?") (unit 1)
+        )
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+          (reference "#PWR0118") (unit 1)
         )
       )
     )
@@ -2225,26 +2197,29 @@
     )
   )
 
-  (symbol (lib_id "power:GNDA") (at 165.735 100.965 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid d8f55669-0574-4d4c-ad0a-f8bbf6c5c90d)
-    (property "Reference" "#PWR?" (at 165.735 107.315 0)
+  (symbol (lib_id "power:GND") (at 150.495 106.045 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid db41a495-a7ef-4afb-9cde-f09268ae49d0)
+    (property "Reference" "#PWR?" (at 156.845 106.045 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GNDA" (at 168.275 102.2349 0)
+    (property "Value" "GND" (at 154.305 107.95 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 165.735 100.965 0)
+    (property "Footprint" "" (at 150.495 106.045 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 165.735 100.965 0)
+    (property "Datasheet" "" (at 150.495 106.045 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid daf765aa-b368-4f7f-be33-1c02d507b965))
+    (pin "1" (uuid 0594e758-7f90-4889-a02e-5e0a61b9a0fb))
     (instances
       (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
           (reference "#PWR?") (unit 1)
+        )
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
+          (reference "#PWR0119") (unit 1)
         )
       )
     )
@@ -2281,7 +2256,7 @@
   (symbol (lib_id "Device:R") (at 98.425 83.185 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ebf7cfb4-f41a-4a8a-b136-d2de175fd4ed)
-    (property "Reference" "R?" (at 98.425 81.28 90)
+    (property "Reference" "R8" (at 98.425 81.28 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10K" (at 98.425 83.185 90)
@@ -2310,7 +2285,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R8") (unit 1)
         )
       )
     )
@@ -2319,7 +2294,7 @@
   (symbol (lib_id "Device:R") (at 240.03 85.725 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ec5ea285-25c4-4156-9e96-08fd49314ba8)
-    (property "Reference" "R?" (at 244.475 84.455 90)
+    (property "Reference" "R18" (at 244.475 84.455 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "49.9" (at 240.03 85.725 90)
@@ -2345,7 +2320,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "R?") (unit 1)
+          (reference "R18") (unit 1)
         )
       )
     )
@@ -2354,7 +2329,7 @@
   (symbol (lib_id "power:-5V") (at 78.105 94.615 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ed901f8e-75ba-4358-a528-027a85cf91e2)
-    (property "Reference" "#PWR?" (at 78.105 97.155 0)
+    (property "Reference" "#PWR0115" (at 78.105 97.155 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "-5V" (at 78.105 99.695 0)
@@ -2370,7 +2345,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/93b3207b-e1ce-46d7-a52b-3e8fb1ae6901"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0115") (unit 1)
         )
       )
     )

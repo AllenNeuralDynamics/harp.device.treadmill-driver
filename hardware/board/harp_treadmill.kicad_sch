@@ -101,6 +101,17 @@
     (uuid f7a02e3b-edd2-4113-b111-11091e87b9f1)
   )
 
+  (text "FIXME: REF2033 bypass caps don't have footprints specified."
+    (at 118.11 141.605 0)
+    (effects (font (face "KiCad Font") (size 2 2) (thickness 0.4) bold) (justify left bottom))
+    (uuid 29486753-11ad-4b61-928e-3f72c2756227)
+  )
+  (text "TODO: consider 6V and 12V setting via resistors?\n    We could buffer the feedback resistor value into the\n    PICO's built-in ADC."
+    (at 118.11 130.81 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 805b3dc6-7f3d-4165-be38-d608c43bdd9c)
+  )
+
   (sheet (at 102.235 69.215) (size 15.875 20.32) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))

@@ -544,7 +544,7 @@
         )
       )
     )
-    (symbol "machine_agency_components:INA180" (in_bom yes) (on_board yes)
+    (symbol "kicad_component_library:INA180" (in_bom yes) (on_board yes)
       (property "Reference" "U" (at 2.54 5.08 0)
         (effects (font (size 1.27 1.27)))
       )
@@ -595,7 +595,7 @@
         )
       )
     )
-    (symbol "machine_agency_components:UCC27537" (in_bom yes) (on_board yes)
+    (symbol "kicad_component_library:UCC27537" (in_bom yes) (on_board yes)
       (property "Reference" "U?" (at -5.08 8.89 0)
         (effects (font (size 1.27 1.27)))
       )
@@ -1187,7 +1187,7 @@
   (symbol (lib_id "Device:D") (at 189.865 101.6 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 072ad97f-1508-4e74-8cfb-1d2473081c55)
-    (property "Reference" "D?" (at 185.42 99.06 90)
+    (property "Reference" "D6" (at 185.42 99.06 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1N4007" (at 182.245 104.14 90)
@@ -1213,7 +1213,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "D?") (unit 1)
+          (reference "D6") (unit 1)
         )
       )
     )
@@ -1391,7 +1391,7 @@
           (reference "R5") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R24") (unit 1)
         )
       )
     )
@@ -1400,7 +1400,7 @@
   (symbol (lib_id "kicad_component_library:AD8615") (at 134.62 86.36 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 36efe672-01f7-46dc-a16f-06d7ec07b146)
-    (property "Reference" "U?" (at 131.445 82.55 0)
+    (property "Reference" "U10" (at 131.445 82.55 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "AD8615" (at 127 90.17 0)
@@ -1429,7 +1429,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "U?") (unit 1)
+          (reference "U10") (unit 1)
         )
       )
     )
@@ -1469,7 +1469,7 @@
   (symbol (lib_id "Connector:Conn_01x02_Female") (at 197.485 100.33 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 57ddb796-2cb5-45ac-9699-52c643f7b9a2)
-    (property "Reference" "J?" (at 196.85 98.425 0)
+    (property "Reference" "J4" (at 196.85 98.425 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_01x02_Female" (at 198.755 102.8699 0)
@@ -1486,7 +1486,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "J?") (unit 1)
+          (reference "J4") (unit 1)
         )
       )
     )
@@ -1741,6 +1741,56 @@
     )
   )
 
+  (symbol (lib_id "Device:C") (at 20.32 181.61 180) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 6e1cc447-afe3-406c-8ec1-f31eb501508d)
+    (property "Reference" "C27" (at 24.13 179.07 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "100nF" (at 26.67 184.15 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_0402_1005Metric" (at 19.3548 177.8 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "http://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Link" "https://www.digikey.com/en/products/detail/walsin-technology-corporation/0402B104K160CT/6707534" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Manufacturer" "Walson Technology Corporation" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Manufacturer Number" "0402B104K160CT" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Rated Voltage" "16V" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Temperature Coefficient" "X7R" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Tolerance" "10%" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "PCBWay Link" "https://www.pcbway.com/components/detail/0402B104K160CT/307171/" (at 20.32 181.61 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid cd9b07a6-91dc-4145-b657-730f286ad4db))
+    (pin "2" (uuid 048b4fe9-f9c0-4631-b777-42929a98ba8b))
+    (instances
+      (project "harp_treadmill"
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/45528c19-905b-4605-ba1b-282fdcb272c9"
+          (reference "C27") (unit 1)
+        )
+        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
+          (reference "C59") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 161.925 135.89 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6f67d5f2-13ae-4af9-915c-03002a83e317)
@@ -1804,7 +1854,7 @@
           (reference "R9") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R23") (unit 1)
         )
       )
     )
@@ -1879,7 +1929,7 @@
           (reference "R6") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R25") (unit 1)
         )
       )
     )
@@ -1926,16 +1976,16 @@
           (reference "U1") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "U?") (unit 1)
+          (reference "U9") (unit 1)
         )
       )
     )
   )
 
-  (symbol (lib_id "machine_agency_components:UCC27537") (at 161.925 124.46 0) (unit 1)
+  (symbol (lib_id "kicad_component_library:UCC27537") (at 161.925 124.46 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 880f9509-b9a6-47b0-8f1b-1257942ead9b)
-    (property "Reference" "U?" (at 156.845 115.57 0)
+    (property "Reference" "U12" (at 156.845 115.57 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "UCC27537" (at 167.005 115.57 0)
@@ -1964,7 +2014,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "U?") (unit 1)
+          (reference "U12") (unit 1)
         )
       )
     )
@@ -1973,7 +2023,7 @@
   (symbol (lib_id "Transistor_FET:IRF7403") (at 187.325 124.46 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8d472693-5467-4c08-bd2d-af03c93f4ff0)
-    (property "Reference" "Q?" (at 191.135 121.285 0)
+    (property "Reference" "Q1" (at 191.135 121.285 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "IRF8707TRPBF" (at 193.675 125.7299 0)
@@ -1999,7 +2049,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "Q?") (unit 1)
+          (reference "Q1") (unit 1)
         )
       )
     )
@@ -2037,36 +2087,7 @@
           (reference "R7") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:C") (at 20.32 181.61 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 998200fb-98b9-47df-a792-d3a605ec9dc3)
-    (property "Reference" "C?" (at 24.13 180.3399 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "0.1uF" (at 24.13 182.8799 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 21.2852 185.42 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 20.32 181.61 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e9bd0330-d394-41fd-ae7b-507508864a3f))
-    (pin "2" (uuid 571e3566-5788-45d7-aa87-bb96d9074b9c))
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "C?") (unit 1)
-        )
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "C1") (unit 1)
+          (reference "R21") (unit 1)
         )
       )
     )
@@ -2100,10 +2121,10 @@
     )
   )
 
-  (symbol (lib_id "machine_agency_components:INA180") (at 161.925 86.36 0) (mirror y) (unit 1)
+  (symbol (lib_id "kicad_component_library:INA180") (at 161.925 86.36 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid abc144f2-0768-45ca-8040-fb36089127a7)
-    (property "Reference" "U?" (at 157.48 82.55 0)
+    (property "Reference" "U11" (at 157.48 82.55 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "INA180A4" (at 155.575 90.17 0)
@@ -2135,7 +2156,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "U?") (unit 1)
+          (reference "U11") (unit 1)
         )
       )
     )
@@ -2144,7 +2165,7 @@
   (symbol (lib_id "Device:R") (at 189.865 86.36 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid acf06c6e-868e-4e2f-8412-43a070e4eb83)
-    (property "Reference" "R?" (at 192.405 85.0899 0)
+    (property "Reference" "R27" (at 192.405 85.0899 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "0.08" (at 189.865 84.455 90)
@@ -2173,7 +2194,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R27") (unit 1)
         )
       )
     )
@@ -2288,7 +2309,7 @@
   (symbol (lib_id "Device:R") (at 177.165 124.46 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d0a76574-530b-46f9-98f4-cf1fb697652a)
-    (property "Reference" "R?" (at 177.165 127 90)
+    (property "Reference" "R26" (at 177.165 127 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "470" (at 177.165 124.46 90)
@@ -2320,7 +2341,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R26") (unit 1)
         )
       )
     )
@@ -2357,7 +2378,7 @@
   (symbol (lib_id "power:+3V3") (at 161.925 77.47 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d625309b-98ec-4f84-854b-4571881004c6)
-    (property "Reference" "#PWR?" (at 161.925 81.28 0)
+    (property "Reference" "#PWR0123" (at 161.925 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 161.925 73.66 0)
@@ -2373,7 +2394,7 @@
     (instances
       (project "harp_treadmill"
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "#PWR?") (unit 1)
+          (reference "#PWR0123") (unit 1)
         )
       )
     )
@@ -2482,7 +2503,7 @@
           (reference "R8") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "R?") (unit 1)
+          (reference "R22") (unit 1)
         )
       )
     )
@@ -2557,7 +2578,7 @@
           (reference "C1") (unit 1)
         )
         (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55/4d27c546-69b8-415d-ad57-797194b34e8d"
-          (reference "C?") (unit 1)
+          (reference "C33") (unit 1)
         )
       )
     )
