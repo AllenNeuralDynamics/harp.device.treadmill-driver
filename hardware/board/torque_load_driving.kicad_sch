@@ -1174,6 +1174,11 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid e733a454-d2a3-4566-b489-ae45fd8bd52c)
   )
+  (text "AD8615 sources sufficient current \nto ADC across full scale range."
+    (at 126.365 106.68 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid e79d20b8-ec69-41e0-b946-25157da896a3)
+  )
   (text "Settling Time Summary:\n* INA180: 5[us]" (at 241.3 146.05 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid ec847881-a49e-4058-a40d-79a4fd661c72)

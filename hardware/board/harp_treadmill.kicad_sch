@@ -180,11 +180,6 @@
     (uuid f7a02e3b-edd2-4113-b111-11091e87b9f1)
   )
 
-  (text "TODO: consider 6V and 12V setting via resistors?\n    We could buffer the feedback resistor value into the\n    PICO's built-in ADC."
-    (at 118.11 130.81 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 805b3dc6-7f3d-4165-be38-d608c43bdd9c)
-  )
   (text "Ground Lug" (at 222.25 125.984 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid f88ccdcd-2000-4785-9743-e3ec32a3d035)
@@ -219,12 +214,12 @@
   )
 
   (symbol (lib_id "power:GND") (at 226.822 134.62 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid dfeee756-3489-4df4-bfe8-bd7ffab2c1bb)
     (property "Reference" "#PWR0127" (at 226.822 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 226.822 139.7 0)
+    (property "Value" "GND" (at 226.822 138.43 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "" (at 226.822 134.62 0)
