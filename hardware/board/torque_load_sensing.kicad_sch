@@ -1090,7 +1090,8 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 2a27b3e3-12a3-46d7-a569-df4b60ebb99d)
   )
-  (text "Wheatstone\nBridge Inputs" (at 30.48 78.74 0)
+  (text "Wheatstone\nBridge Inputs\n\nBridge made from\n350[Ohm] resistors."
+    (at 30.48 85.725 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 450e6973-e975-4261-8b32-a64135ba0d8a)
   )

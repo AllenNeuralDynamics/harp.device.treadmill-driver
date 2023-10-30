@@ -4865,10 +4865,6 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid e4594095-80c7-4c2c-8074-768be8603d5b)
   )
-  (text "FIXME: are these set correctly for +/-5V?" (at 213.868 123.952 0)
-    (effects (font (size 2 2) (thickness 0.4) bold) (justify left bottom))
-    (uuid eb1a7f8f-c23e-4990-af9a-8bb433b3e015)
-  )
   (text "LT3506 Feedback: \nR_{upper} = R_{lower}(VOUT/0.8 - 1)"
     (at 213.36 59.817 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
