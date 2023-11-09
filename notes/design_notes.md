@@ -40,3 +40,5 @@ The downside is that this device cannot be powered via USB from the host pc.
 * [Hammond Manufacturing 1455L801 Case Drawing](https://www.hammfg.com/files/parts/pdf/1455L801.pdf)
 
 ### Reference Designs
+* [LTC2641 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/26412fd.pdf)
+  * features a programmable constant current sink in the "Typical Application" section.
