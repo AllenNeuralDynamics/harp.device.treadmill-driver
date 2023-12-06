@@ -1,0 +1,103 @@
+; adapted from:
+; https://github.com/raspberrypi/pico-examples/blob/master/pio/spi/spi.pio
+;
+; Copyright (c) 2020 Raspberry Pi (Trading) Ltd.
+;
+; SPDX-License-Identifier: BSD-3-Clause
+;
+
+; This PIO program writes values in the TX FIFO to the attached LTC264x device.
+; SCK period is 4 clock cycles long. (i.e: a 125[MHz] system clock will produce
+; a 31.25[MHz] SPI SCK clock.)
+
+; SPI with Chip Select
+; -----------------------------------------------------------------------------
+;
+; SPI program with an automatic chip select
+; (asserted once data appears in TX FIFO, deasserts when FIFO bottoms out, has
+; a nice front/back porch).
+;
+; The number of bits per FIFO entry (and the autopull threshold) must be
+; specified in advance by writing it to the Y register. Valid values range from
+; 2 to 32 bits.
+;
+; Pin assignments:
+; - SCK is side-set bit 0
+; - CSn is side-set bit 1
+; - PICO is OUT bit 0 (host-to-device)
+;
+; This program only supports one chip select -- use GPIO if more are needed
+;
+; Provide a variation for each possibility of CPHA; for CPOL we can just
+; invert SCK in the IO muxing controls (downstream from PIO)
+;
+; CPHA=0: data is captured on the leading edge of each SCK pulse (including
+; the first pulse), and transitions on the trailing edge
+
+.program spi_cpha0_cs
+.side_set 2
+
+.wrap_target
+bitloop:
+    out pins, 1        side 0x0 [1]
+    in pins, 1         side 0x1
+    jmp x-- bitloop    side 0x1
+
+    out pins, 1        side 0x0
+    mov x, y           side 0x0     ; Reload bit counter from Y
+    nop                side 0x1
+    jmp !osre bitloop  side 0x1     ; Fall-through if TXF empties
+
+    nop                side 0x0 [1] ; CSn back porch
+public entry_point:                 ; Must set X,Y to n-2 before starting!
+    pull ifempty       side 0x2 [1] ; Block with CSn high (minimum 2 cycles)
+.wrap                               ; Note ifempty to avoid time-of-check race
+
+% c-sdk {
+#include "hardware/gpio.h"
+static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
+                                     uint sck_pin, uint pico_pin)
+{
+    uint n_bits = 16;
+
+    // Determine which program to run based on data_bits.
+    pio_sm_config c = spi_cpha0_cs_program_get_default_config(program_offset);
+    // Setup which commands apply to which pins.
+    sm_config_set_out_pins(&c, pico_pin);    // PICO pin controlled with OUT cmd.
+    // Set sideset base pin. (Note: CS pin is sideset base + 1.)
+    sm_config_set_sideset_pins(&c, sck_pin); // SCK, & CS pins are controlled
+                                             // with SIDESET cmds.
+
+    // Setup for MSb-first (shift left), enable autopull with threshold = 16.
+    sm_config_set_out_shift(&c, false, true, n_bits);
+    sm_config_set_clkdiv(&c, 1.0f); // No clock division.
+
+    // Set specific GPIO pins to be controlled by pio.
+    pio_gpio_init(pio, sck_pin);
+    pio_gpio_init(pio, sck_pin + 1); // CS pin.
+    pio_gpio_init(pio, pico_pin);
+
+    // Set pin directions (1 = output; 0 = input)
+    pio_sm_set_pindirs_with_mask(pio, sm,
+        (1u << cs_pin) | (3u << sck_pin) | (1u << pico_pin),
+        (1u << cs_pin) | (3u << sck_pin) | (1u << pico_pin)
+    );
+    // Set output pin starting values.
+    pio_sm_set_pins_with_mask(pio, sm,
+        (2u << sck_pin) | (0u << pico_pin), // CS = 1, SCK = 0, PICO = 0.
+        (3u << sck_pin) | (1u << pico_pin)); // pin mask.
+
+    uint entry_point = program_offset + spi_cpha0_cs_offset_entry_point;
+    pio_sm_init(pio, sm, entry_point, &c);
+    // TODO: set starting value for scratch registers x and y.
+    pio_sm_exec(pio, sm, pio_encode_set(pio_x, n_bits - 2));
+    pio_sm_exec(pio, sm, pio_encode_set(pio_y, n_bits - 2));
+}
+
+static inline void pio_ltc264x_start(PIO pio, uint sm)
+{
+    // Start state machine.
+    pio_sm_set_enabled(pio, sm, true);
+}
+
+%}

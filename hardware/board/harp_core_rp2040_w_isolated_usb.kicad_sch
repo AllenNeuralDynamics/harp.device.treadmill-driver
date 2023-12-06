@@ -5386,6 +5386,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 780094ac-0b23-4eba-8a21-eae0948447cc)
   )
+  (text "Note:\nPIO code as written\nassumes DAC CS_PIN\nis SCK_PIN + 1."
+    (at 261.62 126.365 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 797de158-d7f8-4101-a97c-8718b5f121c8)
+  )
   (text "USB Boot. Power up device with button pushed to program via USB."
     (at 17.145 97.79 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))

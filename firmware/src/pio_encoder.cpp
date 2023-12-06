@@ -18,6 +18,10 @@ PIOEncoder::~PIOEncoder()
     // TODO: unit GPIO pins?
 }
 
+PIOEncoder::setup_dma_stream_to_memory(uint32_t* address)
+{
+
+}
 
 uint32_t PIOEncoder::get_count()
 {

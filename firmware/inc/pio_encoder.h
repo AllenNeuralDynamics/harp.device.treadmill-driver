@@ -12,6 +12,8 @@ public:
 
     ~PIOEncoder();
 
+    void setup_dma_stream_to_memory(uint32_t* address);
+
 /**
  * \brief return the encoder count. This takes around ~11 CPU cycles.
  */
