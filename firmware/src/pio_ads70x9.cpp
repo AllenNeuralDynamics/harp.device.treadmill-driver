@@ -1,16 +1,20 @@
 #include <pio_ads70x9.h>
 
-PIO_ADS70x9::PIO_ADS70x9(PIO pio, uint program_offset, uint8_t data_bits,
-                         uint8_t cs_pin, uint8_t sck_pin, uint8_t poci_pin)
-:pio_{pio}
+PIO_ADS70x9::PIO_ADS70x9(PIO pio, uint8_t data_bits,
+                         uint8_t cs_pin, uint8_t sck_pin, uint8_t poci_pin,
+                         int8_t existing_program_address)
+:pio_{pio}, offset_{existing_program_address}
 {
-    uint offset;
-    if (data_bits == 10)
-        offset = pio_add_program(pio_, &ads7039_program);
-    else if (data_bits == 12)
-        offset = pio_add_program(pio_, &ads7049_program);
-    else
-        offset = pio_add_program(pio_, &ads7029_program);
+    // load program if an existing program address is unspecified.
+    if (existing_program_address < 0) // unspecified argument defaults to -1.
+    {
+        if (data_bits == 10)
+            offset_ = pio_add_program(pio_, &ads7039_program);
+        else if (data_bits == 12)
+            offset_ = pio_add_program(pio_, &ads7049_program);
+        else
+            offset_ = pio_add_program(pio_, &ads7029_program);
+    }
     sm_ = pio_claim_unused_sm(pio_, true);
     // Configure pio program.
     setup_pio_ads70x9(pio_, sm_, offset, data_bits, cs_pin, sck_pin, poci_pin);
@@ -64,7 +68,7 @@ void PIO_ADS70x9::_setup_dma_stream_to_memory(
 
     // Setup Sample Channel.
     channel_config_set_transfer_data_size(&samp_conf, DMA_SIZE_16);
-    channel_config_set_read_increment(&samp_conf, false); // read from adc FIFO reg.
+    channel_config_set_read_increment(&samp_conf, false); // read from pio rx fifo reg.
     channel_config_set_write_increment(&samp_conf, true);
     channel_config_set_irq_quiet(&samp_conf, !trigger_interrupt);
     // Pace data according to pio providing data.

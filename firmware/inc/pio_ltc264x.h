@@ -26,8 +26,7 @@ public:
  * \brief constructor. Setup gpio pins, state machine.
  * \note CS pin is \p sck_pin + 1.
  */
-    PIO_LTC264x(PIO pio, uint program_offset,
-                uint8_t sck_pin, uint8_t pico_pin);
+    PIO_LTC264x(PIO pio, uint8_t sck_pin, uint8_t pico_pin);
 
     ~PIO_LTC264x();
 
@@ -46,11 +45,12 @@ public:
  * \brief Configure single-shot or continuous streaming of a specified number
     of values to a specified memory location at the specified interval.
 */
-    // FIXME: make inline.
+/*
     void setup_dma_stream_from_memory(uint16_t* starting_address,
                                       size_t sample_count,
                                       uint16_t interval,
                                       bool loop);
+*/
 
 /**
  * \brief single-shot or continuous streaming of a specified number of values
@@ -60,12 +60,14 @@ public:
     // FIXME: make inline.
     // FIXME: implement pacing via pacing timer.
     // see: https://forums.raspberrypi.com/viewtopic.php?t=329200
+/*
     void setup_dma_stream_from_memory_with_interrupt(uint16_t* starting_address,
                                                      size_t sample_count,
                                                      uint16_t interval,
                                                      bool loop,
                                                      int dma_irq_source,
                                                      irq_handler_t handler_func);
+*/
 
 /**
  * \brief Configure continuous streaming of a specified number of values to a
@@ -87,6 +89,7 @@ public:
  *  corresponding interrupt source.
  * \note: shortest interval is FIXME clock cycles.
  */
+/*
     void _setup_dma_stream_from_memory(uint16_t* starting_address,
                                        size_t sample_count,
                                        uint16_t interval,
@@ -94,6 +97,7 @@ public:
                                        bool trigger_interrupt,
                                        int dma_irq_source,
                                        irq_handler_t handler_func);
+*/
 
 /**
  * \brief launch the pio program

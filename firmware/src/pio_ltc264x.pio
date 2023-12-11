@@ -6,9 +6,11 @@
 ; SPDX-License-Identifier: BSD-3-Clause
 ;
 
-; This PIO program writes values in the TX FIFO to the attached LTC264x device.
-; SCK period is 4 clock cycles long. (i.e: a 125[MHz] system clock will produce
-; a 31.25[MHz] SPI SCK clock.)
+; This PIO program reads values from the TX FIFO and transmits them over SPI
+; to the attached LTC264x device.
+; SCK period is 2 clock cycles long so this program will need to be run at
+; clkdiv/2 if the peripheral clock is 125MHz. (i.e: a 125[MHz] system clock will
+; produce a 31.25[MHz] SPI SCK clock.)
 
 ; SPI with Chip Select
 ; -----------------------------------------------------------------------------
@@ -63,24 +65,26 @@ static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
     // Determine which program to run based on data_bits.
     pio_sm_config c = spi_cpha0_cs_program_get_default_config(program_offset);
     // Setup which commands apply to which pins.
-    sm_config_set_out_pins(&c, pico_pin);    // PICO pin controlled with OUT cmd.
+    sm_config_set_out_pins(&c, pico_pin, 1);    // PICO pin controlled with OUT cmd.
     // Set sideset base pin. (Note: CS pin is sideset base + 1.)
     sm_config_set_sideset_pins(&c, sck_pin); // SCK, & CS pins are controlled
                                              // with SIDESET cmds.
 
     // Setup for MSb-first (shift left), enable autopull with threshold = 16.
     sm_config_set_out_shift(&c, false, true, n_bits);
-    sm_config_set_clkdiv(&c, 1.0f); // No clock division.
+/*
+    sm_config_set_clkdiv(&c, 2.0f); // 125/2 -> 31.25MHz for one square period:
+                                    // one cycle on; one cycle off.
 
     // Set specific GPIO pins to be controlled by pio.
     pio_gpio_init(pio, sck_pin);
     pio_gpio_init(pio, sck_pin + 1); // CS pin.
     pio_gpio_init(pio, pico_pin);
 
-    // Set pin directions (1 = output; 0 = input)
+    // Set pin directions (1 = output; 0 = input). All outputs in this case.
     pio_sm_set_pindirs_with_mask(pio, sm,
-        (1u << cs_pin) | (3u << sck_pin) | (1u << pico_pin),
-        (1u << cs_pin) | (3u << sck_pin) | (1u << pico_pin)
+        (3u << sck_pin) | (1u << pico_pin), //CS pin is sck_pin + 1
+        (3u << sck_pin) | (1u << pico_pin));
     );
     // Set output pin starting values.
     pio_sm_set_pins_with_mask(pio, sm,
@@ -92,6 +96,7 @@ static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
     // TODO: set starting value for scratch registers x and y.
     pio_sm_exec(pio, sm, pio_encode_set(pio_x, n_bits - 2));
     pio_sm_exec(pio, sm, pio_encode_set(pio_y, n_bits - 2));
+*/
 }
 
 static inline void pio_ltc264x_start(PIO pio, uint sm)

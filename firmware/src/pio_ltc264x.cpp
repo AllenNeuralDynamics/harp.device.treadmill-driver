@@ -1,16 +1,16 @@
-#include <pio_ltc2641.h>
+#include <pio_ltc264x.h>
 
 // FIXME: rewrite this for the LTC264x
 
-PIO_LTC264x::PIO_LTC264x(PIO pio, uint program_offset,
-                         uint8_t cs_pin, uint8_t sck_pin, uint8_t pico_pin)
+PIO_LTC264x::PIO_LTC264x(PIO pio, uint8_t sck_pin, uint8_t pico_pin)
 :pio_{pio}
 {
+    // Note: CS_PIN is fixed as SCK_PIN + 1.
     uint offset;
-    offset = pio_add_program(pio_, &ltc2641_program);
+    offset = pio_add_program(pio_, &spi_cpha0_cs_program);
     sm_ = pio_claim_unused_sm(pio_, true);
     // Configure pio program. Note: cs_pin is sck_pin + 1.
-    setup_pio_ltc2641(pio_, sm_, offset, sck_pin, pico_pin);
+    setup_pio_ltc264x(pio_, sm_, offset, sck_pin, pico_pin);
 }
 
 PIO_LTC264x::~PIO_LTC264x()
@@ -18,18 +18,24 @@ PIO_LTC264x::~PIO_LTC264x()
     // TODO: state machine cleanup.
 }
 
-PIO_LTC264x::write_value(uint16_t value)
+void PIO_LTC264x::write_value(uint16_t value)
 {
-    // Push value into the PIO.
+    // Push value into the PIO TX FIFO.
+    pio_sm_put_blocking(pio_, sm_, value); // blocks if the TX FIFO is full,
+                                           // which should not happen unless
+                                           // we are calling it too fast.
 }
 
+/*
 void PIO_LTC264x::setup_dma_stream_from_memory(uint16_t* starting_address,
                                                size_t sample_count)
 {
     _setup_dma_stream_from_memory(starting_address, sample_count, false,
                                   0, nullptr);
 }
+*/
 
+/*
 void PIO_LTC264x::setup_dma_stream_from_memory_with_interrupt(
     uint16_t* starting_address, size_t sample_count, int dma_irq_source,
     irq_handler_t handler_func)
@@ -37,7 +43,9 @@ void PIO_LTC264x::setup_dma_stream_from_memory_with_interrupt(
     _setup_dma_stream_to_memory(starting_address, sample_count, true,
         dma_irq_source, handler_func);
 }
+*/
 
+/*
 void PIO_LTC264x::_setup_dma_stream_from_memory(
     uint16_t* starting_address, size_t sample_count, bool trigger_interrupt,
     int dma_irq_source, irq_handler_t handler_func)
@@ -120,9 +128,10 @@ void PIO_LTC264x::_setup_dma_stream_from_memory(
     dma_channel_start(ctrl_chan);
     //printf("Configured DMA control channel.\r\n");
 }
+*/
 
 void PIO_LTC264x::start()
 {
     // launch the PIO program.
-    pio_ads70x9_start(pio_, sm_);
+    pio_ltc264x_start(pio_, sm_);
 }

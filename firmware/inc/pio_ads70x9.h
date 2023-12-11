@@ -22,9 +22,13 @@ public:
  * \param data_bits the bit resolution of the corresponding device.
  *  Only 8, 10, or 12 are valid values, corresponding to the ADS7029, ADS7039,
  *  and ADS7049 respectively.
+ * \param existing_program_address if specifed as >=0, then the constructor will
+ *  not add a pio program and instead use the existing one at the specified
+ *  address.
  */
-    PIO_ADS70x9(PIO pio, uint program_offset, uint8_t data_bits,
-                uint8_t cs_pin, uint8_t sck_pin, uint8_t poci_pin);
+    PIO_ADS70x9(PIO pio, uint8_t data_bits,
+                uint8_t cs_pin, uint8_t sck_pin, uint8_t poci_pin,
+                int8_t existing_program_address = -1);
 
     ~PIO_ADS70x9();
 
@@ -72,6 +76,13 @@ public:
                                      irq_handler_t handler_func);
 
 /**
+ * \brief get the program address (i.e: the offset) that the pio program was
+ *  loaded at.
+ */
+    int8_t get_program_address()
+    {return offset_;}
+
+/**
  * \brief launch the pio program
  */
     void start();
@@ -81,6 +92,7 @@ public:
                     // a DMA handler function needs to clear it.
 private:
     PIO pio_;
+    int8_t offset_;
     uint sm_;
     uint16_t* data_ptr_[1];   // Data that the reconfiguration channel will write back
                             // to the sample channel. In this case, just the
