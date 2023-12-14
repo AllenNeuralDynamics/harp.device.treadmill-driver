@@ -45,17 +45,16 @@ const uint8_t fw_version_minor = 0;
 const uint16_t serial_number = 0;
 
 // Setup for Harp App
-const size_t reg_count = 8;
+const size_t reg_count = 7;
 
 #pragma pack(push, 1)
 struct app_regs_t
 {
-    volatile uint32_t encoder_raw;
-    volatile uint16_t brake_current_raw;
-    volatile uint16_t brake_current_setpoint;
-    volatile uint16_t torque_midpoint;
+    volatile uint32_t encoder_raw;              // 32
+    volatile uint16_t brake_current_raw;        // 33
+    volatile uint16_t brake_current_setpoint;   // 34
+    volatile uint16_t torque_midpoint;          // ...
     volatile uint16_t torque_raw;
-    volatile uint16_t torque_setpoint;
     volatile uint8_t brake_enabled;
     volatile uint8_t calibrate;
     // More app "registers" here.
@@ -63,12 +62,10 @@ struct app_regs_t
 
 void write_brake_current_setpoint(msg_t& msg)
 {
-/*
     HarpCore::copy_msg_payload_to_register(msg);
     brake_setpoint.write_value(app_regs.brake_current_setpoint);
     if (!HarpCore::is_muted())
         HarpCore::send_harp_reply(WRITE, msg.header.address);
-*/
 }
 
 
@@ -80,7 +77,6 @@ RegSpecs app_reg_specs[reg_count]
     {(uint8_t*)&app_regs.brake_current_setpoint, sizeof(app_regs.brake_current_setpoint), U16},
     {(uint8_t*)&app_regs.torque_midpoint, sizeof(app_regs.torque_midpoint), U16},
     {(uint8_t*)&app_regs.torque_raw, sizeof(app_regs.torque_raw), U16},
-    {(uint8_t*)&app_regs.torque_setpoint, sizeof(app_regs.torque_setpoint), U16},
     {(uint8_t*)&app_regs.brake_enabled, sizeof(app_regs.brake_enabled), U8},
     {(uint8_t*)&app_regs.calibrate, sizeof(app_regs.calibrate), U8}
     // More specs here if we add additional registers.
@@ -93,7 +89,6 @@ RegFnPair reg_handler_fns[reg_count]
     {&HarpCore::read_reg_generic, &write_brake_current_setpoint},
     {&HarpCore::read_reg_generic, &HarpCore::write_to_read_only_reg_error},
     {&HarpCore::read_reg_generic, &HarpCore::write_to_read_only_reg_error},
-    {&HarpCore::read_reg_generic, &HarpCore::write_reg_generic},
     {&HarpCore::read_reg_generic, &HarpCore::write_reg_generic},
     {&HarpCore::read_reg_generic, &HarpCore::write_reg_generic}
     // More handler function pairs here if we add additional registers.
@@ -110,8 +105,8 @@ void update_app_state()
 void reset_app()
 {
     // Called when we write to the core reset "register."
-    app_regs.torque_setpoint = 0;
-    // TODO: actually apply the setpoint value.
+    app_regs.brake_current_setpoint = 0;
+    brake_setpoint.write_value(app_regs.brake_current_setpoint);
     // TODO: technically, we should reset the encoder too.
 }
 
@@ -134,8 +129,8 @@ int main()
 #endif
     // Init Synchronizer.
     HarpSynchronizer::init(uart0, HARP_SYNC_RX_PIN);
-    //app.set_visual_indicators_fn(set_led_state);
     app.set_synchronizer(&HarpSynchronizer::instance());
+    //app.set_visual_indicators_fn(set_led_state);
     // Init PIO encoder on pins 0 and 1.
     // Init PIO-based ADC with continuous streaming to memory via DMA.
     current_sensor.setup_dma_stream_to_memory(&app_regs.brake_current_raw, 1);
@@ -144,7 +139,6 @@ int main()
     current_sensor.start();
     reaction_torque_sensor.start();
     brake_setpoint.start();
-
     encoder.request_count(); // Enter loop by first requesting encoder count.
     while(true)
         app.run();

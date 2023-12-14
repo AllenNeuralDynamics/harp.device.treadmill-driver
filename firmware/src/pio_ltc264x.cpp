@@ -21,9 +21,11 @@ PIO_LTC264x::~PIO_LTC264x()
 void PIO_LTC264x::write_value(uint16_t value)
 {
     // Push value into the PIO TX FIFO.
-    pio_sm_put_blocking(pio_, sm_, value); // blocks if the TX FIFO is full,
-                                           // which should not happen unless
-                                           // we are calling it too fast.
+    // Note: data is loaded MSbit first from the TX FIFO (32-bit).
+    pio_sm_put_blocking(pio_, sm_, (value<<16)); // blocks if the TX FIFO is
+                                                 // full, which should not
+                                                 // happen unless we are calling
+                                                 // it too fast.
 }
 
 /*

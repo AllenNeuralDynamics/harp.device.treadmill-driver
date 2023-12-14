@@ -42,7 +42,7 @@
 .wrap_target
 bitloop:
     out pins, 1        side 0x0 [1]
-    in pins, 1         side 0x1
+    nop                side 0x1
     jmp x-- bitloop    side 0x1
 
     out pins, 1        side 0x0
@@ -52,7 +52,7 @@ bitloop:
 
     nop                side 0x0 [1] ; CSn back porch
 public entry_point:                 ; Must set X,Y to n-2 before starting!
-    pull ifempty       side 0x2 [1] ; Block with CSn high (minimum 2 cycles)
+    pull ifempty block side 0x2 [1] ; Block with CSn high (minimum 2 cycles)
 .wrap                               ; Note ifempty to avoid time-of-check race
 
 % c-sdk {
@@ -71,9 +71,8 @@ static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
                                              // with SIDESET cmds.
 
     // Setup for MSb-first (shift left), enable autopull with threshold = 16.
-    sm_config_set_out_shift(&c, false, true, n_bits);
-/*
-    sm_config_set_clkdiv(&c, 2.0f); // 125/2 -> 31.25MHz for one square period:
+    sm_config_set_out_shift(&c, false, true , n_bits);
+    sm_config_set_clkdiv(&c, 1.0f); // 125/2 -> 31.25MHz for one square period:
                                     // one cycle on; one cycle off.
 
     // Set specific GPIO pins to be controlled by pio.
@@ -85,7 +84,6 @@ static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
     pio_sm_set_pindirs_with_mask(pio, sm,
         (3u << sck_pin) | (1u << pico_pin), //CS pin is sck_pin + 1
         (3u << sck_pin) | (1u << pico_pin));
-    );
     // Set output pin starting values.
     pio_sm_set_pins_with_mask(pio, sm,
         (2u << sck_pin) | (0u << pico_pin), // CS = 1, SCK = 0, PICO = 0.
@@ -93,10 +91,10 @@ static inline void setup_pio_ltc264x(PIO pio, uint sm, uint program_offset,
 
     uint entry_point = program_offset + spi_cpha0_cs_offset_entry_point;
     pio_sm_init(pio, sm, entry_point, &c);
+    pio_sm_drain_tx_fifo(pio, sm);
     // TODO: set starting value for scratch registers x and y.
     pio_sm_exec(pio, sm, pio_encode_set(pio_x, n_bits - 2));
     pio_sm_exec(pio, sm, pio_encode_set(pio_y, n_bits - 2));
-*/
 }
 
 static inline void pio_ltc264x_start(PIO pio, uint sm)
