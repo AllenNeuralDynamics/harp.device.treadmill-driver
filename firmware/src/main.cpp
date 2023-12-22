@@ -16,8 +16,6 @@
 PIOEncoder encoder(pio1, 0, ENCODER_BASE_PIN);
 // Create PIO SPI ADC instances for current and torque transducer sensing.
 // Both PIO_ADS7049 instances can use the same PIO program.
-// FIXME: Somehow we need to instantiate without loading the program, but
-// pointing to an existing program
 PIO_ADS7049 current_sensor(pio0,
                            BRAKE_CURRENT_CS_PIN,
                            BRAKE_CURRENT_SCK_PIN, BRAKE_CURRENT_POCI_PIN);
@@ -27,7 +25,6 @@ PIO_ADS7049 reaction_torque_sensor(pio0, TORQUE_TRANSDUCER_CS_PIN,
                                    TORQUE_TRANSDUCER_POCI_PIN,
                                    current_sensor.get_program_address());
 // Create PIO SPI DAC instance for driving the brake current setpoint.
-// FIXME: maybe do this over vanilla SPI.
 PIO_LTC264x brake_setpoint(pio0, // CS pin is SCK pin + 1
                            BRAKE_SETPOINT_SCK_PIN,
                            BRAKE_SETPOINT_PICO_PIN);
@@ -107,7 +104,7 @@ void reset_app()
     // Called when we write to the core reset "register."
     app_regs.brake_current_setpoint = 0;
     brake_setpoint.write_value(app_regs.brake_current_setpoint);
-    // TODO: technically, we should reset the encoder too.
+    // TODO: technically, we should restart the encoder too.
 }
 
 // Create Core.
