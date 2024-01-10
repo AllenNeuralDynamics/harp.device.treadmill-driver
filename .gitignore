@@ -1,7 +1,7 @@
 # files created for compiling the code
 build/
 # or for storing kicad export files
-exports/
+board/*/exports/
 
 # Kicad-generated
 *-backups/
