@@ -1,0 +1,53 @@
+%YAML 1.1
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
+device: Treadmill
+whoAmI: 1402
+firmwareVersion: "0.0"
+hardwareTargets: "0.0"
+registers:
+  TorqueRaw:
+    address: 32
+    type: U16
+    access: Event
+    description: Emits a periodic event containing a raw measurement value from the angular torque sensor.
+  TorqueLoadCurrentRaw:
+    address: 32
+    type: U16
+    access: Event
+    description: Emits a periodic event containing a raw measurement of the output current applied to the variable torque load.
+  Encoder:
+    address: 33
+    type: U32 # Should be S32 to allow negative values, we dont need the full speced U32 range anyway
+    access: Event
+    description: Emits a periodic event containing a raw measurement value from the treadmill encoder. # TODO This should have 2 modes, one for displacement another for position
+  EncoderMode:
+    address: 37
+    type: U8
+    access: Write
+    maskType: EncoderModeConfig
+    description: Specifies the type of reading made from the encoder.
+  SetTorqueRaw:
+    address: 34
+    type: U32 # not sure why the units here are more than address 32
+    access: Write
+    description: Sets the raw value of the torque set-point to be applied to the treadmill.
+  SubsystemReset:
+    address: 35
+    type: U8
+    access: Write
+    maskType: Subsystems
+    description: Resets the specified treadmill subsystem.
+bitMasks:
+  Subsystems:
+    description: Specifies the subsystem to reset.
+    bits:
+      None: 0x00
+      Encoder: 0x01
+      Torque: 0x02
+groupMasks:
+  EncoderModeConfig:
+    description: Specifies the type of reading made from the encoder.
+    values:
+      Position: 0
+      Displacement: 1
