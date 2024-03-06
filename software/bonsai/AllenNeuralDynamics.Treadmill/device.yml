@@ -50,7 +50,7 @@ registers:
     address: 38
     type: U16
     access: Write
-    description: Resets the specified sensors to zero.
+    description: Tares the specified sensors.
     maskType: Sensors
 bitMasks:
   Sensors:
