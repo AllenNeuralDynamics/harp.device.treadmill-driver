@@ -46,70 +46,6 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the TorqueRaw register.
-        /// </summary>
-        /// <param name="cancellationToken">
-        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
-        /// </param>
-        /// <returns>
-        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
-        /// property contains the register payload.
-        /// </returns>
-        public async Task<ushort> ReadTorqueRawAsync(CancellationToken cancellationToken = default)
-        {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueRaw.Address), cancellationToken);
-            return TorqueRaw.GetPayload(reply);
-        }
-
-        /// <summary>
-        /// Asynchronously reads the timestamped contents of the TorqueRaw register.
-        /// </summary>
-        /// <param name="cancellationToken">
-        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
-        /// </param>
-        /// <returns>
-        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
-        /// property contains the timestamped register payload.
-        /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedTorqueRawAsync(CancellationToken cancellationToken = default)
-        {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueRaw.Address), cancellationToken);
-            return TorqueRaw.GetTimestampedPayload(reply);
-        }
-
-        /// <summary>
-        /// Asynchronously reads the contents of the TorqueLoadCurrentRaw register.
-        /// </summary>
-        /// <param name="cancellationToken">
-        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
-        /// </param>
-        /// <returns>
-        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
-        /// property contains the register payload.
-        /// </returns>
-        public async Task<ushort> ReadTorqueLoadCurrentRawAsync(CancellationToken cancellationToken = default)
-        {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueLoadCurrentRaw.Address), cancellationToken);
-            return TorqueLoadCurrentRaw.GetPayload(reply);
-        }
-
-        /// <summary>
-        /// Asynchronously reads the timestamped contents of the TorqueLoadCurrentRaw register.
-        /// </summary>
-        /// <param name="cancellationToken">
-        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
-        /// </param>
-        /// <returns>
-        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
-        /// property contains the timestamped register payload.
-        /// </returns>
-        public async Task<Timestamped<ushort>> ReadTimestampedTorqueLoadCurrentRawAsync(CancellationToken cancellationToken = default)
-        {
-            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueLoadCurrentRaw.Address), cancellationToken);
-            return TorqueLoadCurrentRaw.GetTimestampedPayload(reply);
-        }
-
-        /// <summary>
         /// Asynchronously reads the contents of the Encoder register.
         /// </summary>
         /// <param name="cancellationToken">
@@ -142,7 +78,7 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the EncoderMode register.
+        /// Asynchronously reads the contents of the Torque register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -151,14 +87,14 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<EncoderModeConfig> ReadEncoderModeAsync(CancellationToken cancellationToken = default)
+        public async Task<ushort> ReadTorqueAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(EncoderMode.Address), cancellationToken);
-            return EncoderMode.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(Torque.Address), cancellationToken);
+            return Torque.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the EncoderMode register.
+        /// Asynchronously reads the timestamped contents of the Torque register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -167,28 +103,124 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<EncoderModeConfig>> ReadTimestampedEncoderModeAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<ushort>> ReadTimestampedTorqueAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(EncoderMode.Address), cancellationToken);
-            return EncoderMode.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(Torque.Address), cancellationToken);
+            return Torque.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the EncoderMode register.
+        /// Asynchronously reads the contents of the TorqueLoadCurrent register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the register payload.
+        /// </returns>
+        public async Task<ushort> ReadTorqueLoadCurrentAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueLoadCurrent.Address), cancellationToken);
+            return TorqueLoadCurrent.GetPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the timestamped contents of the TorqueLoadCurrent register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the timestamped register payload.
+        /// </returns>
+        public async Task<Timestamped<ushort>> ReadTimestampedTorqueLoadCurrentAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(TorqueLoadCurrent.Address), cancellationToken);
+            return TorqueLoadCurrent.GetTimestampedPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the contents of the SensorData register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the register payload.
+        /// </returns>
+        public async Task<SensorDataPayload> ReadSensorDataAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(SensorData.Address), cancellationToken);
+            return SensorData.GetPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the timestamped contents of the SensorData register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the timestamped register payload.
+        /// </returns>
+        public async Task<Timestamped<SensorDataPayload>> ReadTimestampedSensorDataAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(SensorData.Address), cancellationToken);
+            return SensorData.GetTimestampedPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the contents of the TreadmillDataDispatchRate register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the register payload.
+        /// </returns>
+        public async Task<uint> ReadTreadmillDataDispatchRateAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(TreadmillDataDispatchRate.Address), cancellationToken);
+            return TreadmillDataDispatchRate.GetPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously reads the timestamped contents of the TreadmillDataDispatchRate register.
+        /// </summary>
+        /// <param name="cancellationToken">
+        /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
+        /// property contains the timestamped register payload.
+        /// </returns>
+        public async Task<Timestamped<uint>> ReadTimestampedTreadmillDataDispatchRateAsync(CancellationToken cancellationToken = default)
+        {
+            var reply = await CommandAsync(HarpCommand.ReadUInt32(TreadmillDataDispatchRate.Address), cancellationToken);
+            return TreadmillDataDispatchRate.GetTimestampedPayload(reply);
+        }
+
+        /// <summary>
+        /// Asynchronously writes a value to the TreadmillDataDispatchRate register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
         /// </param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteEncoderModeAsync(EncoderModeConfig value, CancellationToken cancellationToken = default)
+        public async Task WriteTreadmillDataDispatchRateAsync(uint value, CancellationToken cancellationToken = default)
         {
-            var request = EncoderMode.FromPayload(MessageType.Write, value);
+            var request = TreadmillDataDispatchRate.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the SetTorqueRaw register.
+        /// Asynchronously reads the contents of the BreakCurrentSetPoint register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -197,14 +229,14 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<uint> ReadSetTorqueRawAsync(CancellationToken cancellationToken = default)
+        public async Task<ushort> ReadBreakCurrentSetPointAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt32(SetTorqueRaw.Address), cancellationToken);
-            return SetTorqueRaw.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(BreakCurrentSetPoint.Address), cancellationToken);
+            return BreakCurrentSetPoint.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the SetTorqueRaw register.
+        /// Asynchronously reads the timestamped contents of the BreakCurrentSetPoint register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -213,28 +245,28 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<uint>> ReadTimestampedSetTorqueRawAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<ushort>> ReadTimestampedBreakCurrentSetPointAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt32(SetTorqueRaw.Address), cancellationToken);
-            return SetTorqueRaw.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(BreakCurrentSetPoint.Address), cancellationToken);
+            return BreakCurrentSetPoint.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the SetTorqueRaw register.
+        /// Asynchronously writes a value to the BreakCurrentSetPoint register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
         /// </param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteSetTorqueRawAsync(uint value, CancellationToken cancellationToken = default)
+        public async Task WriteBreakCurrentSetPointAsync(ushort value, CancellationToken cancellationToken = default)
         {
-            var request = SetTorqueRaw.FromPayload(MessageType.Write, value);
+            var request = BreakCurrentSetPoint.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);
         }
 
         /// <summary>
-        /// Asynchronously reads the contents of the SubsystemReset register.
+        /// Asynchronously reads the contents of the TareSensors register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -243,14 +275,14 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<Subsystems> ReadSubsystemResetAsync(CancellationToken cancellationToken = default)
+        public async Task<Sensors> ReadTareSensorsAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(SubsystemReset.Address), cancellationToken);
-            return SubsystemReset.GetPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(TareSensors.Address), cancellationToken);
+            return TareSensors.GetPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously reads the timestamped contents of the SubsystemReset register.
+        /// Asynchronously reads the timestamped contents of the TareSensors register.
         /// </summary>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
@@ -259,23 +291,23 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<Subsystems>> ReadTimestampedSubsystemResetAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<Sensors>> ReadTimestampedTareSensorsAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadByte(SubsystemReset.Address), cancellationToken);
-            return SubsystemReset.GetTimestampedPayload(reply);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(TareSensors.Address), cancellationToken);
+            return TareSensors.GetTimestampedPayload(reply);
         }
 
         /// <summary>
-        /// Asynchronously writes a value to the SubsystemReset register.
+        /// Asynchronously writes a value to the TareSensors register.
         /// </summary>
         /// <param name="value">The value to be stored in the register.</param>
         /// <param name="cancellationToken">
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
         /// </param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteSubsystemResetAsync(Subsystems value, CancellationToken cancellationToken = default)
+        public async Task WriteTareSensorsAsync(Sensors value, CancellationToken cancellationToken = default)
         {
-            var request = SubsystemReset.FromPayload(MessageType.Write, value);
+            var request = TareSensors.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);
         }
     }
