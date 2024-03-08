@@ -41,9 +41,10 @@ namespace AllenNeuralDynamics.Treadmill
             { 33, typeof(Torque) },
             { 34, typeof(TorqueLoadCurrent) },
             { 35, typeof(SensorData) },
-            { 36, typeof(TreadmillDataDispatchRate) },
+            { 36, typeof(SensorDataDispatchRate) },
             { 37, typeof(BreakCurrentSetPoint) },
-            { 38, typeof(TareSensors) }
+            { 38, typeof(TareSensors) },
+            { 39, typeof(ResetTareSensors) }
         };
     }
 
@@ -76,16 +77,18 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="Torque"/>
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
-    /// <seealso cref="TreadmillDataDispatchRate"/>
+    /// <seealso cref="SensorDataDispatchRate"/>
     /// <seealso cref="BreakCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
+    /// <seealso cref="ResetTareSensors"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
-    [XmlInclude(typeof(TreadmillDataDispatchRate))]
+    [XmlInclude(typeof(SensorDataDispatchRate))]
     [XmlInclude(typeof(BreakCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
+    [XmlInclude(typeof(ResetTareSensors))]
     [Description("Filters register-specific messages reported by the Treadmill device.")]
     public class FilterRegister : FilterRegisterBuilder, INamedElement
     {
@@ -111,23 +114,26 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="Torque"/>
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
-    /// <seealso cref="TreadmillDataDispatchRate"/>
+    /// <seealso cref="SensorDataDispatchRate"/>
     /// <seealso cref="BreakCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
+    /// <seealso cref="ResetTareSensors"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
-    [XmlInclude(typeof(TreadmillDataDispatchRate))]
+    [XmlInclude(typeof(SensorDataDispatchRate))]
     [XmlInclude(typeof(BreakCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
+    [XmlInclude(typeof(ResetTareSensors))]
     [XmlInclude(typeof(TimestampedEncoder))]
     [XmlInclude(typeof(TimestampedTorque))]
     [XmlInclude(typeof(TimestampedTorqueLoadCurrent))]
     [XmlInclude(typeof(TimestampedSensorData))]
-    [XmlInclude(typeof(TimestampedTreadmillDataDispatchRate))]
+    [XmlInclude(typeof(TimestampedSensorDataDispatchRate))]
     [XmlInclude(typeof(TimestampedBreakCurrentSetPoint))]
     [XmlInclude(typeof(TimestampedTareSensors))]
+    [XmlInclude(typeof(TimestampedResetTareSensors))]
     [Description("Filters and selects specific messages reported by the Treadmill device.")]
     public partial class Parse : ParseBuilder, INamedElement
     {
@@ -150,16 +156,18 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="Torque"/>
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
-    /// <seealso cref="TreadmillDataDispatchRate"/>
+    /// <seealso cref="SensorDataDispatchRate"/>
     /// <seealso cref="BreakCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
+    /// <seealso cref="ResetTareSensors"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
-    [XmlInclude(typeof(TreadmillDataDispatchRate))]
+    [XmlInclude(typeof(SensorDataDispatchRate))]
     [XmlInclude(typeof(BreakCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
+    [XmlInclude(typeof(ResetTareSensors))]
     [Description("Formats a sequence of values as specific Treadmill register messages.")]
     public partial class Format : FormatBuilder, INamedElement
     {
@@ -175,9 +183,9 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
-    /// Represents a register that contains the current accumulated number of ticks. Overflows at 2^32.
+    /// Represents a register that contains the current accumulated number of ticks.
     /// </summary>
-    [Description("Contains the current accumulated number of ticks. Overflows at 2^32.")]
+    [Description("Contains the current accumulated number of ticks.")]
     public partial class Encoder
     {
         /// <summary>
@@ -188,7 +196,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="Encoder"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U32;
+        public const PayloadType RegisterType = PayloadType.S32;
 
         /// <summary>
         /// Represents the length of the <see cref="Encoder"/> register. This field is constant.
@@ -200,9 +208,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static uint GetPayload(HarpMessage message)
+        public static int GetPayload(HarpMessage message)
         {
-            return message.GetPayloadUInt32();
+            return message.GetPayloadInt32();
         }
 
         /// <summary>
@@ -210,9 +218,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<uint> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<int> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadUInt32();
+            return message.GetTimestampedPayloadInt32();
         }
 
         /// <summary>
@@ -224,9 +232,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="Encoder"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, uint value)
+        public static HarpMessage FromPayload(MessageType messageType, int value)
         {
-            return HarpMessage.FromUInt32(Address, messageType, value);
+            return HarpMessage.FromInt32(Address, messageType, value);
         }
 
         /// <summary>
@@ -240,9 +248,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="Encoder"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, uint value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, int value)
         {
-            return HarpMessage.FromUInt32(Address, timestamp, messageType, value);
+            return HarpMessage.FromInt32(Address, timestamp, messageType, value);
         }
     }
 
@@ -264,7 +272,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<uint> GetPayload(HarpMessage message)
+        public static Timestamped<int> GetPayload(HarpMessage message)
         {
             return Encoder.GetTimestampedPayload(message);
         }
@@ -284,7 +292,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="Torque"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U16;
+        public const PayloadType RegisterType = PayloadType.S16;
 
         /// <summary>
         /// Represents the length of the <see cref="Torque"/> register. This field is constant.
@@ -296,9 +304,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static ushort GetPayload(HarpMessage message)
+        public static short GetPayload(HarpMessage message)
         {
-            return message.GetPayloadUInt16();
+            return message.GetPayloadInt16();
         }
 
         /// <summary>
@@ -306,9 +314,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<ushort> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<short> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadUInt16();
+            return message.GetTimestampedPayloadInt16();
         }
 
         /// <summary>
@@ -320,9 +328,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="Torque"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, ushort value)
+        public static HarpMessage FromPayload(MessageType messageType, short value)
         {
-            return HarpMessage.FromUInt16(Address, messageType, value);
+            return HarpMessage.FromInt16(Address, messageType, value);
         }
 
         /// <summary>
@@ -336,9 +344,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="Torque"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, ushort value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, short value)
         {
-            return HarpMessage.FromUInt16(Address, timestamp, messageType, value);
+            return HarpMessage.FromInt16(Address, timestamp, messageType, value);
         }
     }
 
@@ -360,7 +368,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<ushort> GetPayload(HarpMessage message)
+        public static Timestamped<short> GetPayload(HarpMessage message)
         {
             return Torque.GetTimestampedPayload(message);
         }
@@ -380,7 +388,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="TorqueLoadCurrent"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U16;
+        public const PayloadType RegisterType = PayloadType.S16;
 
         /// <summary>
         /// Represents the length of the <see cref="TorqueLoadCurrent"/> register. This field is constant.
@@ -392,9 +400,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static ushort GetPayload(HarpMessage message)
+        public static short GetPayload(HarpMessage message)
         {
-            return message.GetPayloadUInt16();
+            return message.GetPayloadInt16();
         }
 
         /// <summary>
@@ -402,9 +410,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<ushort> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<short> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadUInt16();
+            return message.GetTimestampedPayloadInt16();
         }
 
         /// <summary>
@@ -416,9 +424,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="TorqueLoadCurrent"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, ushort value)
+        public static HarpMessage FromPayload(MessageType messageType, short value)
         {
-            return HarpMessage.FromUInt16(Address, messageType, value);
+            return HarpMessage.FromInt16(Address, messageType, value);
         }
 
         /// <summary>
@@ -432,9 +440,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="TorqueLoadCurrent"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, ushort value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, short value)
         {
-            return HarpMessage.FromUInt16(Address, timestamp, messageType, value);
+            return HarpMessage.FromInt16(Address, timestamp, messageType, value);
         }
     }
 
@@ -456,7 +464,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<ushort> GetPayload(HarpMessage message)
+        public static Timestamped<short> GetPayload(HarpMessage message)
         {
             return TorqueLoadCurrent.GetTimestampedPayload(message);
         }
@@ -476,14 +484,14 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="SensorData"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U32;
+        public const PayloadType RegisterType = PayloadType.S32;
 
         /// <summary>
         /// Represents the length of the <see cref="SensorData"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 3;
 
-        static SensorDataPayload ParsePayload(uint[] payload)
+        static SensorDataPayload ParsePayload(int[] payload)
         {
             SensorDataPayload result;
             result.Encoder = payload[0];
@@ -492,10 +500,10 @@ namespace AllenNeuralDynamics.Treadmill
             return result;
         }
 
-        static uint[] FormatPayload(SensorDataPayload value)
+        static int[] FormatPayload(SensorDataPayload value)
         {
-            uint[] result;
-            result = new uint[3];
+            int[] result;
+            result = new int[3];
             result[0] = value.Encoder;
             result[1] = value.Torque;
             result[2] = value.TorqueLoadCurrent;
@@ -509,7 +517,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <returns>A value representing the message payload.</returns>
         public static SensorDataPayload GetPayload(HarpMessage message)
         {
-            return ParsePayload(message.GetPayloadArray<uint>());
+            return ParsePayload(message.GetPayloadArray<int>());
         }
 
         /// <summary>
@@ -519,7 +527,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<SensorDataPayload> GetTimestampedPayload(HarpMessage message)
         {
-            var payload = message.GetTimestampedPayloadArray<uint>();
+            var payload = message.GetTimestampedPayloadArray<int>();
             return Timestamped.Create(ParsePayload(payload.Value), payload.Seconds);
         }
 
@@ -534,7 +542,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, SensorDataPayload value)
         {
-            return HarpMessage.FromUInt32(Address, messageType, FormatPayload(value));
+            return HarpMessage.FromInt32(Address, messageType, FormatPayload(value));
         }
 
         /// <summary>
@@ -550,7 +558,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, SensorDataPayload value)
         {
-            return HarpMessage.FromUInt32(Address, timestamp, messageType, FormatPayload(value));
+            return HarpMessage.FromInt32(Address, timestamp, messageType, FormatPayload(value));
         }
     }
 
@@ -582,25 +590,25 @@ namespace AllenNeuralDynamics.Treadmill
     /// Represents a register that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
     /// </summary>
     [Description("Value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).")]
-    public partial class TreadmillDataDispatchRate
+    public partial class SensorDataDispatchRate
     {
         /// <summary>
-        /// Represents the address of the <see cref="TreadmillDataDispatchRate"/> register. This field is constant.
+        /// Represents the address of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
         /// </summary>
         public const int Address = 36;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="TreadmillDataDispatchRate"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U32;
 
         /// <summary>
-        /// Represents the length of the <see cref="TreadmillDataDispatchRate"/> register. This field is constant.
+        /// Represents the length of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="TreadmillDataDispatchRate"/> register messages.
+        /// Returns the payload data for <see cref="SensorDataDispatchRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -610,7 +618,7 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="TreadmillDataDispatchRate"/> register messages.
+        /// Returns the timestamped payload data for <see cref="SensorDataDispatchRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -620,12 +628,12 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="TreadmillDataDispatchRate"/> register.
+        /// Returns a Harp message for the <see cref="SensorDataDispatchRate"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="TreadmillDataDispatchRate"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SensorDataDispatchRate"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, uint value)
@@ -634,14 +642,14 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="TreadmillDataDispatchRate"/>
+        /// Returns a timestamped Harp message for the <see cref="SensorDataDispatchRate"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="TreadmillDataDispatchRate"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="SensorDataDispatchRate"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, uint value)
@@ -652,25 +660,25 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// TreadmillDataDispatchRate register.
+    /// SensorDataDispatchRate register.
     /// </summary>
-    /// <seealso cref="TreadmillDataDispatchRate"/>
-    [Description("Filters and selects timestamped messages from the TreadmillDataDispatchRate register.")]
-    public partial class TimestampedTreadmillDataDispatchRate
+    /// <seealso cref="SensorDataDispatchRate"/>
+    [Description("Filters and selects timestamped messages from the SensorDataDispatchRate register.")]
+    public partial class TimestampedSensorDataDispatchRate
     {
         /// <summary>
-        /// Represents the address of the <see cref="TreadmillDataDispatchRate"/> register. This field is constant.
+        /// Represents the address of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
         /// </summary>
-        public const int Address = TreadmillDataDispatchRate.Address;
+        public const int Address = SensorDataDispatchRate.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="TreadmillDataDispatchRate"/> register messages.
+        /// Returns timestamped payload data for <see cref="SensorDataDispatchRate"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<uint> GetPayload(HarpMessage message)
         {
-            return TreadmillDataDispatchRate.GetTimestampedPayload(message);
+            return SensorDataDispatchRate.GetTimestampedPayload(message);
         }
     }
 
@@ -784,7 +792,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="TareSensors"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U16;
+        public const PayloadType RegisterType = PayloadType.U8;
 
         /// <summary>
         /// Represents the length of the <see cref="TareSensors"/> register. This field is constant.
@@ -798,7 +806,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <returns>A value representing the message payload.</returns>
         public static Sensors GetPayload(HarpMessage message)
         {
-            return (Sensors)message.GetPayloadUInt16();
+            return (Sensors)message.GetPayloadByte();
         }
 
         /// <summary>
@@ -808,7 +816,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<Sensors> GetTimestampedPayload(HarpMessage message)
         {
-            var payload = message.GetTimestampedPayloadUInt16();
+            var payload = message.GetTimestampedPayloadByte();
             return Timestamped.Create((Sensors)payload.Value, payload.Seconds);
         }
 
@@ -823,7 +831,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, Sensors value)
         {
-            return HarpMessage.FromUInt16(Address, messageType, (ushort)value);
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
         }
 
         /// <summary>
@@ -839,7 +847,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, Sensors value)
         {
-            return HarpMessage.FromUInt16(Address, timestamp, messageType, (ushort)value);
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
         }
     }
 
@@ -868,6 +876,103 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
+    /// Represents a register that removes the tare from the specified sensors.
+    /// </summary>
+    [Description("Removes the tare from the specified sensors.")]
+    public partial class ResetTareSensors
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="ResetTareSensors"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 39;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="ResetTareSensors"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="ResetTareSensors"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+
+        /// <summary>
+        /// Returns the payload data for <see cref="ResetTareSensors"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the message payload.</returns>
+        public static Sensors GetPayload(HarpMessage message)
+        {
+            return (Sensors)message.GetPayloadByte();
+        }
+
+        /// <summary>
+        /// Returns the timestamped payload data for <see cref="ResetTareSensors"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<Sensors> GetTimestampedPayload(HarpMessage message)
+        {
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((Sensors)payload.Value, payload.Seconds);
+        }
+
+        /// <summary>
+        /// Returns a Harp message for the <see cref="ResetTareSensors"/> register.
+        /// </summary>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="ResetTareSensors"/> register
+        /// with the specified message type and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(MessageType messageType, Sensors value)
+        {
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
+        }
+
+        /// <summary>
+        /// Returns a timestamped Harp message for the <see cref="ResetTareSensors"/>
+        /// register.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="ResetTareSensors"/> register
+        /// with the specified message type, timestamp, and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, Sensors value)
+        {
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
+        }
+    }
+
+    /// <summary>
+    /// Provides methods for manipulating timestamped messages from the
+    /// ResetTareSensors register.
+    /// </summary>
+    /// <seealso cref="ResetTareSensors"/>
+    [Description("Filters and selects timestamped messages from the ResetTareSensors register.")]
+    public partial class TimestampedResetTareSensors
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="ResetTareSensors"/> register. This field is constant.
+        /// </summary>
+        public const int Address = ResetTareSensors.Address;
+
+        /// <summary>
+        /// Returns timestamped payload data for <see cref="ResetTareSensors"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<Sensors> GetPayload(HarpMessage message)
+        {
+            return ResetTareSensors.GetTimestampedPayload(message);
+        }
+    }
+
+    /// <summary>
     /// Represents an operator which creates standard message payloads for the
     /// Treadmill device.
     /// </summary>
@@ -875,23 +980,26 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="CreateTorquePayload"/>
     /// <seealso cref="CreateTorqueLoadCurrentPayload"/>
     /// <seealso cref="CreateSensorDataPayload"/>
-    /// <seealso cref="CreateTreadmillDataDispatchRatePayload"/>
+    /// <seealso cref="CreateSensorDataDispatchRatePayload"/>
     /// <seealso cref="CreateBreakCurrentSetPointPayload"/>
     /// <seealso cref="CreateTareSensorsPayload"/>
+    /// <seealso cref="CreateResetTareSensorsPayload"/>
     [XmlInclude(typeof(CreateEncoderPayload))]
     [XmlInclude(typeof(CreateTorquePayload))]
     [XmlInclude(typeof(CreateTorqueLoadCurrentPayload))]
     [XmlInclude(typeof(CreateSensorDataPayload))]
-    [XmlInclude(typeof(CreateTreadmillDataDispatchRatePayload))]
+    [XmlInclude(typeof(CreateSensorDataDispatchRatePayload))]
     [XmlInclude(typeof(CreateBreakCurrentSetPointPayload))]
     [XmlInclude(typeof(CreateTareSensorsPayload))]
+    [XmlInclude(typeof(CreateResetTareSensorsPayload))]
     [XmlInclude(typeof(CreateTimestampedEncoderPayload))]
     [XmlInclude(typeof(CreateTimestampedTorquePayload))]
     [XmlInclude(typeof(CreateTimestampedTorqueLoadCurrentPayload))]
     [XmlInclude(typeof(CreateTimestampedSensorDataPayload))]
-    [XmlInclude(typeof(CreateTimestampedTreadmillDataDispatchRatePayload))]
+    [XmlInclude(typeof(CreateTimestampedSensorDataDispatchRatePayload))]
     [XmlInclude(typeof(CreateTimestampedBreakCurrentSetPointPayload))]
     [XmlInclude(typeof(CreateTimestampedTareSensorsPayload))]
+    [XmlInclude(typeof(CreateTimestampedResetTareSensorsPayload))]
     [Description("Creates standard message payloads for the Treadmill device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -908,29 +1016,29 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that contains the current accumulated number of ticks. Overflows at 2^32.
+    /// that contains the current accumulated number of ticks.
     /// </summary>
     [DisplayName("EncoderPayload")]
-    [Description("Creates a message payload that contains the current accumulated number of ticks. Overflows at 2^32.")]
+    [Description("Creates a message payload that contains the current accumulated number of ticks.")]
     public partial class CreateEncoderPayload
     {
         /// <summary>
-        /// Gets or sets the value that contains the current accumulated number of ticks. Overflows at 2^32.
+        /// Gets or sets the value that contains the current accumulated number of ticks.
         /// </summary>
-        [Description("The value that contains the current accumulated number of ticks. Overflows at 2^32.")]
-        public uint Encoder { get; set; }
+        [Description("The value that contains the current accumulated number of ticks.")]
+        public int Encoder { get; set; }
 
         /// <summary>
         /// Creates a message payload for the Encoder register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public uint GetPayload()
+        public int GetPayload()
         {
             return Encoder;
         }
 
         /// <summary>
-        /// Creates a message that contains the current accumulated number of ticks. Overflows at 2^32.
+        /// Creates a message that contains the current accumulated number of ticks.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
         /// <returns>A new message for the Encoder register.</returns>
@@ -942,14 +1050,14 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that contains the current accumulated number of ticks. Overflows at 2^32.
+    /// that contains the current accumulated number of ticks.
     /// </summary>
     [DisplayName("TimestampedEncoderPayload")]
-    [Description("Creates a timestamped message payload that contains the current accumulated number of ticks. Overflows at 2^32.")]
+    [Description("Creates a timestamped message payload that contains the current accumulated number of ticks.")]
     public partial class CreateTimestampedEncoderPayload : CreateEncoderPayload
     {
         /// <summary>
-        /// Creates a timestamped message that contains the current accumulated number of ticks. Overflows at 2^32.
+        /// Creates a timestamped message that contains the current accumulated number of ticks.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
@@ -972,13 +1080,13 @@ namespace AllenNeuralDynamics.Treadmill
         /// Gets or sets the value that contains the current torque value.
         /// </summary>
         [Description("The value that contains the current torque value.")]
-        public ushort Torque { get; set; }
+        public short Torque { get; set; }
 
         /// <summary>
         /// Creates a message payload for the Torque register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public ushort GetPayload()
+        public short GetPayload()
         {
             return Torque;
         }
@@ -1026,13 +1134,13 @@ namespace AllenNeuralDynamics.Treadmill
         /// Gets or sets the value that contains the current output current applied to the variable torque load.
         /// </summary>
         [Description("The value that contains the current output current applied to the variable torque load.")]
-        public ushort TorqueLoadCurrent { get; set; }
+        public short TorqueLoadCurrent { get; set; }
 
         /// <summary>
         /// Creates a message payload for the TorqueLoadCurrent register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public ushort GetPayload()
+        public short GetPayload()
         {
             return TorqueLoadCurrent;
         }
@@ -1080,19 +1188,19 @@ namespace AllenNeuralDynamics.Treadmill
         /// Gets or sets a value to write on payload member Encoder.
         /// </summary>
         [Description("")]
-        public uint Encoder { get; set; }
+        public int Encoder { get; set; }
 
         /// <summary>
         /// Gets or sets a value to write on payload member Torque.
         /// </summary>
         [Description("")]
-        public uint Torque { get; set; }
+        public int Torque { get; set; }
 
         /// <summary>
         /// Gets or sets a value to write on payload member TorqueLoadCurrent.
         /// </summary>
         [Description("")]
-        public uint TorqueLoadCurrent { get; set; }
+        public int TorqueLoadCurrent { get; set; }
 
         /// <summary>
         /// Creates a message payload for the SensorData register.
@@ -1142,9 +1250,9 @@ namespace AllenNeuralDynamics.Treadmill
     /// Represents an operator that creates a message payload
     /// that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
     /// </summary>
-    [DisplayName("TreadmillDataDispatchRatePayload")]
+    [DisplayName("SensorDataDispatchRatePayload")]
     [Description("Creates a message payload that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).")]
-    public partial class CreateTreadmillDataDispatchRatePayload
+    public partial class CreateSensorDataDispatchRatePayload
     {
         /// <summary>
         /// Gets or sets the value that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
@@ -1152,25 +1260,25 @@ namespace AllenNeuralDynamics.Treadmill
         [Range(min: 0, max: 1000)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).")]
-        public uint TreadmillDataDispatchRate { get; set; } = 0;
+        public uint SensorDataDispatchRate { get; set; } = 0;
 
         /// <summary>
-        /// Creates a message payload for the TreadmillDataDispatchRate register.
+        /// Creates a message payload for the SensorDataDispatchRate register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
         public uint GetPayload()
         {
-            return TreadmillDataDispatchRate;
+            return SensorDataDispatchRate;
         }
 
         /// <summary>
         /// Creates a message that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new message for the TreadmillDataDispatchRate register.</returns>
+        /// <returns>A new message for the SensorDataDispatchRate register.</returns>
         public HarpMessage GetMessage(MessageType messageType)
         {
-            return AllenNeuralDynamics.Treadmill.TreadmillDataDispatchRate.FromPayload(messageType, GetPayload());
+            return AllenNeuralDynamics.Treadmill.SensorDataDispatchRate.FromPayload(messageType, GetPayload());
         }
     }
 
@@ -1178,19 +1286,19 @@ namespace AllenNeuralDynamics.Treadmill
     /// Represents an operator that creates a timestamped message payload
     /// that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
     /// </summary>
-    [DisplayName("TimestampedTreadmillDataDispatchRatePayload")]
+    [DisplayName("TimestampedSensorDataDispatchRatePayload")]
     [Description("Creates a timestamped message payload that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).")]
-    public partial class CreateTimestampedTreadmillDataDispatchRatePayload : CreateTreadmillDataDispatchRatePayload
+    public partial class CreateTimestampedSensorDataDispatchRatePayload : CreateSensorDataDispatchRatePayload
     {
         /// <summary>
         /// Creates a timestamped message that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new timestamped message for the TreadmillDataDispatchRate register.</returns>
+        /// <returns>A new timestamped message for the SensorDataDispatchRate register.</returns>
         public HarpMessage GetMessage(double timestamp, MessageType messageType)
         {
-            return AllenNeuralDynamics.Treadmill.TreadmillDataDispatchRate.FromPayload(timestamp, messageType, GetPayload());
+            return AllenNeuralDynamics.Treadmill.SensorDataDispatchRate.FromPayload(timestamp, messageType, GetPayload());
         }
     }
 
@@ -1303,6 +1411,60 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
+    /// Represents an operator that creates a message payload
+    /// that removes the tare from the specified sensors.
+    /// </summary>
+    [DisplayName("ResetTareSensorsPayload")]
+    [Description("Creates a message payload that removes the tare from the specified sensors.")]
+    public partial class CreateResetTareSensorsPayload
+    {
+        /// <summary>
+        /// Gets or sets the value that removes the tare from the specified sensors.
+        /// </summary>
+        [Description("The value that removes the tare from the specified sensors.")]
+        public Sensors ResetTareSensors { get; set; }
+
+        /// <summary>
+        /// Creates a message payload for the ResetTareSensors register.
+        /// </summary>
+        /// <returns>The created message payload value.</returns>
+        public Sensors GetPayload()
+        {
+            return ResetTareSensors;
+        }
+
+        /// <summary>
+        /// Creates a message that removes the tare from the specified sensors.
+        /// </summary>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the ResetTareSensors register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.ResetTareSensors.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that removes the tare from the specified sensors.
+    /// </summary>
+    [DisplayName("TimestampedResetTareSensorsPayload")]
+    [Description("Creates a timestamped message payload that removes the tare from the specified sensors.")]
+    public partial class CreateTimestampedResetTareSensorsPayload : CreateResetTareSensorsPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that removes the tare from the specified sensors.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the ResetTareSensors register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.ResetTareSensors.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
     /// Represents the payload of the SensorData register.
     /// </summary>
     public struct SensorDataPayload
@@ -1314,9 +1476,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// <param name="torque"></param>
         /// <param name="torqueLoadCurrent"></param>
         public SensorDataPayload(
-            uint encoder,
-            uint torque,
-            uint torqueLoadCurrent)
+            int encoder,
+            int torque,
+            int torqueLoadCurrent)
         {
             Encoder = encoder;
             Torque = torque;
@@ -1326,17 +1488,17 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// 
         /// </summary>
-        public uint Encoder;
+        public int Encoder;
 
         /// <summary>
         /// 
         /// </summary>
-        public uint Torque;
+        public int Torque;
 
         /// <summary>
         /// 
         /// </summary>
-        public uint TorqueLoadCurrent;
+        public int TorqueLoadCurrent;
     }
 
     /// <summary>
