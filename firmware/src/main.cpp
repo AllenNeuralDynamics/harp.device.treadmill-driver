@@ -43,7 +43,7 @@ const uint8_t fw_version_minor = 0;
 const uint16_t serial_number = 0;
 
 // Setup for Harp App
-const size_t reg_count = 7;
+const size_t reg_count = 8;
 
 uint32_t __not_in_flash("dispatch_interval_us") dispatch_interval_us;
 uint32_t __not_in_flash("next_msg_dispatch_time_us") next_msg_dispatch_time_us;
@@ -54,7 +54,7 @@ volatile int16_t __not_in_flash("torque_raw") torque_raw;
 volatile int16_t __not_in_flash("brake_current_raw") brake_current_raw;
 
 // offset --> measurement taken at requested time.
-uint32_t __not_in_flash("encoder_offset") encoder_offset;
+int32_t __not_in_flash("encoder_offset") encoder_offset;
 int16_t __not_in_flash("torque_offset") torque_offset;
 int16_t __not_in_flash("brake_current_offset") brake_current_offset;
 
@@ -68,15 +68,16 @@ inline int16_t get_tared_brake_current()
 #pragma pack(push, 1)
 struct app_regs_t
 {
-    uint32_t encoder_ticks;   // 32.
+    int32_t encoder_ticks;   // 32.
     int16_t reaction_torque;  // 33. 12-bit. underlying measurement is signed.
     int16_t brake_current;    // 34. 12-bit. underlying measurement is unsigned
                               //   but can go negative because of tare value.
-    uint32_t sensors[3]; // aggregate vector of the above 3 three registers:
+    int32_t sensors[3]; // aggregate vector of the above 3 three registers:
                          // [position, uint32(torque), uint32(current)]
     uint16_t sensor_dispatch_frequency_hz;  // 36
     uint16_t brake_current_setpoint;   // 37. 12-bit. Unsigned.
-    uint8_t tare;   // {unused[15:3], brake_current[2], torque[1], encoder[0]}
+    uint8_t tare;       // {unused[15:3], brake_current[2], torque[1], encoder[0]}
+    uint8_t reset_tare; // {unused[15:3], brake_current[2], torque[1], encoder[0]}
     //uint16_t errors;   // bitfields
     //uint8_t enable_events; // >0 = error_state changes will send EVENT msgs.
     // More app "registers" here.
@@ -87,10 +88,10 @@ app_regs_t __not_in_flash("app_regs") app_regs;
 // Define "specs" per-register
 RegSpecs app_reg_specs[reg_count]
 {
-    {(uint8_t*)&app_regs.encoder_ticks, sizeof(app_regs.encoder_ticks), U32},
+    {(uint8_t*)&app_regs.encoder_ticks, sizeof(app_regs.encoder_ticks), S32},
     {(uint8_t*)&app_regs.reaction_torque, sizeof(app_regs.reaction_torque), S16},
     {(uint8_t*)&app_regs.brake_current, sizeof(app_regs.brake_current), S16},
-    {(uint8_t*)&app_regs.sensors, sizeof(app_regs.sensors), U32},
+    {(uint8_t*)&app_regs.sensors, sizeof(app_regs.sensors), S32},
     {(uint8_t*)&app_regs.sensor_dispatch_frequency_hz, sizeof(app_regs.sensor_dispatch_frequency_hz), U16},
     {(uint8_t*)&app_regs.brake_current_setpoint, sizeof(app_regs.brake_current_setpoint), U16},
     {(uint8_t*)&app_regs.tare, sizeof(app_regs.tare), U8}
@@ -142,7 +143,6 @@ void write_brake_current_setpoint(msg_t& msg)
 void write_tare(msg_t& msg)
 {
     HarpCore::copy_msg_payload_to_register(msg);
-    // Handle bitfield-specific behavior.
     // Handle bits to apply tare value.
     if (1u << 0 & app_regs.tare) // Zero encoder
         encoder_offset = encoder_raw;
@@ -150,14 +150,30 @@ void write_tare(msg_t& msg)
         torque_offset = torque_raw;
     if (1u << 2 & app_regs.tare) // Zero brake current sensor
         brake_current_offset = brake_current_raw;
+    HarpCore::send_harp_reply(WRITE, msg.header.address);
+}
+
+void write_reset_tare(msg_t& msg)
+{
+    HarpCore::copy_msg_payload_to_register(msg);
     // Handle bits to clear tare value.
-    if (1u << 4 & app_regs.tare) // Reset encoder to native value.
+    if (1u << 0 & app_regs.tare) // Reset encoder to native value.
+    {
         encoder_offset = 0;
-    if (1u << 5 & app_regs.tare) // Remove reaction torque sensor offset.
+        app_regs.tare &= ~(1u << 0); // Also clear tare setting in tare register.
+    }
+    if (1u << 1 & app_regs.tare) // Remove reaction torque sensor offset.
+    {
         torque_offset = 0;
-    if (1u << 6 & app_regs.tare) // Remove brake current sensor offset.
+        app_regs.tare &= ~(1u << 1); // Also clear tare setting in tare register.
+    }
+    if (1u << 2 & app_regs.tare) // Remove brake current sensor offset.
+    {
         brake_current_offset = 0;
-    // Note: clearing a tare value always takes priority over applying a tare.
+        app_regs.tare &= ~(1u << 2); // Also clear tare setting in tare register.
+    }
+    // Clear register since it reads as 0.
+    app_regs.reset_tare = 0;
     HarpCore::send_harp_reply(WRITE, msg.header.address);
 }
 
@@ -183,9 +199,9 @@ void read_reg_sensors(uint8_t reg_name)
 {
     app_regs.sensors[0] = get_tared_encoder_ticks();
     // Both torque sensor and brake current sensor are signed int16s, but
-    // we need to stuff them into a u32 array for now.
-    app_regs.sensors[1] = uint32_t(get_tared_reaction_torque());
-    app_regs.sensors[2] = uint32_t(get_tared_brake_current());
+    // we promote to int32 for now to send an array of one type as a single msg.
+    app_regs.sensors[1] = int32_t(get_tared_reaction_torque());
+    app_regs.sensors[2] = int32_t(get_tared_brake_current());
     HarpCore::send_harp_reply(READ, reg_name);
 }
 
@@ -225,6 +241,7 @@ void update_app_state()
 void reset_app()
 {
     app_regs.sensor_dispatch_frequency_hz = 0;
+    app_regs.tare = 0b111 << 4; // All sensor "untare" bits are set.
     dispatch_interval_us = 0;
     app_regs.brake_current_setpoint = 0;
     brake_setpoint.write_value(app_regs.brake_current_setpoint);

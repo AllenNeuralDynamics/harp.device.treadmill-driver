@@ -18,9 +18,9 @@ device = Device("/dev/ttyACM0", "ibl.bin")
 # Read all measurements from the aggregate register.
 try:
     while True:
-        bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-        # Data comes in 3 U32s, but U32[1] and U32[2] are actually S16 values.
-        vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+        bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+        # Data comes in 3 S32s, but S32[1] and S32[2] have smaller full scale range.
+        vals = unpack("<lll", bulk_meas._raw_payload)
         print(vals)
         sleep(0.015);
 finally:

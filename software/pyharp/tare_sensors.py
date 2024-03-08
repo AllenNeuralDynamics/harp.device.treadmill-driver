@@ -17,8 +17,8 @@ device = Device("/dev/ttyACM0", "ibl.bin")
 
 try:
     print("Starting sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -28,8 +28,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -38,8 +38,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -48,8 +48,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -59,8 +59,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -69,8 +69,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
@@ -79,8 +79,8 @@ try:
     sleep(0.5)
 
     print("New sensor values: ", end="")
-    bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
-    vals = unpack("<Lhxxhxx", bulk_meas._raw_payload)
+    bulk_meas = device.send(HarpMessage.ReadS32(35).frame)
+    vals = unpack("<lll", bulk_meas._raw_payload)
     print(vals)
     sleep(0.5)
 
