@@ -143,12 +143,21 @@ void write_tare(msg_t& msg)
 {
     HarpCore::copy_msg_payload_to_register(msg);
     // Handle bitfield-specific behavior.
-    if (0x01 & app_regs.tare) // Zero encoder
+    // Handle bits to apply tare value.
+    if (1u << 0 & app_regs.tare) // Zero encoder
         encoder_offset = encoder_raw;
-    if (0x02 & app_regs.tare) // Zero reaction torque sensor
+    if (1u << 1 & app_regs.tare) // Zero reaction torque sensor
         torque_offset = torque_raw;
-    if (0x04 & app_regs.tare) // Zero brake current sensor
+    if (1u << 2 & app_regs.tare) // Zero brake current sensor
         brake_current_offset = brake_current_raw;
+    // Handle bits to clear tare value.
+    if (1u << 4 & app_regs.tare) // Reset encoder to native value.
+        encoder_offset = 0;
+    if (1u << 5 & app_regs.tare) // Remove reaction torque sensor offset.
+        torque_offset = 0;
+    if (1u << 6 & app_regs.tare) // Remove brake current sensor offset.
+        brake_current_offset = 0;
+    // Note: clearing a tare value always takes priority over applying a tare.
     HarpCore::send_harp_reply(WRITE, msg.header.address);
 }
 

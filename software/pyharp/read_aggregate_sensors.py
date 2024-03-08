@@ -15,7 +15,7 @@ from time import sleep
 COM_PORT = '/dev/ttyACM0' # Windows will be 'COMx'
 device = Device("/dev/ttyACM0", "ibl.bin")
 
-# Read encoder and torque raw measurements.
+# Read all measurements from the aggregate register.
 try:
     while True:
         bulk_meas = device.send(HarpMessage.ReadU32(35).frame)
