@@ -1,0 +1,71 @@
+%YAML 1.1
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/harp-tech/reflex-generator/main/schema/device.json
+device: Treadmill
+whoAmI: 1402
+firmwareVersion: "0.0"
+hardwareTargets: "0.0"
+registers:
+  Encoder:
+    address: 32
+    type: S32
+    access: Read
+    description: Contains the current accumulated number of ticks.
+  Torque:
+    address: 33
+    type: S16
+    access: Read
+    description: Contains the current torque value.
+  TorqueLoadCurrent:
+    address: 34
+    type: S16
+    access: Read
+    description: Contains the current output current applied to the variable torque load.
+  SensorData:
+    address: 35
+    type: S32
+    length: 3
+    access: Event
+    description: Emits a periodic event containing the packaged treadmill data. [Encoder, Torque, TorqueLoadCurrent]
+    payloadSpec:
+      Encoder:
+        offset: 0
+      Torque:
+        offset: 1
+      TorqueLoadCurrent:
+        offset: 2
+  SensorDataDispatchRate:
+    address: 36
+    type: U32
+    access: Write
+    maxValue: 1000
+    minValue: 0
+    description: Value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
+  BreakCurrentSetPoint:
+    address: 37
+    type: U16
+    access: Write
+    maxValue: 65535
+    minValue: 0
+    description: Sets the raw value of the torque set-point to be applied to the treadmill.
+  TareSensors:
+    address: 38
+    type: U8
+    access: Write
+    description: Tares the specified sensors.
+    maskType: Sensors
+  ResetTareSensors:
+    address: 39
+    type: U8
+    access: Write
+    description: Removes the tare from the specified sensors.
+    maskType: Sensors
+bitMasks:
+  Sensors:
+    description: Available sensors.
+    bits:
+      None: 0x00
+      Encoder: 0x01
+      Torque: 0x02
+      BreakCurrent: 0x04
+
