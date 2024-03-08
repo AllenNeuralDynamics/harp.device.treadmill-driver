@@ -121,23 +121,13 @@ void write_sensor_dispatch_frequency_hz(msg_t& msg)
 
 void write_brake_current_setpoint(msg_t& msg)
 {
-    msg_type_t msg_reply_type = WRITE;
     HarpCore::copy_msg_payload_to_register(msg);
-    // Clamp to 12-bit.
-    if (app_regs.brake_current_setpoint > 0x0FFF)
-    {
-        app_regs.brake_current_setpoint = 0x0FFF;
-        msg_reply_type = WRITE_ERROR;
-    }
-    else if (app_regs.brake_current_setpoint < 0)
-    {
-        app_regs.brake_current_setpoint = 0;
-        msg_reply_type = WRITE_ERROR;
-    }
+    // Note: LTC2641 driver clamps the resolution to 12-bit even though the
+    // full-scale range is 16 bit.
     // Note: offset is not applied to desired current setpoint because it is
     //  distinct from measured current.
     brake_setpoint.write_value(app_regs.brake_current_setpoint);
-    HarpCore::send_harp_reply(msg_reply_type, msg.header.address);
+    HarpCore::send_harp_reply(WRITE, msg.header.address);
 }
 
 void write_tare(msg_t& msg)
@@ -195,13 +185,18 @@ void read_reg_brake_current(uint8_t reg_name)
     HarpCore::send_harp_reply(READ, reg_name);
 }
 
-void read_reg_sensors(uint8_t reg_name)
+void update_sensor_register()
 {
     app_regs.sensors[0] = get_tared_encoder_ticks();
     // Both torque sensor and brake current sensor are signed int16s, but
     // we promote to int32 for now to send an array of one type as a single msg.
     app_regs.sensors[1] = int32_t(get_tared_reaction_torque());
     app_regs.sensors[2] = int32_t(get_tared_brake_current());
+}
+
+void read_reg_sensors(uint8_t reg_name)
+{
+    update_sensor_register();
     HarpCore::send_harp_reply(READ, reg_name);
 }
 
@@ -230,6 +225,7 @@ void update_app_state()
     if (int32_t(curr_time_us - next_msg_dispatch_time_us) >= dispatch_interval_us)
     {
         next_msg_dispatch_time_us += dispatch_interval_us;
+        update_sensor_register();
         const uint8_t address_offset = 3; // "sensors" register address.
         const RegSpecs& reg_specs = app_reg_specs[address_offset];
         HarpCore::send_harp_reply(EVENT, APP_REG_START_ADDRESS + address_offset,
