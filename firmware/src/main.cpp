@@ -75,7 +75,8 @@ struct app_regs_t
     int32_t sensors[3]; // aggregate vector of the above 3 three registers:
                          // [position, uint32(torque), uint32(current)]
     uint16_t sensor_dispatch_frequency_hz;  // 36
-    uint16_t brake_current_setpoint;   // 37. 12-bit. Unsigned.
+    uint16_t brake_current_setpoint;    // 37. 16-bit full-scale range,
+                                        // but 12-bit resolution. Unsigned.
     uint8_t tare;       // {unused[15:3], brake_current[2], torque[1], encoder[0]}
     uint8_t reset_tare; // {unused[15:3], brake_current[2], torque[1], encoder[0]}
     //uint16_t errors;   // bitfields
