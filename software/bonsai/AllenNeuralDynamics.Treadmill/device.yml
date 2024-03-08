@@ -8,22 +8,22 @@ hardwareTargets: "0.0"
 registers:
   Encoder:
     address: 32
-    type: U32
+    type: S32
     access: Read
-    description: Contains the current accumulated number of ticks. Overflows at 2^32.
+    description: Contains the current accumulated number of ticks.
   Torque:
     address: 33
-    type: U16
+    type: S16
     access: Read
     description: Contains the current torque value.
   TorqueLoadCurrent:
     address: 34
-    type: U16
+    type: S16
     access: Read
     description: Contains the current output current applied to the variable torque load.
   SensorData:
     address: 35
-    type: U32
+    type: S32
     length: 3
     access: Event
     description: Emits a periodic event containing the packaged treadmill data. [Encoder, Torque, TorqueLoadCurrent]
@@ -34,7 +34,7 @@ registers:
         offset: 1
       TorqueLoadCurrent:
         offset: 2
-  TreadmillDataDispatchRate:
+  SensorDataDispatchRate:
     address: 36
     type: U32
     access: Write
@@ -48,9 +48,15 @@ registers:
     description: Sets the raw value of the torque set-point to be applied to the treadmill.
   TareSensors:
     address: 38
-    type: U16
+    type: U8
     access: Write
     description: Tares the specified sensors.
+    maskType: Sensors
+  ResetTareSensors:
+    address: 39
+    type: U8
+    access: Write
+    description: Removes the tare from the specified sensors.
     maskType: Sensors
 bitMasks:
   Sensors:
