@@ -58,9 +58,12 @@ uint32_t __not_in_flash("encoder_offset") encoder_offset;
 int16_t __not_in_flash("torque_offset") torque_offset;
 int16_t __not_in_flash("brake_current_offset") brake_current_offset;
 
-inline uint32_t get_tared_encoder_ticks(){ return encoder_raw - encoder_offset;}
-inline int16_t get_tared_reaction_torque(){ return torque_raw - torque_offset;}
-inline int16_t get_tared_brake_current(){ return brake_current_raw - brake_current_offset;}
+inline uint32_t get_tared_encoder_ticks()
+{ return encoder_raw - encoder_offset;}
+inline int16_t get_tared_reaction_torque()
+{ return torque_raw - torque_offset;}
+inline int16_t get_tared_brake_current()
+{ return brake_current_raw - brake_current_offset;}
 
 #pragma pack(push, 1)
 struct app_regs_t
