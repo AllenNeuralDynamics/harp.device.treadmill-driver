@@ -1313,8 +1313,10 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Gets or sets the value that sets the raw value of the torque set-point to be applied to the treadmill.
         /// </summary>
+        [Range(min: 0, max: 65535)]
+        [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that sets the raw value of the torque set-point to be applied to the treadmill.")]
-        public ushort BreakCurrentSetPoint { get; set; }
+        public ushort BreakCurrentSetPoint { get; set; } = 0;
 
         /// <summary>
         /// Creates a message payload for the BreakCurrentSetPoint register.

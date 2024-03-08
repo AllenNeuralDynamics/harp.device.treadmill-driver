@@ -45,6 +45,8 @@ registers:
     address: 37
     type: U16
     access: Write
+    maxValue: 65535
+    minValue: 0
     description: Sets the raw value of the torque set-point to be applied to the treadmill.
   TareSensors:
     address: 38
