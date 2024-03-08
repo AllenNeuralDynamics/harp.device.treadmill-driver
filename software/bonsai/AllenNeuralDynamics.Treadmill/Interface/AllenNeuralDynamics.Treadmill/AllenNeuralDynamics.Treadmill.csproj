@@ -4,7 +4,7 @@
     <Title>AllenNeuralDynamics.Treadmill</Title>
     <Authors></Authors>
     <Copyright>Copyright © 2024 Allen Institute for Neural Dynamics</Copyright>
-    <PackageProjectUrl>https://github.com/AllenNeuralDynamics/bonsai.allen-neural-dynamics</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/AllenNeuralDynamics/harp.device.treadmill</PackageProjectUrl>
     <RepositoryUrl>https://github.com/AllenNeuralDynamics/harp.device.treadmill</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -17,7 +17,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageOutputPath></PackageOutputPath>
     <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
-    <VersionPrefix>0.1.0-preview20240308</VersionPrefix>
+    <VersionPrefix>0.1.0-preview20240309</VersionPrefix>
     <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
