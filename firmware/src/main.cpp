@@ -276,7 +276,7 @@ int main()
     printf("Hello, from an RP2040!\r\n");
 #endif
     // Init Synchronizer.
-    HarpSynchronizer::init(uart0, HARP_SYNC_RX_PIN);
+    HarpSynchronizer::init(uart1, HARP_SYNC_RX_PIN);
     app.set_synchronizer(&HarpSynchronizer::instance());
     //app.set_visual_indicators_fn(set_led_state);
     // Init PIO encoder on pins 0 and 1.
