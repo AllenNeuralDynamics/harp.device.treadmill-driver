@@ -91,7 +91,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "exports/harp_treadmill_v0.1.0/gerbers/")
+      (outputdirectory "exports/harp_treadmill_v0.2.0/gerbers/")
     )
   )
 
@@ -13406,7 +13406,7 @@
   (gr_text "Harp Sync Input ↓" (at 161.8 37.8) (layer "F.SilkS") (tstamp 82e0bb4a-3047-47e7-92e1-6ed6808ace34)
     (effects (font (size 1.25 1.25) (thickness 0.2) bold) (justify left bottom))
   )
-  (gr_text "Jan 5, 2023" (at 107.5 126.5) (layer "F.SilkS") (tstamp aa3ec14e-ea86-40a4-8be2-787f137130d9)
+  (gr_text "Jan 5, 2024" (at 107.5 126.5) (layer "F.SilkS") (tstamp aa3ec14e-ea86-40a4-8be2-787f137130d9)
     (effects (font (size 0.7 0.7) (thickness 0.1)) (justify left bottom))
   )
   (gr_text "GND" (at 156.3 69.7) (layer "F.SilkS") (tstamp d6f197dc-9b64-412a-bf1b-e14c4f5cfcd2)
