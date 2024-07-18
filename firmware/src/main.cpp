@@ -43,7 +43,7 @@ const uint8_t fw_version_minor = 0;
 const uint16_t serial_number = 0;
 
 // Setup for Harp App
-const size_t reg_count = 8;
+const size_t reg_count = 10;
 
 uint32_t __not_in_flash("dispatch_interval_us") dispatch_interval_us;
 uint32_t __not_in_flash("next_msg_dispatch_time_us") next_msg_dispatch_time_us;
@@ -72,8 +72,6 @@ inline int16_t get_tared_reaction_torque()
 inline int16_t get_tared_brake_current()
 { return brake_current_raw - brake_current_offset;}
 
-bool brake_disabled;
-
 #pragma pack(push, 1)
 struct app_regs_t
 {
@@ -99,16 +97,14 @@ struct app_regs_t
                                 //       Resets to this state.
                                 // 0 --> Do not disable the brake if the
                                 //       maximum torque sensor is detected.
-    uint16_t torque_limiting_triggered; // 1 --> torque limit triggered. Brake
-                                        //       is disabled and
-                                        //       brake_current_setpoint is
-                                        //       set to 0.
-                                        //       An EVENT msg is sent when this
-                                        //       value occurs.
-                                        // Write 0 to clear the torque-limit
-                                        // condition and re-enable the brake.
-    //uint16_t errors;   // bitfields
-    //uint8_t enable_events; // >0 = error_state changes will send EVENT msgs.
+    uint8_t torque_limiting_triggered; // 1 --> torque limit triggered. Brake
+                                       //       is disabled and
+                                       //       brake_current_setpoint is
+                                       //       set to 0.
+                                       //       An EVENT msg is sent when this
+                                       //       value occurs.
+                                       // Write 0 to clear the torque-limit
+                                       // condition and re-enable the brake.
     // More app "registers" here.
 };
 #pragma pack(pop)
@@ -123,7 +119,9 @@ RegSpecs app_reg_specs[reg_count]
     {(uint8_t*)&app_regs.sensors, sizeof(app_regs.sensors), S32},
     {(uint8_t*)&app_regs.sensor_dispatch_frequency_hz, sizeof(app_regs.sensor_dispatch_frequency_hz), U16},
     {(uint8_t*)&app_regs.brake_current_setpoint, sizeof(app_regs.brake_current_setpoint), U16},
-    {(uint8_t*)&app_regs.tare, sizeof(app_regs.tare), U8}
+    {(uint8_t*)&app_regs.tare, sizeof(app_regs.tare), U8},
+    {(uint8_t*)&app_regs.torque_limiting, sizeof(app_regs.torque_limiting), U8},
+    {(uint8_t*)&app_regs.torque_limiting_triggered, sizeof(app_regs.torque_limiting_triggered), U8}
     // More specs here if we add additional registers.
 };
 
@@ -155,7 +153,7 @@ void write_brake_current_setpoint(msg_t& msg)
     // full-scale range is 16 bit.
     // Note: offset is not applied to desired current setpoint because it is
     //  distinct from measured current.
-    if (brake_disabled)
+    if (app_regs.torque_limiting_triggered) // i.e: brake should be disabled.
     {
         HarpCore::send_harp_reply(WRITE_ERROR, msg.header.address);
         return;
@@ -243,10 +241,9 @@ void update_torque_limit_monitor()
     if (torque_raw > RAW_TORQUE_SENSOR_MIN && torque_raw < RAW_TORQUE_SENSOR_MAX)
         return;
     // Kill the brake; clear the current brake setpoint.
-    brake_disabled = true;
     brake_setpoint.write_value(0);
     app_regs.brake_current_setpoint = 0;
-    app_regs.torque_limiting_triggered = 1; // Update reg value.
+    app_regs.torque_limiting_triggered = 1; //i.e: brake disabled.
     if (HarpCore::is_muted())
         return;
     const uint8_t address_offset = 9; // torque_limiting_triggered reg.
@@ -261,7 +258,9 @@ RegFnPair reg_handler_fns[reg_count]
     {&read_reg_sensors, &HarpCore::write_to_read_only_reg_error},
     {&HarpCore::read_reg_generic, &write_sensor_dispatch_frequency_hz},
     {&HarpCore::read_reg_generic, &write_brake_current_setpoint},
-    {&HarpCore::read_reg_generic, &write_tare}
+    {&HarpCore::read_reg_generic, &write_tare},
+    {&HarpCore::read_reg_generic, &HarpCore::write_reg_generic},
+    {&HarpCore::read_reg_generic, &HarpCore::write_reg_generic}
     // More handler function pairs here if we add additional registers.
 };
 
@@ -287,7 +286,6 @@ void update_app_state()
 
 void reset_app()
 {
-    brake_disabled = false;
     app_regs.sensor_dispatch_frequency_hz = 0;
     app_regs.tare = 0b111 << 4; // All sensor "untare" bits are set.
     dispatch_interval_us = 0;
