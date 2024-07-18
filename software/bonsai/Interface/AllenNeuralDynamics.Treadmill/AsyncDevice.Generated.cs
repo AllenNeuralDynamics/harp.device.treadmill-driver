@@ -183,9 +183,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the register payload.
         /// </returns>
-        public async Task<uint> ReadSensorDataDispatchRateAsync(CancellationToken cancellationToken = default)
+        public async Task<ushort> ReadSensorDataDispatchRateAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt32(SensorDataDispatchRate.Address), cancellationToken);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(SensorDataDispatchRate.Address), cancellationToken);
             return SensorDataDispatchRate.GetPayload(reply);
         }
 
@@ -199,9 +199,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A task that represents the asynchronous read operation. The <see cref="Task{TResult}.Result"/>
         /// property contains the timestamped register payload.
         /// </returns>
-        public async Task<Timestamped<uint>> ReadTimestampedSensorDataDispatchRateAsync(CancellationToken cancellationToken = default)
+        public async Task<Timestamped<ushort>> ReadTimestampedSensorDataDispatchRateAsync(CancellationToken cancellationToken = default)
         {
-            var reply = await CommandAsync(HarpCommand.ReadUInt32(SensorDataDispatchRate.Address), cancellationToken);
+            var reply = await CommandAsync(HarpCommand.ReadUInt16(SensorDataDispatchRate.Address), cancellationToken);
             return SensorDataDispatchRate.GetTimestampedPayload(reply);
         }
 
@@ -213,7 +213,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="CancellationToken"/> which can be used to cancel the operation.
         /// </param>
         /// <returns>The task object representing the asynchronous write operation.</returns>
-        public async Task WriteSensorDataDispatchRateAsync(uint value, CancellationToken cancellationToken = default)
+        public async Task WriteSensorDataDispatchRateAsync(ushort value, CancellationToken cancellationToken = default)
         {
             var request = SensorDataDispatchRate.FromPayload(MessageType.Write, value);
             await CommandAsync(request, cancellationToken);

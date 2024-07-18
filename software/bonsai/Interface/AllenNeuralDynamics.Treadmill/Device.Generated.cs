@@ -600,7 +600,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// <summary>
         /// Represents the payload type of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
         /// </summary>
-        public const PayloadType RegisterType = PayloadType.U32;
+        public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
         /// Represents the length of the <see cref="SensorDataDispatchRate"/> register. This field is constant.
@@ -612,9 +612,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
-        public static uint GetPayload(HarpMessage message)
+        public static ushort GetPayload(HarpMessage message)
         {
-            return message.GetPayloadUInt32();
+            return message.GetPayloadUInt16();
         }
 
         /// <summary>
@@ -622,9 +622,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<uint> GetTimestampedPayload(HarpMessage message)
+        public static Timestamped<ushort> GetTimestampedPayload(HarpMessage message)
         {
-            return message.GetTimestampedPayloadUInt32();
+            return message.GetTimestampedPayloadUInt16();
         }
 
         /// <summary>
@@ -636,9 +636,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="SensorDataDispatchRate"/> register
         /// with the specified message type and payload.
         /// </returns>
-        public static HarpMessage FromPayload(MessageType messageType, uint value)
+        public static HarpMessage FromPayload(MessageType messageType, ushort value)
         {
-            return HarpMessage.FromUInt32(Address, messageType, value);
+            return HarpMessage.FromUInt16(Address, messageType, value);
         }
 
         /// <summary>
@@ -652,9 +652,9 @@ namespace AllenNeuralDynamics.Treadmill
         /// A <see cref="HarpMessage"/> object for the <see cref="SensorDataDispatchRate"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
-        public static HarpMessage FromPayload(double timestamp, MessageType messageType, uint value)
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, ushort value)
         {
-            return HarpMessage.FromUInt32(Address, timestamp, messageType, value);
+            return HarpMessage.FromUInt16(Address, timestamp, messageType, value);
         }
     }
 
@@ -676,7 +676,7 @@ namespace AllenNeuralDynamics.Treadmill
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
-        public static Timestamped<uint> GetPayload(HarpMessage message)
+        public static Timestamped<ushort> GetPayload(HarpMessage message)
         {
             return SensorDataDispatchRate.GetTimestampedPayload(message);
         }
@@ -1260,13 +1260,13 @@ namespace AllenNeuralDynamics.Treadmill
         [Range(min: 0, max: 1000)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
         [Description("The value that value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).")]
-        public uint SensorDataDispatchRate { get; set; } = 0;
+        public ushort SensorDataDispatchRate { get; set; } = 0;
 
         /// <summary>
         /// Creates a message payload for the SensorDataDispatchRate register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
-        public uint GetPayload()
+        public ushort GetPayload()
         {
             return SensorDataDispatchRate;
         }
