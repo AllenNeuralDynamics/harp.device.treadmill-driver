@@ -58,7 +58,6 @@ int32_t __not_in_flash("encoder_offset") encoder_offset;
 int16_t __not_in_flash("torque_offset") torque_offset;
 int16_t __not_in_flash("brake_current_offset") brake_current_offset;
 
-
 inline uint32_t get_tared_encoder_ticks()
 { return encoder_raw - encoder_offset;}
 
@@ -73,6 +72,8 @@ inline int16_t get_tared_reaction_torque()
 inline int16_t get_tared_brake_current()
 { return brake_current_raw - brake_current_offset;}
 
+bool brake_disabled;
+
 #pragma pack(push, 1)
 struct app_regs_t
 {
@@ -85,8 +86,27 @@ struct app_regs_t
     uint16_t sensor_dispatch_frequency_hz;  // 36
     uint16_t brake_current_setpoint;    // 37. 16-bit full-scale range,
                                         // but 12-bit resolution. Unsigned.
+                                        // This value is cleared to 0 if
+                                        // torque_limiting is enabled and
+                                        // triggered. Further writes in this
+                                        // condition return a WRITE_ERROR.
     uint8_t tare;       // {unused[15:3], brake_current[2], torque[1], encoder[0]}
     uint8_t reset_tare; // {unused[15:3], brake_current[2], torque[1], encoder[0]}
+    uint8_t torque_limiting;    // 1 --> Disable of the brake if the
+                                //       maximum torque sensor value is detected.
+                                //       This feature prevents the reaction
+                                //       torque sensor from being damaged.
+                                //       Resets to this state.
+                                // 0 --> Do not disable the brake if the
+                                //       maximum torque sensor is detected.
+    uint16_t torque_limiting_triggered; // 1 --> torque limit triggered. Brake
+                                        //       is disabled and
+                                        //       brake_current_setpoint is
+                                        //       set to 0.
+                                        //       An EVENT msg is sent when this
+                                        //       value occurs.
+                                        // Write 0 to clear the torque-limit
+                                        // condition and re-enable the brake.
     //uint16_t errors;   // bitfields
     //uint8_t enable_events; // >0 = error_state changes will send EVENT msgs.
     // More app "registers" here.
@@ -135,6 +155,11 @@ void write_brake_current_setpoint(msg_t& msg)
     // full-scale range is 16 bit.
     // Note: offset is not applied to desired current setpoint because it is
     //  distinct from measured current.
+    if (brake_disabled)
+    {
+        HarpCore::send_harp_reply(WRITE_ERROR, msg.header.address);
+        return;
+    }
     brake_setpoint.write_value(app_regs.brake_current_setpoint);
     HarpCore::send_harp_reply(WRITE, msg.header.address);
 }
@@ -209,6 +234,25 @@ void read_reg_sensors(uint8_t reg_name)
     HarpCore::send_harp_reply(READ, reg_name);
 }
 
+void update_torque_limit_monitor()
+{
+    // Check measured torque limit and disable the brake if we measure either
+    // limit.
+    if (!app_regs.torque_limiting)
+        return;
+    if (torque_raw > RAW_TORQUE_SENSOR_MIN && torque_raw < RAW_TORQUE_SENSOR_MAX)
+        return;
+    // Kill the brake; clear the current brake setpoint.
+    brake_disabled = true;
+    brake_setpoint.write_value(0);
+    app_regs.brake_current_setpoint = 0;
+    app_regs.torque_limiting_triggered = 1; // Update reg value.
+    if (HarpCore::is_muted())
+        return;
+    const uint8_t address_offset = 9; // torque_limiting_triggered reg.
+    HarpCore::send_harp_reply(EVENT, (APP_REG_START_ADDRESS + address_offset));
+}
+
 RegFnPair reg_handler_fns[reg_count]
 {
     {&read_reg_encoder_ticks, &HarpCore::write_to_read_only_reg_error},
@@ -223,6 +267,7 @@ RegFnPair reg_handler_fns[reg_count]
 
 void update_app_state()
 {
+    update_torque_limit_monitor();
     // Update encoder count.
     // (Brake current and Transducer Torque update automatically.)
     encoder_raw = encoder.fetch_count(); // Get previously-requested count.
@@ -236,19 +281,19 @@ void update_app_state()
         next_msg_dispatch_time_us += dispatch_interval_us;
         update_sensor_register();
         const uint8_t address_offset = 3; // "sensors" register address.
-        const RegSpecs& reg_specs = app_reg_specs[address_offset];
-        HarpCore::send_harp_reply(EVENT, APP_REG_START_ADDRESS + address_offset,
-                                  reg_specs.base_ptr, reg_specs.num_bytes,
-                                  reg_specs.payload_type);
+        HarpCore::send_harp_reply(EVENT, APP_REG_START_ADDRESS + address_offset);
     }
 }
 
 void reset_app()
 {
+    brake_disabled = false;
     app_regs.sensor_dispatch_frequency_hz = 0;
     app_regs.tare = 0b111 << 4; // All sensor "untare" bits are set.
     dispatch_interval_us = 0;
     app_regs.brake_current_setpoint = 0;
+    app_regs.torque_limiting = 1;
+    app_regs.torque_limiting_triggered = 0;
     brake_setpoint.write_value(app_regs.brake_current_setpoint);
     // Clear torque and brake current offsets.
     torque_offset = 0;
@@ -287,7 +332,7 @@ int main()
     current_sensor.start();
     reaction_torque_sensor.start();
     brake_setpoint.start();
-    reset_app();
+    reset_app(); // Apply app register starting values.
     while(true)
         app.run();
 }
