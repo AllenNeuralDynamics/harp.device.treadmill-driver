@@ -36,7 +36,7 @@ registers:
         offset: 2
   SensorDataDispatchRate:
     address: 36
-    type: U32
+    type: U16
     access: Write
     maxValue: 1000
     minValue: 0
