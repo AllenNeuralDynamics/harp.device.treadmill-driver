@@ -236,7 +236,8 @@ void update_torque_limit_monitor()
 {
     // Check measured torque limit and disable the brake if we measure either
     // limit.
-    if (!app_regs.torque_limiting)
+    // Bail early if torque limiting is unset or we already tripped it.
+    if (!app_regs.torque_limiting || app_regs.torque_limiting_triggered)
         return;
     if (torque_raw > RAW_TORQUE_SENSOR_MIN && torque_raw < RAW_TORQUE_SENSOR_MAX)
         return;
