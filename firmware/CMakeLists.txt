@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
+find_package(Git REQUIRED)
+execute_process(COMMAND "${GIT_EXECUTABLE}" rev-parse --short HEAD OUTPUT_VARIABLE COMMIT_ID OUTPUT_STRIP_TRAILING_WHITESPACE)
+message(STATUS "Computed Git Hash: ${COMMIT_ID}")
+add_definitions(-DGIT_HASH="${COMMIT_ID}") # Usable in source code.
 
 set(DEBUG 0)
 
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-project(treadmill)
+project(treadmill-${COMMIT_ID})
 
 set(CMAKE_CXX_STANDARD 17)
 
