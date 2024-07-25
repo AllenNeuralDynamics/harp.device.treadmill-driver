@@ -70,3 +70,12 @@ if (DEBUG)
     # Additional libraries need to have stdio init also.
 endif()
 
+#FILE(GLOB BIN_FILES ${PROJECT_NAME}.uf2 ${PROJECT_NAME}.elf ${PROJECT_NAME}.dis
+#                    ${PROJECT_NAME}.bin ${PROJECT_NAME}.map ${PROJECT_NAME}.hex)
+set_property(
+        TARGET ${PROJECT_NAME}
+        APPEND
+        PROPERTY ADDITIONAL_CLEAN_FILES ${PROJECT_NAME}.uf2 ${PROJECT_NAME}.elf
+                                        ${PROJECT_NAME}.dis ${PROJECT_NAME}.bin
+                                        ${PROJECT_NAME}.map ${PROJECT_NAME}.hex
+                                        ${PROJECT_NAME}.elf.map)
