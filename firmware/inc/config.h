@@ -19,8 +19,10 @@
 #define TORQUE_TRANSDUCER_POCI_PIN (10)
 #define TORQUE_TRANSDUCER_SCK_PIN (11)
 
-#define RAW_TORQUE_SENSOR_MIN (0)
-#define RAW_TORQUE_SENSOR_MAX (4095) // 12-bit.
+// Torque Transducer safety limits.
+// Note: not all transducers can physcially reach 0 and 4095 extremes.
+#define RAW_TORQUE_SENSOR_MIN (100)
+#define RAW_TORQUE_SENSOR_MAX (3995) // 12-bit.
 
 // Brake Setpoint DAC
 #define BRAKE_SETPOINT_CS_PIN (23)
