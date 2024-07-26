@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.13)
+find_package(Git REQUIRED)
+execute_process(COMMAND "${GIT_EXECUTABLE}" rev-parse --short HEAD OUTPUT_VARIABLE COMMIT_ID OUTPUT_STRIP_TRAILING_WHITESPACE)
+message(STATUS "Computed Git Hash: ${COMMIT_ID}")
+add_definitions(-DGIT_HASH="${COMMIT_ID}") # Usable in source code.
 
 set(DEBUG 0)
 
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-project(treadmill)
+project(treadmill-${COMMIT_ID})
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -66,3 +70,12 @@ if (DEBUG)
     # Additional libraries need to have stdio init also.
 endif()
 
+#FILE(GLOB BIN_FILES ${PROJECT_NAME}.uf2 ${PROJECT_NAME}.elf ${PROJECT_NAME}.dis
+#                    ${PROJECT_NAME}.bin ${PROJECT_NAME}.map ${PROJECT_NAME}.hex)
+set_property(
+        TARGET ${PROJECT_NAME}
+        APPEND
+        PROPERTY ADDITIONAL_CLEAN_FILES ${PROJECT_NAME}.uf2 ${PROJECT_NAME}.elf
+                                        ${PROJECT_NAME}.dis ${PROJECT_NAME}.bin
+                                        ${PROJECT_NAME}.map ${PROJECT_NAME}.hex
+                                        ${PROJECT_NAME}.elf.map)
