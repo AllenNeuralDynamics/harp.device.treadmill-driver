@@ -8,7 +8,7 @@ set(DEBUG 0)
 
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-project(treadmill-${COMMIT_ID})
+project(treadmill)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -23,6 +23,7 @@ pico_sdk_init()
 # include the harp core
 add_subdirectory(lib/harp.core.rp2040/firmware)
 add_subdirectory(lib/rp2040.pio-ads7049)
+add_subdirectory(lib/rp2040.pio-ltc264x)
 
 # Handle DEBUG option after adding the core subdirectory.
 if (DEBUG)
@@ -39,14 +40,6 @@ add_library(pio_encoder
 
 pico_generate_pio_header(pio_encoder
     ${CMAKE_CURRENT_LIST_DIR}/src/pio_encoder.pio
-)
-
-add_library(pio_ltc264x
-    src/pio_ltc264x.cpp
-)
-
-pico_generate_pio_header(pio_ltc264x
-    ${CMAKE_CURRENT_LIST_DIR}/src/pio_ltc264x.pio
 )
 
 # Where to look for header files.
@@ -70,8 +63,6 @@ if (DEBUG)
     # Additional libraries need to have stdio init also.
 endif()
 
-#FILE(GLOB BIN_FILES ${PROJECT_NAME}.uf2 ${PROJECT_NAME}.elf ${PROJECT_NAME}.dis
-#                    ${PROJECT_NAME}.bin ${PROJECT_NAME}.map ${PROJECT_NAME}.hex)
 set_property(
         TARGET ${PROJECT_NAME}
         APPEND

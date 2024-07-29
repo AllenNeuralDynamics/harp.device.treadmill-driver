@@ -4,3 +4,6 @@
 [submodule "firmware/lib/rp2040.pio-ads7049"]
 	path = firmware/lib/rp2040.pio-ads7049
 	url = git@github.com:AllenNeuralDynamics/rp2040.pio-ads7049.git
+[submodule "firmware/lib/rp2040.pio-ltc264x"]
+	path = firmware/lib/rp2040.pio-ltc264x
+	url = git@github.com:AllenNeuralDynamics/rp2040.pio-ltc264x.git
