@@ -38,7 +38,7 @@ try:
 
 
 except KeyboardInterrupt:
-    brake_reply = device.send(HarpMessage.WriteU16(BRAKE_CURRENT_SETPOINT,
-                                                   0).frame)
+    #brake_reply = device.send(HarpMessage.WriteU16(BRAKE_CURRENT_SETPOINT,
+    #                                               0).frame)
     # Close connection
     device.disconnect()

@@ -66,9 +66,9 @@ int16_t __not_in_flash("brake_current_offset") brake_current_offset;
 inline uint32_t get_tared_encoder_ticks()
 { return encoder_raw - encoder_offset;}
 
-// DMA writes the data to torque_raw ans brake_current_raw word-by-word
+// DMA writes the data to torque_raw and brake_current_raw word-by-word
 // (2 bytes at a time in this case).
-// Sublety: these "getter functions" make an atomic copy of the data at the
+// Subtlety: these "getter functions" make an atomic copy of the data at the
 // location that DMA is writing to into the CPU registers before doing the
 // subtraction, hence preventing part of the word (1 of 2 bytes) from being
 // overwritten by DMA while this function executes.
