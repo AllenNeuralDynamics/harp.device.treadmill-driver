@@ -1,447 +1,1098 @@
-(kicad_sch (version 20230121) (generator eeschema)
-
-  (uuid e63e39d7-6ac0-4ffd-8aa3-1841a4541b55)
-
-  (paper "A4")
-
-  (lib_symbols
-    (symbol "Mechanical:MountingHole_Pad" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "H" (at 0 6.35 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "MountingHole_Pad" (at 0 4.445 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "~" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "mounting hole" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Mounting Hole with connection" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_fp_filters" "MountingHole*Pad*" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "MountingHole_Pad_0_1"
-        (circle (center 0 1.27) (radius 1.27)
-          (stroke (width 1.27) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "MountingHole_Pad_1_1"
-        (pin input line (at 0 -2.54 90) (length 2.54)
-          (name "1" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-    (symbol "power:GND" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
-      (property "Reference" "#PWR" (at 0 -6.35 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Value" "GND" (at 0 -3.81 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "power-flag" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Power symbol creates a global label with name \"GND\" , ground" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "GND_0_1"
-        (polyline
-          (pts
-            (xy 0 0)
-            (xy 0 -1.27)
-            (xy 1.27 -1.27)
-            (xy 0 -2.54)
-            (xy -1.27 -1.27)
-            (xy 0 -1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-      )
-      (symbol "GND_1_1"
-        (pin power_in line (at 0 0 270) (length 0) hide
-          (name "GND" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
-  )
-
-
-  (wire (pts (xy 161.29 86.995) (xy 171.45 86.995))
-    (stroke (width 0) (type default))
-    (uuid 0bde2ac5-2e2d-4e24-805f-b9417bc6aecd)
-  )
-  (wire (pts (xy 162.56 101.6) (xy 162.56 88.9))
-    (stroke (width 0) (type default))
-    (uuid 17468264-a738-4b88-acbe-efd29aa988f6)
-  )
-  (wire (pts (xy 154.305 109.855) (xy 167.64 109.855))
-    (stroke (width 0) (type default))
-    (uuid 1ba6e84f-c509-4105-aed5-a4618fda5348)
-  )
-  (wire (pts (xy 154.305 80.645) (xy 171.45 80.645))
-    (stroke (width 0) (type default))
-    (uuid 1f701f80-081d-4fa4-bf41-8e7363dc65d3)
-  )
-  (wire (pts (xy 154.305 57.15) (xy 161.925 57.15))
-    (stroke (width 0) (type default))
-    (uuid 221a747a-e834-43f9-8a2a-aa88546f3bdd)
-  )
-  (wire (pts (xy 154.305 106.045) (xy 165.1 106.045))
-    (stroke (width 0) (type default))
-    (uuid 22eb9194-beaf-47f4-947a-33e9ddecd45e)
-  )
-  (wire (pts (xy 163.195 71.12) (xy 163.195 55.245))
-    (stroke (width 0) (type default))
-    (uuid 3b5a646e-e101-47fe-af1d-477f531206b3)
-  )
-  (wire (pts (xy 161.925 57.15) (xy 161.925 73.025))
-    (stroke (width 0) (type default))
-    (uuid 3deaa360-8d33-427a-bc49-21fe6ad95b82)
-  )
-  (wire (pts (xy 154.305 99.695) (xy 161.29 99.695))
-    (stroke (width 0) (type default))
-    (uuid 43af4371-f747-44dc-a35a-62ced72ca07c)
-  )
-  (wire (pts (xy 160.655 74.93) (xy 160.655 59.055))
-    (stroke (width 0) (type default))
-    (uuid 44087968-5d88-477c-8234-778c7d9747c7)
-  )
-  (wire (pts (xy 171.45 71.12) (xy 163.195 71.12))
-    (stroke (width 0) (type default))
-    (uuid 575b5d1f-1de7-4b36-86f5-d7daf06ba156)
-  )
-  (wire (pts (xy 163.195 55.245) (xy 154.305 55.245))
-    (stroke (width 0) (type default))
-    (uuid 69d7d921-8571-49f9-a627-3bb00a9f4dc9)
-  )
-  (wire (pts (xy 162.56 88.9) (xy 171.45 88.9))
-    (stroke (width 0) (type default))
-    (uuid 781bab75-3c83-4981-896c-3772b2c9374c)
-  )
-  (wire (pts (xy 167.64 109.855) (xy 167.64 96.52))
-    (stroke (width 0) (type default))
-    (uuid 7cae5e7a-ed61-4a30-a241-7f70efad14fb)
-  )
-  (wire (pts (xy 160.02 85.09) (xy 171.45 85.09))
-    (stroke (width 0) (type default))
-    (uuid 8340fc08-4122-4ebf-97c3-242dac78f229)
-  )
-  (wire (pts (xy 166.37 94.615) (xy 171.45 94.615))
-    (stroke (width 0) (type default))
-    (uuid 870528ca-208f-4f8f-92da-bda6a59eca08)
-  )
-  (wire (pts (xy 154.305 107.95) (xy 166.37 107.95))
-    (stroke (width 0) (type default))
-    (uuid 87e6f5b7-7d21-4cdb-97bb-c766803cff45)
-  )
-  (wire (pts (xy 171.45 74.93) (xy 160.655 74.93))
-    (stroke (width 0) (type default))
-    (uuid 8b5afdf6-28c2-4575-8997-e948852bc227)
-  )
-  (wire (pts (xy 161.925 73.025) (xy 171.45 73.025))
-    (stroke (width 0) (type default))
-    (uuid 8fc206c0-e52c-4a9a-b471-4bf54a6a3fd6)
-  )
-  (wire (pts (xy 165.1 106.045) (xy 165.1 92.71))
-    (stroke (width 0) (type default))
-    (uuid 95fead0c-5b67-4f0b-9fcc-cfe46ef8668c)
-  )
-  (wire (pts (xy 161.29 99.695) (xy 161.29 86.995))
-    (stroke (width 0) (type default))
-    (uuid 990de565-0431-4fde-a766-19d80efaed00)
-  )
-  (wire (pts (xy 165.1 92.71) (xy 171.45 92.71))
-    (stroke (width 0) (type default))
-    (uuid 9969b595-73f6-4f0e-b3da-ffd0e6073b6b)
-  )
-  (wire (pts (xy 154.305 101.6) (xy 162.56 101.6))
-    (stroke (width 0) (type default))
-    (uuid a24e7864-d024-4ec0-9516-d765e817b0ef)
-  )
-  (wire (pts (xy 160.655 59.055) (xy 154.305 59.055))
-    (stroke (width 0) (type default))
-    (uuid a683c7ad-2b5b-4fe9-905a-bf2e3c1959b6)
-  )
-  (wire (pts (xy 227.33 133.985) (xy 227.33 135.255))
-    (stroke (width 0) (type default))
-    (uuid ac5bcb73-6e56-4373-bf79-ce17e29d9d7f)
-  )
-  (wire (pts (xy 154.305 78.74) (xy 171.45 78.74))
-    (stroke (width 0) (type default))
-    (uuid b8c16b7e-e26d-4a60-9a20-bccb1ad7bcba)
-  )
-  (wire (pts (xy 167.64 96.52) (xy 171.45 96.52))
-    (stroke (width 0) (type default))
-    (uuid c8f872b9-af17-4f57-91ef-557d26785725)
-  )
-  (wire (pts (xy 154.305 97.79) (xy 160.02 97.79))
-    (stroke (width 0) (type default))
-    (uuid dd81b899-d2d4-4ecc-a5f0-ae78a86c9daf)
-  )
-  (wire (pts (xy 160.02 97.79) (xy 160.02 85.09))
-    (stroke (width 0) (type default))
-    (uuid e69d1de1-c998-4b1c-8d63-9aeca5d03154)
-  )
-  (wire (pts (xy 166.37 107.95) (xy 166.37 94.615))
-    (stroke (width 0) (type default))
-    (uuid f39d3fcd-605c-46dd-9dd5-17143b9e2193)
-  )
-
-  (text "Ground Lug" (at 222.25 127 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid f88ccdcd-2000-4785-9743-e3ec32a3d035)
-  )
-
-  (symbol (lib_id "Mechanical:MountingHole_Pad") (at 227.33 131.445 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid b90f0f58-e4a5-49b1-8fcd-80b7c240aacd)
-    (property "Reference" "H1" (at 230.378 130.175 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "MountingHole_Pad" (at 230.378 131.445 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
-    )
-    (property "Footprint" "kicad_component_library:Terminal_Keystone_779x_EdgeMount_Horizontal" (at 227.33 131.445 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "n/a" (at 227.33 131.445 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Link" "https://www.digikey.com/en/products/detail/keystone-electronics/7794/2171012" (at 227.33 131.445 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer" "Keystone Electronics" (at 227.33 131.445 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Manufacturer Number" "7794" (at 227.33 131.445 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid af707c14-3fbd-48fe-b315-90747807e207))
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "H1") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 227.33 135.255 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid dfeee756-3489-4df4-bfe8-bd7ffab2c1bb)
-    (property "Reference" "#PWR0127" (at 227.33 141.605 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 227.33 139.065 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 227.33 135.255 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 227.33 135.255 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 94d35389-c06f-4c58-be54-b828169909df))
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
-          (reference "#PWR0127") (unit 1)
-        )
-      )
-    )
-  )
-
-  (sheet (at 102.235 69.215) (size 15.875 20.32) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 1f049e4e-eb8d-47d9-901f-1dd446bfea55)
-    (property "Sheetname" "Power Supplies" (at 102.235 68.5034 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "power_supplies.kicad_sch" (at 102.235 90.1196 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55" (page "4"))
-      )
-    )
-  )
-
-  (sheet (at 128.905 73.66) (size 25.4 12.7) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 45528c19-905b-4605-ba1b-282fdcb272c9)
-    (property "Sheetname" "Encoder" (at 128.905 72.9484 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "encoder_5_to_3v3.kicad_sch" (at 128.905 86.9446 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (pin "ENC_A" input (at 154.305 78.74 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 38b3117c-d632-485e-aee5-5d8b12d8901f)
-    )
-    (pin "ENC_B" input (at 154.305 80.645 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 92992bd9-af07-4730-bb42-1f75ee07d039)
-    )
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55" (page "6"))
-      )
-    )
-  )
-
-  (sheet (at 128.905 92.71) (size 25.4 22.86) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 4d27c546-69b8-415d-ad57-797194b34e8d)
-    (property "Sheetname" "Magnetic Brake Control" (at 128.905 91.9984 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "torque_load_driving.kicad_sch" (at 128.905 116.1546 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (pin "ADC_CS" input (at 154.305 106.045 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 0592018b-aa42-422f-b700-585e63075a0d)
-    )
-    (pin "ADC_POCI" input (at 154.305 109.855 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 8ede813b-aa5c-42ed-b580-928b9a8be7f0)
-    )
-    (pin "ADC_SCK" input (at 154.305 107.95 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 2f45a1c2-4ce2-4087-a866-818836a0e674)
-    )
-    (pin "DAC_PICO" input (at 154.305 101.6 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid a2f5d7fa-fdb7-4df2-b535-292e728ad7f5)
-    )
-    (pin "DAC_SCK" input (at 154.305 99.695 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 40ca4d0d-de37-4adb-9e31-69e7369ba9ac)
-    )
-    (pin "DAC_CS" input (at 154.305 97.79 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid f3797213-6822-47da-983c-bf854025ade9)
-    )
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55" (page "3"))
-      )
-    )
-  )
-
-  (sheet (at 128.905 48.26) (size 25.4 20.32) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid 93b3207b-e1ce-46d7-a52b-3e8fb1ae6901)
-    (property "Sheetname" "Torque Transducer Sensing" (at 128.905 47.5484 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "torque_load_sensing.kicad_sch" (at 128.905 69.1646 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (pin "ADC_CS" input (at 154.305 55.245 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 874db2c5-5197-471e-851d-5319fde01bc8)
-    )
-    (pin "ADC_SCK" input (at 154.305 57.15 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 03b9deb0-5943-4524-8645-75fff07f97a0)
-    )
-    (pin "ADC_POCI" input (at 154.305 59.055 0)
-      (effects (font (size 1.27 1.27)) (justify right))
-      (uuid 13d7ce73-4470-491e-81e9-31e164201c9f)
-    )
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55" (page "2"))
-      )
-    )
-  )
-
-  (sheet (at 171.45 69.215) (size 27.94 29.21) (fields_autoplaced)
-    (stroke (width 0.1524) (type solid))
-    (fill (color 0 0 0 0.0000))
-    (uuid f31b18d7-1913-4a8e-8821-b91c30d18d00)
-    (property "Sheetname" "Harp Core RP2040 + Isolated USB" (at 171.45 68.5034 0)
-      (effects (font (size 1.27 1.27)) (justify left bottom))
-    )
-    (property "Sheetfile" "harp_core_rp2040_w_isolated_usb.kicad_sch" (at 171.45 99.0096 0)
-      (effects (font (size 1.27 1.27)) (justify left top) hide)
-    )
-    (pin "PIO_ADC1_POCI" input (at 171.45 74.93 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 173aa431-7614-4f0d-a989-b3daed9af726)
-    )
-    (pin "PIO_ADC1_SCK" input (at 171.45 73.025 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 917d7605-2681-4e19-9a4c-a5a19bd82a77)
-    )
-    (pin "PIO_ADC1_CS" input (at 171.45 71.12 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 585dfa09-5be4-4ac7-bd3c-912fd0968b73)
-    )
-    (pin "PIO_ENCA" input (at 171.45 78.74 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 163d3b13-8700-4776-a046-274889ae138f)
-    )
-    (pin "PIO_ENCB" input (at 171.45 80.645 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid e39ac440-b4c1-46cc-b7b9-00bdef96dad9)
-    )
-    (pin "PIO_ADC0_POCI" input (at 171.45 96.52 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 115ab542-ecd2-4196-a49b-73e45998df36)
-    )
-    (pin "PIO_ADC0_CS" input (at 171.45 92.71 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid e2b300ca-a94b-4669-916c-cd3a588abec1)
-    )
-    (pin "PIO_ADC0_SCK" input (at 171.45 94.615 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid c0ca8b8c-8b89-49f3-96ea-6598db1c0240)
-    )
-    (pin "PIO_DAC_CS" input (at 171.45 85.09 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 3a8681a0-63a0-4daf-9621-56c2aad8c236)
-    )
-    (pin "PIO_DAC_SCK" input (at 171.45 86.995 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid de001eff-9065-429c-a2b6-7c3da26c2aab)
-    )
-    (pin "PIO_DAC_PICO" input (at 171.45 88.9 180)
-      (effects (font (size 1.27 1.27)) (justify left))
-      (uuid 08301dd7-8886-4330-bc5d-880720958680)
-    )
-    (instances
-      (project "harp_treadmill"
-        (path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55" (page "5"))
-      )
-    )
-  )
-
-  (sheet_instances
-    (path "/" (page "1"))
-  )
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55")
+	(paper "A4")
+	(lib_symbols
+		(symbol "Mechanical:MountingHole_Pad"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "H"
+				(at 0 6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MountingHole_Pad"
+				(at 0 4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Mounting Hole with connection"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "mounting hole"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "MountingHole*Pad*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MountingHole_Pad_0_1"
+				(circle
+					(center 0 1.27)
+					(radius 1.27)
+					(stroke
+						(width 1.27)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "MountingHole_Pad_1_1"
+				(pin input line
+					(at 0 -2.54 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:GND"
+			(power)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "power-flag"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0) hide
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 161.29 86.995) (xy 171.45 86.995)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bde2ac5-2e2d-4e24-805f-b9417bc6aecd")
+	)
+	(wire
+		(pts
+			(xy 162.56 101.6) (xy 162.56 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17468264-a738-4b88-acbe-efd29aa988f6")
+	)
+	(wire
+		(pts
+			(xy 154.305 109.855) (xy 167.64 109.855)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ba6e84f-c509-4105-aed5-a4618fda5348")
+	)
+	(wire
+		(pts
+			(xy 154.305 80.645) (xy 171.45 80.645)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f701f80-081d-4fa4-bf41-8e7363dc65d3")
+	)
+	(wire
+		(pts
+			(xy 154.305 57.15) (xy 161.925 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "221a747a-e834-43f9-8a2a-aa88546f3bdd")
+	)
+	(wire
+		(pts
+			(xy 154.305 106.045) (xy 165.1 106.045)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22eb9194-beaf-47f4-947a-33e9ddecd45e")
+	)
+	(wire
+		(pts
+			(xy 163.195 71.12) (xy 163.195 55.245)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b5a646e-e101-47fe-af1d-477f531206b3")
+	)
+	(wire
+		(pts
+			(xy 161.925 57.15) (xy 161.925 73.025)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3deaa360-8d33-427a-bc49-21fe6ad95b82")
+	)
+	(wire
+		(pts
+			(xy 154.305 99.695) (xy 161.29 99.695)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43af4371-f747-44dc-a35a-62ced72ca07c")
+	)
+	(wire
+		(pts
+			(xy 160.655 74.93) (xy 160.655 59.055)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "44087968-5d88-477c-8234-778c7d9747c7")
+	)
+	(wire
+		(pts
+			(xy 171.45 71.12) (xy 163.195 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "575b5d1f-1de7-4b36-86f5-d7daf06ba156")
+	)
+	(wire
+		(pts
+			(xy 163.195 55.245) (xy 154.305 55.245)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69d7d921-8571-49f9-a627-3bb00a9f4dc9")
+	)
+	(wire
+		(pts
+			(xy 162.56 88.9) (xy 171.45 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "781bab75-3c83-4981-896c-3772b2c9374c")
+	)
+	(wire
+		(pts
+			(xy 167.64 109.855) (xy 167.64 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cae5e7a-ed61-4a30-a241-7f70efad14fb")
+	)
+	(wire
+		(pts
+			(xy 160.02 85.09) (xy 171.45 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8340fc08-4122-4ebf-97c3-242dac78f229")
+	)
+	(wire
+		(pts
+			(xy 166.37 94.615) (xy 171.45 94.615)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "870528ca-208f-4f8f-92da-bda6a59eca08")
+	)
+	(wire
+		(pts
+			(xy 154.305 107.95) (xy 166.37 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87e6f5b7-7d21-4cdb-97bb-c766803cff45")
+	)
+	(wire
+		(pts
+			(xy 171.45 74.93) (xy 160.655 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b5afdf6-28c2-4575-8997-e948852bc227")
+	)
+	(wire
+		(pts
+			(xy 161.925 73.025) (xy 171.45 73.025)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fc206c0-e52c-4a9a-b471-4bf54a6a3fd6")
+	)
+	(wire
+		(pts
+			(xy 165.1 106.045) (xy 165.1 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95fead0c-5b67-4f0b-9fcc-cfe46ef8668c")
+	)
+	(wire
+		(pts
+			(xy 161.29 99.695) (xy 161.29 86.995)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "990de565-0431-4fde-a766-19d80efaed00")
+	)
+	(wire
+		(pts
+			(xy 165.1 92.71) (xy 171.45 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9969b595-73f6-4f0e-b3da-ffd0e6073b6b")
+	)
+	(wire
+		(pts
+			(xy 154.305 101.6) (xy 162.56 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a24e7864-d024-4ec0-9516-d765e817b0ef")
+	)
+	(wire
+		(pts
+			(xy 160.655 59.055) (xy 154.305 59.055)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a683c7ad-2b5b-4fe9-905a-bf2e3c1959b6")
+	)
+	(wire
+		(pts
+			(xy 227.33 133.985) (xy 227.33 135.255)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac5bcb73-6e56-4373-bf79-ce17e29d9d7f")
+	)
+	(wire
+		(pts
+			(xy 154.305 78.74) (xy 171.45 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8c16b7e-e26d-4a60-9a20-bccb1ad7bcba")
+	)
+	(wire
+		(pts
+			(xy 167.64 96.52) (xy 171.45 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c8f872b9-af17-4f57-91ef-557d26785725")
+	)
+	(wire
+		(pts
+			(xy 154.305 97.79) (xy 160.02 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd81b899-d2d4-4ecc-a5f0-ae78a86c9daf")
+	)
+	(wire
+		(pts
+			(xy 160.02 97.79) (xy 160.02 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e69d1de1-c998-4b1c-8d63-9aeca5d03154")
+	)
+	(wire
+		(pts
+			(xy 166.37 107.95) (xy 166.37 94.615)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f39d3fcd-605c-46dd-9dd5-17143b9e2193")
+	)
+	(text "Ground Lug"
+		(exclude_from_sim no)
+		(at 222.25 127 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f88ccdcd-2000-4785-9743-e3ec32a3d035")
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole_Pad")
+		(at 227.33 131.445 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b90f0f58-e4a5-49b1-8fcd-80b7c240aacd")
+		(property "Reference" "H1"
+			(at 230.378 130.175 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole_Pad"
+			(at 230.378 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "kicad_component_library:Terminal_Keystone_779x_EdgeMount_Horizontal"
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "n/a"
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Link" "https://www.digikey.com/en/products/detail/keystone-electronics/7794/2171012"
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Keystone Electronics"
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer Number" "7794"
+			(at 227.33 131.445 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "af707c14-3fbd-48fe-b315-90747807e207")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 227.33 135.255 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "dfeee756-3489-4df4-bfe8-bd7ffab2c1bb")
+		(property "Reference" "#PWR0127"
+			(at 227.33 141.605 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 227.33 139.065 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 227.33 135.255 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 227.33 135.255 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 227.33 135.255 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "94d35389-c06f-4c58-be54-b828169909df")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(reference "#PWR0127")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 102.235 69.215)
+		(size 15.875 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "1f049e4e-eb8d-47d9-901f-1dd446bfea55")
+		(property "Sheetname" "Power Supplies"
+			(at 102.235 68.5034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power_supplies.kicad_sch"
+			(at 102.235 90.1196 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 128.905 73.66)
+		(size 25.4 12.7)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "45528c19-905b-4605-ba1b-282fdcb272c9")
+		(property "Sheetname" "Encoder"
+			(at 128.905 72.9484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "encoder_5_to_3v3.kicad_sch"
+			(at 128.905 86.9446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "ENC_A" input
+			(at 154.305 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "38b3117c-d632-485e-aee5-5d8b12d8901f")
+		)
+		(pin "ENC_B" input
+			(at 154.305 80.645 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "92992bd9-af07-4730-bb42-1f75ee07d039")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 128.905 92.71)
+		(size 25.4 22.86)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "4d27c546-69b8-415d-ad57-797194b34e8d")
+		(property "Sheetname" "Magnetic Brake Control"
+			(at 128.905 91.9984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "torque_load_driving.kicad_sch"
+			(at 128.905 116.1546 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "ADC_CS" input
+			(at 154.305 106.045 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "0592018b-aa42-422f-b700-585e63075a0d")
+		)
+		(pin "ADC_POCI" input
+			(at 154.305 109.855 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "8ede813b-aa5c-42ed-b580-928b9a8be7f0")
+		)
+		(pin "ADC_SCK" input
+			(at 154.305 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "2f45a1c2-4ce2-4087-a866-818836a0e674")
+		)
+		(pin "DAC_PICO" input
+			(at 154.305 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "a2f5d7fa-fdb7-4df2-b535-292e728ad7f5")
+		)
+		(pin "DAC_SCK" input
+			(at 154.305 99.695 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "40ca4d0d-de37-4adb-9e31-69e7369ba9ac")
+		)
+		(pin "DAC_CS" input
+			(at 154.305 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "f3797213-6822-47da-983c-bf854025ade9")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 128.905 48.26)
+		(size 25.4 20.32)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "93b3207b-e1ce-46d7-a52b-3e8fb1ae6901")
+		(property "Sheetname" "Torque Transducer Sensing"
+			(at 128.905 47.5484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "torque_load_sensing.kicad_sch"
+			(at 128.905 69.1646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "ADC_CS" input
+			(at 154.305 55.245 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "874db2c5-5197-471e-851d-5319fde01bc8")
+		)
+		(pin "ADC_SCK" input
+			(at 154.305 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "03b9deb0-5943-4524-8645-75fff07f97a0")
+		)
+		(pin "ADC_POCI" input
+			(at 154.305 59.055 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "13d7ce73-4470-491e-81e9-31e164201c9f")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 171.45 69.215)
+		(size 27.94 29.21)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f31b18d7-1913-4a8e-8821-b91c30d18d00")
+		(property "Sheetname" "Harp Core RP2040 + Isolated USB"
+			(at 171.45 68.5034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "harp_core_rp2040_w_isolated_usb.kicad_sch"
+			(at 171.45 99.0096 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "PIO_ADC1_POCI" input
+			(at 171.45 74.93 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "173aa431-7614-4f0d-a989-b3daed9af726")
+		)
+		(pin "PIO_ADC1_SCK" input
+			(at 171.45 73.025 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "917d7605-2681-4e19-9a4c-a5a19bd82a77")
+		)
+		(pin "PIO_ADC1_CS" input
+			(at 171.45 71.12 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "585dfa09-5be4-4ac7-bd3c-912fd0968b73")
+		)
+		(pin "PIO_ENCA" input
+			(at 171.45 78.74 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "163d3b13-8700-4776-a046-274889ae138f")
+		)
+		(pin "PIO_ENCB" input
+			(at 171.45 80.645 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "e39ac440-b4c1-46cc-b7b9-00bdef96dad9")
+		)
+		(pin "PIO_ADC0_POCI" input
+			(at 171.45 96.52 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "115ab542-ecd2-4196-a49b-73e45998df36")
+		)
+		(pin "PIO_ADC0_CS" input
+			(at 171.45 92.71 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "e2b300ca-a94b-4669-916c-cd3a588abec1")
+		)
+		(pin "PIO_ADC0_SCK" input
+			(at 171.45 94.615 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "c0ca8b8c-8b89-49f3-96ea-6598db1c0240")
+		)
+		(pin "PIO_DAC_CS" input
+			(at 171.45 85.09 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "3a8681a0-63a0-4daf-9621-56c2aad8c236")
+		)
+		(pin "PIO_DAC_SCK" input
+			(at 171.45 86.995 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "de001eff-9065-429c-a2b6-7c3da26c2aab")
+		)
+		(pin "PIO_DAC_PICO" input
+			(at 171.45 88.9 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "08301dd7-8886-4330-bc5d-880720958680")
+		)
+		(instances
+			(project "harp_treadmill"
+				(path "/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
 )
