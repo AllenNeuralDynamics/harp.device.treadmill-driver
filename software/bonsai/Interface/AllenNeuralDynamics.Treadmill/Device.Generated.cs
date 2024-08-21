@@ -42,9 +42,11 @@ namespace AllenNeuralDynamics.Treadmill
             { 34, typeof(TorqueLoadCurrent) },
             { 35, typeof(SensorData) },
             { 36, typeof(SensorDataDispatchRate) },
-            { 37, typeof(BreakCurrentSetPoint) },
+            { 37, typeof(BrakeCurrentSetPoint) },
             { 38, typeof(TareSensors) },
-            { 39, typeof(ResetTareSensors) }
+            { 39, typeof(ResetTareSensors) },
+            { 40, typeof(EnableTorqueLimit) },
+            { 41, typeof(TorqueLimitState) }
         };
     }
 
@@ -78,17 +80,21 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
     /// <seealso cref="SensorDataDispatchRate"/>
-    /// <seealso cref="BreakCurrentSetPoint"/>
+    /// <seealso cref="BrakeCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
     /// <seealso cref="ResetTareSensors"/>
+    /// <seealso cref="EnableTorqueLimit"/>
+    /// <seealso cref="TorqueLimitState"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
     [XmlInclude(typeof(SensorDataDispatchRate))]
-    [XmlInclude(typeof(BreakCurrentSetPoint))]
+    [XmlInclude(typeof(BrakeCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
     [XmlInclude(typeof(ResetTareSensors))]
+    [XmlInclude(typeof(EnableTorqueLimit))]
+    [XmlInclude(typeof(TorqueLimitState))]
     [Description("Filters register-specific messages reported by the Treadmill device.")]
     public class FilterRegister : FilterRegisterBuilder, INamedElement
     {
@@ -115,25 +121,31 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
     /// <seealso cref="SensorDataDispatchRate"/>
-    /// <seealso cref="BreakCurrentSetPoint"/>
+    /// <seealso cref="BrakeCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
     /// <seealso cref="ResetTareSensors"/>
+    /// <seealso cref="EnableTorqueLimit"/>
+    /// <seealso cref="TorqueLimitState"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
     [XmlInclude(typeof(SensorDataDispatchRate))]
-    [XmlInclude(typeof(BreakCurrentSetPoint))]
+    [XmlInclude(typeof(BrakeCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
     [XmlInclude(typeof(ResetTareSensors))]
+    [XmlInclude(typeof(EnableTorqueLimit))]
+    [XmlInclude(typeof(TorqueLimitState))]
     [XmlInclude(typeof(TimestampedEncoder))]
     [XmlInclude(typeof(TimestampedTorque))]
     [XmlInclude(typeof(TimestampedTorqueLoadCurrent))]
     [XmlInclude(typeof(TimestampedSensorData))]
     [XmlInclude(typeof(TimestampedSensorDataDispatchRate))]
-    [XmlInclude(typeof(TimestampedBreakCurrentSetPoint))]
+    [XmlInclude(typeof(TimestampedBrakeCurrentSetPoint))]
     [XmlInclude(typeof(TimestampedTareSensors))]
     [XmlInclude(typeof(TimestampedResetTareSensors))]
+    [XmlInclude(typeof(TimestampedEnableTorqueLimit))]
+    [XmlInclude(typeof(TimestampedTorqueLimitState))]
     [Description("Filters and selects specific messages reported by the Treadmill device.")]
     public partial class Parse : ParseBuilder, INamedElement
     {
@@ -157,17 +169,21 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="TorqueLoadCurrent"/>
     /// <seealso cref="SensorData"/>
     /// <seealso cref="SensorDataDispatchRate"/>
-    /// <seealso cref="BreakCurrentSetPoint"/>
+    /// <seealso cref="BrakeCurrentSetPoint"/>
     /// <seealso cref="TareSensors"/>
     /// <seealso cref="ResetTareSensors"/>
+    /// <seealso cref="EnableTorqueLimit"/>
+    /// <seealso cref="TorqueLimitState"/>
     [XmlInclude(typeof(Encoder))]
     [XmlInclude(typeof(Torque))]
     [XmlInclude(typeof(TorqueLoadCurrent))]
     [XmlInclude(typeof(SensorData))]
     [XmlInclude(typeof(SensorDataDispatchRate))]
-    [XmlInclude(typeof(BreakCurrentSetPoint))]
+    [XmlInclude(typeof(BrakeCurrentSetPoint))]
     [XmlInclude(typeof(TareSensors))]
     [XmlInclude(typeof(ResetTareSensors))]
+    [XmlInclude(typeof(EnableTorqueLimit))]
+    [XmlInclude(typeof(TorqueLimitState))]
     [Description("Formats a sequence of values as specific Treadmill register messages.")]
     public partial class Format : FormatBuilder, INamedElement
     {
@@ -683,28 +699,28 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
-    /// Represents a register that sets the raw value of the torque set-point to be applied to the treadmill.
+    /// Represents a register that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
     /// </summary>
-    [Description("Sets the raw value of the torque set-point to be applied to the treadmill.")]
-    public partial class BreakCurrentSetPoint
+    [Description("Sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.")]
+    public partial class BrakeCurrentSetPoint
     {
         /// <summary>
-        /// Represents the address of the <see cref="BreakCurrentSetPoint"/> register. This field is constant.
+        /// Represents the address of the <see cref="BrakeCurrentSetPoint"/> register. This field is constant.
         /// </summary>
         public const int Address = 37;
 
         /// <summary>
-        /// Represents the payload type of the <see cref="BreakCurrentSetPoint"/> register. This field is constant.
+        /// Represents the payload type of the <see cref="BrakeCurrentSetPoint"/> register. This field is constant.
         /// </summary>
         public const PayloadType RegisterType = PayloadType.U16;
 
         /// <summary>
-        /// Represents the length of the <see cref="BreakCurrentSetPoint"/> register. This field is constant.
+        /// Represents the length of the <see cref="BrakeCurrentSetPoint"/> register. This field is constant.
         /// </summary>
         public const int RegisterLength = 1;
 
         /// <summary>
-        /// Returns the payload data for <see cref="BreakCurrentSetPoint"/> register messages.
+        /// Returns the payload data for <see cref="BrakeCurrentSetPoint"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the message payload.</returns>
@@ -714,7 +730,7 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns the timestamped payload data for <see cref="BreakCurrentSetPoint"/> register messages.
+        /// Returns the timestamped payload data for <see cref="BrakeCurrentSetPoint"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
@@ -724,12 +740,12 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns a Harp message for the <see cref="BreakCurrentSetPoint"/> register.
+        /// Returns a Harp message for the <see cref="BrakeCurrentSetPoint"/> register.
         /// </summary>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="BreakCurrentSetPoint"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="BrakeCurrentSetPoint"/> register
         /// with the specified message type and payload.
         /// </returns>
         public static HarpMessage FromPayload(MessageType messageType, ushort value)
@@ -738,14 +754,14 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Returns a timestamped Harp message for the <see cref="BreakCurrentSetPoint"/>
+        /// Returns a timestamped Harp message for the <see cref="BrakeCurrentSetPoint"/>
         /// register.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">The type of the Harp message.</param>
         /// <param name="value">The value to be stored in the message payload.</param>
         /// <returns>
-        /// A <see cref="HarpMessage"/> object for the <see cref="BreakCurrentSetPoint"/> register
+        /// A <see cref="HarpMessage"/> object for the <see cref="BrakeCurrentSetPoint"/> register
         /// with the specified message type, timestamp, and payload.
         /// </returns>
         public static HarpMessage FromPayload(double timestamp, MessageType messageType, ushort value)
@@ -756,25 +772,25 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Provides methods for manipulating timestamped messages from the
-    /// BreakCurrentSetPoint register.
+    /// BrakeCurrentSetPoint register.
     /// </summary>
-    /// <seealso cref="BreakCurrentSetPoint"/>
-    [Description("Filters and selects timestamped messages from the BreakCurrentSetPoint register.")]
-    public partial class TimestampedBreakCurrentSetPoint
+    /// <seealso cref="BrakeCurrentSetPoint"/>
+    [Description("Filters and selects timestamped messages from the BrakeCurrentSetPoint register.")]
+    public partial class TimestampedBrakeCurrentSetPoint
     {
         /// <summary>
-        /// Represents the address of the <see cref="BreakCurrentSetPoint"/> register. This field is constant.
+        /// Represents the address of the <see cref="BrakeCurrentSetPoint"/> register. This field is constant.
         /// </summary>
-        public const int Address = BreakCurrentSetPoint.Address;
+        public const int Address = BrakeCurrentSetPoint.Address;
 
         /// <summary>
-        /// Returns timestamped payload data for <see cref="BreakCurrentSetPoint"/> register messages.
+        /// Returns timestamped payload data for <see cref="BrakeCurrentSetPoint"/> register messages.
         /// </summary>
         /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
         /// <returns>A value representing the timestamped message payload.</returns>
         public static Timestamped<ushort> GetPayload(HarpMessage message)
         {
-            return BreakCurrentSetPoint.GetTimestampedPayload(message);
+            return BrakeCurrentSetPoint.GetTimestampedPayload(message);
         }
     }
 
@@ -973,6 +989,199 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
+    /// Represents a register that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// </summary>
+    [Description("Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    public partial class EnableTorqueLimit
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="EnableTorqueLimit"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 40;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="EnableTorqueLimit"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="EnableTorqueLimit"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+
+        /// <summary>
+        /// Returns the payload data for <see cref="EnableTorqueLimit"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the message payload.</returns>
+        public static EnableFlag GetPayload(HarpMessage message)
+        {
+            return (EnableFlag)message.GetPayloadByte();
+        }
+
+        /// <summary>
+        /// Returns the timestamped payload data for <see cref="EnableTorqueLimit"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<EnableFlag> GetTimestampedPayload(HarpMessage message)
+        {
+            var payload = message.GetTimestampedPayloadByte();
+            return Timestamped.Create((EnableFlag)payload.Value, payload.Seconds);
+        }
+
+        /// <summary>
+        /// Returns a Harp message for the <see cref="EnableTorqueLimit"/> register.
+        /// </summary>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="EnableTorqueLimit"/> register
+        /// with the specified message type and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(MessageType messageType, EnableFlag value)
+        {
+            return HarpMessage.FromByte(Address, messageType, (byte)value);
+        }
+
+        /// <summary>
+        /// Returns a timestamped Harp message for the <see cref="EnableTorqueLimit"/>
+        /// register.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="EnableTorqueLimit"/> register
+        /// with the specified message type, timestamp, and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, EnableFlag value)
+        {
+            return HarpMessage.FromByte(Address, timestamp, messageType, (byte)value);
+        }
+    }
+
+    /// <summary>
+    /// Provides methods for manipulating timestamped messages from the
+    /// EnableTorqueLimit register.
+    /// </summary>
+    /// <seealso cref="EnableTorqueLimit"/>
+    [Description("Filters and selects timestamped messages from the EnableTorqueLimit register.")]
+    public partial class TimestampedEnableTorqueLimit
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="EnableTorqueLimit"/> register. This field is constant.
+        /// </summary>
+        public const int Address = EnableTorqueLimit.Address;
+
+        /// <summary>
+        /// Returns timestamped payload data for <see cref="EnableTorqueLimit"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<EnableFlag> GetPayload(HarpMessage message)
+        {
+            return EnableTorqueLimit.GetTimestampedPayload(message);
+        }
+    }
+
+    /// <summary>
+    /// Represents a register that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+    /// </summary>
+    [Description("A value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.")]
+    public partial class TorqueLimitState
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="TorqueLimitState"/> register. This field is constant.
+        /// </summary>
+        public const int Address = 41;
+
+        /// <summary>
+        /// Represents the payload type of the <see cref="TorqueLimitState"/> register. This field is constant.
+        /// </summary>
+        public const PayloadType RegisterType = PayloadType.U8;
+
+        /// <summary>
+        /// Represents the length of the <see cref="TorqueLimitState"/> register. This field is constant.
+        /// </summary>
+        public const int RegisterLength = 1;
+
+        /// <summary>
+        /// Returns the payload data for <see cref="TorqueLimitState"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the message payload.</returns>
+        public static byte GetPayload(HarpMessage message)
+        {
+            return message.GetPayloadByte();
+        }
+
+        /// <summary>
+        /// Returns the timestamped payload data for <see cref="TorqueLimitState"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<byte> GetTimestampedPayload(HarpMessage message)
+        {
+            return message.GetTimestampedPayloadByte();
+        }
+
+        /// <summary>
+        /// Returns a Harp message for the <see cref="TorqueLimitState"/> register.
+        /// </summary>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="TorqueLimitState"/> register
+        /// with the specified message type and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(MessageType messageType, byte value)
+        {
+            return HarpMessage.FromByte(Address, messageType, value);
+        }
+
+        /// <summary>
+        /// Returns a timestamped Harp message for the <see cref="TorqueLimitState"/>
+        /// register.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">The type of the Harp message.</param>
+        /// <param name="value">The value to be stored in the message payload.</param>
+        /// <returns>
+        /// A <see cref="HarpMessage"/> object for the <see cref="TorqueLimitState"/> register
+        /// with the specified message type, timestamp, and payload.
+        /// </returns>
+        public static HarpMessage FromPayload(double timestamp, MessageType messageType, byte value)
+        {
+            return HarpMessage.FromByte(Address, timestamp, messageType, value);
+        }
+    }
+
+    /// <summary>
+    /// Provides methods for manipulating timestamped messages from the
+    /// TorqueLimitState register.
+    /// </summary>
+    /// <seealso cref="TorqueLimitState"/>
+    [Description("Filters and selects timestamped messages from the TorqueLimitState register.")]
+    public partial class TimestampedTorqueLimitState
+    {
+        /// <summary>
+        /// Represents the address of the <see cref="TorqueLimitState"/> register. This field is constant.
+        /// </summary>
+        public const int Address = TorqueLimitState.Address;
+
+        /// <summary>
+        /// Returns timestamped payload data for <see cref="TorqueLimitState"/> register messages.
+        /// </summary>
+        /// <param name="message">A <see cref="HarpMessage"/> object representing the register message.</param>
+        /// <returns>A value representing the timestamped message payload.</returns>
+        public static Timestamped<byte> GetPayload(HarpMessage message)
+        {
+            return TorqueLimitState.GetTimestampedPayload(message);
+        }
+    }
+
+    /// <summary>
     /// Represents an operator which creates standard message payloads for the
     /// Treadmill device.
     /// </summary>
@@ -981,25 +1190,31 @@ namespace AllenNeuralDynamics.Treadmill
     /// <seealso cref="CreateTorqueLoadCurrentPayload"/>
     /// <seealso cref="CreateSensorDataPayload"/>
     /// <seealso cref="CreateSensorDataDispatchRatePayload"/>
-    /// <seealso cref="CreateBreakCurrentSetPointPayload"/>
+    /// <seealso cref="CreateBrakeCurrentSetPointPayload"/>
     /// <seealso cref="CreateTareSensorsPayload"/>
     /// <seealso cref="CreateResetTareSensorsPayload"/>
+    /// <seealso cref="CreateEnableTorqueLimitPayload"/>
+    /// <seealso cref="CreateTorqueLimitStatePayload"/>
     [XmlInclude(typeof(CreateEncoderPayload))]
     [XmlInclude(typeof(CreateTorquePayload))]
     [XmlInclude(typeof(CreateTorqueLoadCurrentPayload))]
     [XmlInclude(typeof(CreateSensorDataPayload))]
     [XmlInclude(typeof(CreateSensorDataDispatchRatePayload))]
-    [XmlInclude(typeof(CreateBreakCurrentSetPointPayload))]
+    [XmlInclude(typeof(CreateBrakeCurrentSetPointPayload))]
     [XmlInclude(typeof(CreateTareSensorsPayload))]
     [XmlInclude(typeof(CreateResetTareSensorsPayload))]
+    [XmlInclude(typeof(CreateEnableTorqueLimitPayload))]
+    [XmlInclude(typeof(CreateTorqueLimitStatePayload))]
     [XmlInclude(typeof(CreateTimestampedEncoderPayload))]
     [XmlInclude(typeof(CreateTimestampedTorquePayload))]
     [XmlInclude(typeof(CreateTimestampedTorqueLoadCurrentPayload))]
     [XmlInclude(typeof(CreateTimestampedSensorDataPayload))]
     [XmlInclude(typeof(CreateTimestampedSensorDataDispatchRatePayload))]
-    [XmlInclude(typeof(CreateTimestampedBreakCurrentSetPointPayload))]
+    [XmlInclude(typeof(CreateTimestampedBrakeCurrentSetPointPayload))]
     [XmlInclude(typeof(CreateTimestampedTareSensorsPayload))]
     [XmlInclude(typeof(CreateTimestampedResetTareSensorsPayload))]
+    [XmlInclude(typeof(CreateTimestampedEnableTorqueLimitPayload))]
+    [XmlInclude(typeof(CreateTimestampedTorqueLimitStatePayload))]
     [Description("Creates standard message payloads for the Treadmill device.")]
     public partial class CreateMessage : CreateMessageBuilder, INamedElement
     {
@@ -1304,57 +1519,57 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that sets the raw value of the torque set-point to be applied to the treadmill.
+    /// that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
     /// </summary>
-    [DisplayName("BreakCurrentSetPointPayload")]
-    [Description("Creates a message payload that sets the raw value of the torque set-point to be applied to the treadmill.")]
-    public partial class CreateBreakCurrentSetPointPayload
+    [DisplayName("BrakeCurrentSetPointPayload")]
+    [Description("Creates a message payload that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.")]
+    public partial class CreateBrakeCurrentSetPointPayload
     {
         /// <summary>
-        /// Gets or sets the value that sets the raw value of the torque set-point to be applied to the treadmill.
+        /// Gets or sets the value that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
         /// </summary>
         [Range(min: 0, max: 65535)]
         [Editor(DesignTypes.NumericUpDownEditor, DesignTypes.UITypeEditor)]
-        [Description("The value that sets the raw value of the torque set-point to be applied to the treadmill.")]
-        public ushort BreakCurrentSetPoint { get; set; } = 0;
+        [Description("The value that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.")]
+        public ushort BrakeCurrentSetPoint { get; set; } = 0;
 
         /// <summary>
-        /// Creates a message payload for the BreakCurrentSetPoint register.
+        /// Creates a message payload for the BrakeCurrentSetPoint register.
         /// </summary>
         /// <returns>The created message payload value.</returns>
         public ushort GetPayload()
         {
-            return BreakCurrentSetPoint;
+            return BrakeCurrentSetPoint;
         }
 
         /// <summary>
-        /// Creates a message that sets the raw value of the torque set-point to be applied to the treadmill.
+        /// Creates a message that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new message for the BreakCurrentSetPoint register.</returns>
+        /// <returns>A new message for the BrakeCurrentSetPoint register.</returns>
         public HarpMessage GetMessage(MessageType messageType)
         {
-            return AllenNeuralDynamics.Treadmill.BreakCurrentSetPoint.FromPayload(messageType, GetPayload());
+            return AllenNeuralDynamics.Treadmill.BrakeCurrentSetPoint.FromPayload(messageType, GetPayload());
         }
     }
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that sets the raw value of the torque set-point to be applied to the treadmill.
+    /// that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
     /// </summary>
-    [DisplayName("TimestampedBreakCurrentSetPointPayload")]
-    [Description("Creates a timestamped message payload that sets the raw value of the torque set-point to be applied to the treadmill.")]
-    public partial class CreateTimestampedBreakCurrentSetPointPayload : CreateBreakCurrentSetPointPayload
+    [DisplayName("TimestampedBrakeCurrentSetPointPayload")]
+    [Description("Creates a timestamped message payload that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.")]
+    public partial class CreateTimestampedBrakeCurrentSetPointPayload : CreateBrakeCurrentSetPointPayload
     {
         /// <summary>
-        /// Creates a timestamped message that sets the raw value of the torque set-point to be applied to the treadmill.
+        /// Creates a timestamped message that sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
-        /// <returns>A new timestamped message for the BreakCurrentSetPoint register.</returns>
+        /// <returns>A new timestamped message for the BrakeCurrentSetPoint register.</returns>
         public HarpMessage GetMessage(double timestamp, MessageType messageType)
         {
-            return AllenNeuralDynamics.Treadmill.BreakCurrentSetPoint.FromPayload(timestamp, messageType, GetPayload());
+            return AllenNeuralDynamics.Treadmill.BrakeCurrentSetPoint.FromPayload(timestamp, messageType, GetPayload());
         }
     }
 
@@ -1467,6 +1682,114 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
+    /// Represents an operator that creates a message payload
+    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// </summary>
+    [DisplayName("EnableTorqueLimitPayload")]
+    [Description("Creates a message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    public partial class CreateEnableTorqueLimitPayload
+    {
+        /// <summary>
+        /// Gets or sets the value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// </summary>
+        [Description("The value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+        public EnableFlag EnableTorqueLimit { get; set; }
+
+        /// <summary>
+        /// Creates a message payload for the EnableTorqueLimit register.
+        /// </summary>
+        /// <returns>The created message payload value.</returns>
+        public EnableFlag GetPayload()
+        {
+            return EnableTorqueLimit;
+        }
+
+        /// <summary>
+        /// Creates a message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// </summary>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the EnableTorqueLimit register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.EnableTorqueLimit.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// </summary>
+    [DisplayName("TimestampedEnableTorqueLimitPayload")]
+    [Description("Creates a timestamped message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    public partial class CreateTimestampedEnableTorqueLimitPayload : CreateEnableTorqueLimitPayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the EnableTorqueLimit register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.EnableTorqueLimit.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a message payload
+    /// that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+    /// </summary>
+    [DisplayName("TorqueLimitStatePayload")]
+    [Description("Creates a message payload that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.")]
+    public partial class CreateTorqueLimitStatePayload
+    {
+        /// <summary>
+        /// Gets or sets the value that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+        /// </summary>
+        [Description("The value that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.")]
+        public byte TorqueLimitState { get; set; }
+
+        /// <summary>
+        /// Creates a message payload for the TorqueLimitState register.
+        /// </summary>
+        /// <returns>The created message payload value.</returns>
+        public byte GetPayload()
+        {
+            return TorqueLimitState;
+        }
+
+        /// <summary>
+        /// Creates a message that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+        /// </summary>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new message for the TorqueLimitState register.</returns>
+        public HarpMessage GetMessage(MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.TorqueLimitState.FromPayload(messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that creates a timestamped message payload
+    /// that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+    /// </summary>
+    [DisplayName("TimestampedTorqueLimitStatePayload")]
+    [Description("Creates a timestamped message payload that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.")]
+    public partial class CreateTimestampedTorqueLimitStatePayload : CreateTorqueLimitStatePayload
+    {
+        /// <summary>
+        /// Creates a timestamped message that a value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
+        /// </summary>
+        /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
+        /// <param name="messageType">Specifies the type of the created message.</param>
+        /// <returns>A new timestamped message for the TorqueLimitState register.</returns>
+        public HarpMessage GetMessage(double timestamp, MessageType messageType)
+        {
+            return AllenNeuralDynamics.Treadmill.TorqueLimitState.FromPayload(timestamp, messageType, GetPayload());
+        }
+    }
+
+    /// <summary>
     /// Represents the payload of the SensorData register.
     /// </summary>
     public struct SensorDataPayload
@@ -1512,6 +1835,6 @@ namespace AllenNeuralDynamics.Treadmill
         None = 0x0,
         Encoder = 0x1,
         Torque = 0x2,
-        BreakCurrent = 0x4
+        BrakeCurrent = 0x4
     }
 }
