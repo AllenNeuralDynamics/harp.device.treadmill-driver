@@ -989,9 +989,9 @@ namespace AllenNeuralDynamics.Treadmill
     }
 
     /// <summary>
-    /// Represents a register that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// Represents a register that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
     /// </summary>
-    [Description("Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    [Description("Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.")]
     public partial class EnableTorqueLimit
     {
         /// <summary>
@@ -1683,16 +1683,16 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Represents an operator that creates a message payload
-    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
     /// </summary>
     [DisplayName("EnableTorqueLimitPayload")]
-    [Description("Creates a message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    [Description("Creates a message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.")]
     public partial class CreateEnableTorqueLimitPayload
     {
         /// <summary>
-        /// Gets or sets the value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// Gets or sets the value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
         /// </summary>
-        [Description("The value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+        [Description("The value that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.")]
         public EnableFlag EnableTorqueLimit { get; set; }
 
         /// <summary>
@@ -1705,7 +1705,7 @@ namespace AllenNeuralDynamics.Treadmill
         }
 
         /// <summary>
-        /// Creates a message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// Creates a message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
         /// </summary>
         /// <param name="messageType">Specifies the type of the created message.</param>
         /// <returns>A new message for the EnableTorqueLimit register.</returns>
@@ -1717,14 +1717,14 @@ namespace AllenNeuralDynamics.Treadmill
 
     /// <summary>
     /// Represents an operator that creates a timestamped message payload
-    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    /// that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
     /// </summary>
     [DisplayName("TimestampedEnableTorqueLimitPayload")]
-    [Description("Creates a timestamped message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.")]
+    [Description("Creates a timestamped message payload that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.")]
     public partial class CreateTimestampedEnableTorqueLimitPayload : CreateEnableTorqueLimitPayload
     {
         /// <summary>
-        /// Creates a timestamped message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+        /// Creates a timestamped message that enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
         /// </summary>
         /// <param name="timestamp">The timestamp of the message payload, in seconds.</param>
         /// <param name="messageType">Specifies the type of the created message.</param>
