@@ -1,0 +1,17 @@
+contourpy==1.2.1
+cycler==0.12.1
+fonttools==4.53.1
+kiwisolver==1.4.5
+matplotlib==3.9.2
+numpy==2.1.0
+packaging==24.1
+pillow==10.4.0
+pyharp @ git+https://github.com/AllenNeuralDynamics/pyharp.git@325769cc7825da9d0e20689857bbc162b27f8207
+pyparsing==3.1.2
+pyserial==3.5
+python-dateutil==2.9.0.post0
+ruamel.yaml==0.18.6
+ruamel.yaml.clib==0.2.8
+ruamel.yaml.string==0.1.1
+six==1.16.0
+tqdm==4.66.5
