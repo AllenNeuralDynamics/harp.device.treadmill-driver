@@ -47,10 +47,7 @@ registers:
     access: Write
     maxValue: 65535
     minValue: 0
-    description: |
-     Sets the raw value of the torque set-point to be applied to the treadmill.
-     This value is cleared to 0 if torque_limiting is enabled and triggered.
-     Further writes in this condition return a WRITE_ERROR.
+    description: Sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
   TareSensors:
     address: 38
     type: U8
@@ -73,10 +70,7 @@ registers:
     address: 41
     type: U8
     access: [Event, Write]
-    description: |
-     A value greater than 1 indicates that the torque limit has been triggered
-     and the brake setpoint will be cleared.
-     Writing a value of 0 will clear the torque limit state and re-enable the brake.
+    description: A value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
 bitMasks:
   Sensors:
     description: Available sensors.
