@@ -8,6 +8,11 @@
 
 Download the [Jrk G2 Software](https://www.pololu.com/product/3142/resources) for your target system and install it.
 
+Install the script dependencies with:
+````bash
+pip install -r requirements.txt
+````
+
 
 
 ## References
