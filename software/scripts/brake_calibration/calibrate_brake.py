@@ -29,7 +29,7 @@ def jrk2cmd(*args):
     yaml = YAML(typ="safe", pure=True)
     return yaml.load(reply)
 
-def get_motor_controller_settings(device_num: int = 0) -> dict:
+def get_motor_controller_settings() -> dict:
     """load motor settings to dict."""
     # Skip writing to file by writing to stdout and collecting the output.
     reply_str = subprocess.check_output(["jrk2cmd", "--get-settings",
@@ -44,7 +44,7 @@ def apply_motor_controller_settings(settings: dict, device_num: int = 0):
     yaml = YAML(typ=['rt', 'string'])
     settings_str = yaml.dump_to_string(settings)
     # FIXME: should be a way to do this without writing/deleting a tmp file.
-    filename = ".settings.txt"
+    filename = ".settings.yml"
     with open(filename, "w") as f:
         f.write(yaml.dump_to_string(settings))
     reply_str = subprocess.check_output(["jrk2cmd", "--settings", f"{filename}"])
@@ -55,7 +55,14 @@ def apply_motor_controller_settings(settings: dict, device_num: int = 0):
 def set_motor_to_open_loop_mode(settings: dict):
     """Modify settings to put the motor controller in open loop mode."""
     # Check for any intermittent settings files.
-    settings["feedback_mode"] = None
+    settings["feedback_mode"] = "none"  # This field explicitly wants a string.
+
+def set_motor_current_limit(settings: dict, current_limit_percent: float):
+    """Set motor current limit in percent. 0 = no limit."""
+    max_uint16 = np.iinfo(np.uint16).max
+    current_limit = max_uint16 * current_limit_percent / 100.0
+    settings["soft_current_limit_forward"] = round(current_limit)
+    settings["soft_current_limit_reverse"] = round(current_limit)
 
 def set_signed_motor_speed(percent: float):
     """Set the motor speed in the percent range [-100: 100]."""
@@ -105,14 +112,17 @@ if __name__ == "__main__":
 
 
     # Configure motor controller
-    #settings = get_motor_controller_settings()
-    #set_motor_to_open_loop_mode(settings)
-    #apply_motor_controller_settings(settings)
+    print("Reading motor settings.")
+    settings = get_motor_controller_settings()
+    print("Adjusting settings.")
+    set_motor_to_open_loop_mode(settings)
+    set_motor_current_limit(settings, 0)
+    print("Writing back new settings.")
+    apply_motor_controller_settings(settings)
     sleep(0.1)
-
     clear_treadmill_overtorque_errors()
     print("Setting speed to midscale.")
-    set_signed_motor_speed(75.0)
+    set_signed_motor_speed(100.)
     sleep(1.0)
 
     try:
@@ -126,7 +136,7 @@ if __name__ == "__main__":
             set_brake_current_raw(int(current))
             raw_pts = []
             for _ in range(args.sample_average_count):
-                sleep(0.001)
+                sleep(0.05)
                 raw_pts.append(get_measurements()[1])
             output_torque[i] = float(sum(raw_pts))/args.sample_average_count
         print()
@@ -138,5 +148,5 @@ if __name__ == "__main__":
         set_brake_current_raw(0)
 
     # Plot Output current vs input current!
-    plt.plot(input_current, output_torque, 'go--', linewidth=2, markersize=12)
+    plt.plot(input_current, output_torque)
     plt.show()
