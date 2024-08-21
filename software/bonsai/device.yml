@@ -41,13 +41,13 @@ registers:
     maxValue: 1000
     minValue: 0
     description: Value greater than 0 will enable the periodic dispatch of treadmill data events at the specified rate (sp/s).
-  BreakCurrentSetPoint:
+  BrakeCurrentSetPoint:
     address: 37
     type: U16
     access: Write
     maxValue: 65535
     minValue: 0
-    description: Sets the raw value of the torque set-point to be applied to the treadmill.
+    description: Sets the raw value of the torque set-point to be applied to the treadmill. This value is cleared to 0 if torque_limiting is enabled and triggered. Further writes in this condition return a WRITE_ERROR.
   TareSensors:
     address: 38
     type: U8
@@ -60,6 +60,17 @@ registers:
     access: Write
     description: Removes the tare from the specified sensors.
     maskType: Sensors
+  EnableTorqueLimit:
+    address: 40
+    type: U8
+    access: Write
+    description: Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
+    maskType: EnableFlag
+  TorqueLimitState:
+    address: 41
+    type: U8
+    access: [Event, Write]
+    description: A value greater than 1 indicates that the torque limit has been triggered and the brake setpoint will be cleared. Writing a value of 0 will clear the torque limit state and re-enable the brake.
 bitMasks:
   Sensors:
     description: Available sensors.
@@ -67,5 +78,4 @@ bitMasks:
       None: 0x00
       Encoder: 0x01
       Torque: 0x02
-      BreakCurrent: 0x04
-
+      BrakeCurrent: 0x04
