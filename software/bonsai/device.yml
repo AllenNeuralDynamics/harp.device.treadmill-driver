@@ -64,7 +64,7 @@ registers:
     address: 40
     type: U8
     access: Write
-    description: Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected.
+    description: Enables(1)/Disables(0) the brake if the maximum torque sensor value is detected. This register will be enabled by default.
     maskType: EnableFlag
   TorqueLimitState:
     address: 41
