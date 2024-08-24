@@ -100,6 +100,7 @@ if __name__ == "__main__":
                         help="number of samples to average together "
                              "*per* data point (default: 10)")
     parser.add_argument("--reverse", type=bool, default=False)
+    parser.add_argument("--output_file", type=str, default=None)
     args = parser.parse_args()
 
     # Connect to Harp Treadmill Device.
@@ -125,13 +126,12 @@ if __name__ == "__main__":
     set_signed_motor_speed(100.)
     sleep(1.0)
 
-    try:
-        max_uint16 = np.iinfo(np.uint16).max
-        # Range should be in steps of 4 since the value is 12-bit upscaled to 16-bit
-        input_current = np.arange(0, round(max_uint16*args.max_current/100.), 4)
-        output_torque = np.zeros(len(input_current))
-        print(input_current)
+    max_uint16 = np.iinfo(np.uint16).max
+    # Range should be in steps of 4 since the value is 12-bit upscaled to 16-bit
+    input_current = np.arange(0, round(max_uint16*args.max_current/100.), 4)
+    output_torque = np.zeros(len(input_current))
 
+    try:
         for i, current in enumerate(tqdm(input_current)):
             set_brake_current_raw(int(current))
             raw_pts = []
@@ -148,5 +148,13 @@ if __name__ == "__main__":
         set_brake_current_raw(0)
 
     # Plot Output current vs input current!
+    plt.title("Brake Torque vs Input Current")
+    plt.xlabel("input torque [0:65535] FSR")
+    plt.xlabel("brake torque [0:4095] FSR w/2048 midscale")
     plt.plot(input_current, output_torque)
     plt.show()
+
+    # Optional: save the data.
+    if args.output_file is not None:
+        np.savetxt('test.csv', np.array((input_current, output_torque)).T,
+        delimiter=", ", fmt="%1.6f")
