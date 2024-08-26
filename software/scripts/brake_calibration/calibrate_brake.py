@@ -93,9 +93,9 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=str, default="/dev/ttyACM0",
                         help="Harp Treadmill Driver com port")
     parser.add_argument("--min_current", type=float, default=0,
-                        help="minimum current value in [%]")
-    parser.add_argument("--max_current", type=float, default=100,
-                        help="maximum current value in [%]")
+                        help="minimum current value in [%%]")
+    parser.add_argument("--max_current", type=float, default=40,
+                        help="maximum current value in [%%]")
     parser.add_argument("--sample_average_count", type=int, default=10,
                         help="number of samples to average together "
                              "*per* data point (default: 10)")
@@ -136,7 +136,7 @@ if __name__ == "__main__":
             set_brake_current_raw(int(current))
             raw_pts = []
             for _ in range(args.sample_average_count):
-                sleep(0.05)
+                sleep(0.01)
                 raw_pts.append(get_measurements()[1])
             output_torque[i] = float(sum(raw_pts))/args.sample_average_count
         print()
@@ -147,14 +147,15 @@ if __name__ == "__main__":
         set_signed_motor_speed(0) # %
         set_brake_current_raw(0)
 
+    # Optional: save the data.
+    if args.output_file is not None:
+        np.savetxt(args.output_file, np.array((input_current, output_torque)).T,
+        delimiter=", ", fmt="%1.6f")
+
     # Plot Output current vs input current!
     plt.title("Brake Torque vs Input Current")
-    plt.xlabel("input torque [0:65535] FSR")
-    plt.xlabel("brake torque [0:4095] FSR w/2048 midscale")
+    plt.xlabel(f"input torque [0:{args.max_current}%] Full-Scale Range")
+    plt.ylabel("brake torque [0:4095] FSR w/2048 midscale")
     plt.plot(input_current, output_torque)
     plt.show()
 
-    # Optional: save the data.
-    if args.output_file is not None:
-        np.savetxt('test.csv', np.array((input_current, output_torque)).T,
-        delimiter=", ", fmt="%1.6f")
