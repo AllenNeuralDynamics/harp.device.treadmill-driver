@@ -136,7 +136,7 @@ if __name__ == "__main__":
             set_brake_current_raw(int(current))
             raw_pts = []
             for _ in range(args.sample_average_count):
-                sleep(0.01)
+                sleep(0.05)
                 raw_pts.append(get_measurements()[1])
             output_torque[i] = float(sum(raw_pts))/args.sample_average_count
         print()
