@@ -1,4 +1,4 @@
-A Harp Device for controlling an instrumented mouse treadmill
+A Harp Device for controlling an instrumented variable-friction mouse treadmill
 
 ## Features
 * linear (no switching!) current control of 12V magnetic brake, Placid Industries B5ZD, [datasheet](https://placidindustries.com/d/?h=a03be4b).
