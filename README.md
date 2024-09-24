@@ -2,6 +2,7 @@ A Harp Device for controlling an instrumented variable-friction mouse treadmill
 
 ## Features
 * linear (no switching!) current control of 12V magnetic brake, Placid Industries B5ZD, [datasheet](https://placidindustries.com/d/?h=a03be4b).
+* reads measurements from an [RTS-10 torque transducer](https://www.transducertechniques.com/rts-torque-sensor.aspx#)
 * wheatstone bridge input for torque transducer
 * quadrature encoder input for position/speed measurements
 * Harp-protocol compliant over full-speed USB
