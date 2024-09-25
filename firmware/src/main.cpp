@@ -33,13 +33,9 @@ PIO_LTC264x brake_setpoint(pio0, // CS pin is SCK pin + 1
 
 // Create device name array.
 const uint16_t who_am_i = TREADMILL_HARP_DEVICE_ID;
-const uint8_t hw_version_major = 0;
-const uint8_t hw_version_minor = 0;
 const uint8_t assembly_version = 0;
 const uint8_t harp_version_major = 0;
 const uint8_t harp_version_minor = 0;
-const uint8_t fw_version_major = 0;
-const uint8_t fw_version_minor = 0;
 const uint16_t serial_number = 0;
 
 // Setup for Harp App
@@ -321,10 +317,10 @@ void reset_app()
 }
 
 // Create Core.
-HarpCApp& app = HarpCApp::init(who_am_i, hw_version_major, hw_version_minor,
+HarpCApp& app = HarpCApp::init(who_am_i, HW_VERSION_MAJOR, HW_VERSION_MINOR,
                                assembly_version,
                                harp_version_major, harp_version_minor,
-                               fw_version_major, fw_version_minor,
+                               FW_VERSION_MAJOR, FW_VERSION_MINOR,
                                serial_number, "Harp.Device.Treadmill",
                                (uint8_t*)GIT_HASH,
                                &app_regs, app_reg_specs,
