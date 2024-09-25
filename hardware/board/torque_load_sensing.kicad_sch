@@ -2985,9 +2985,9 @@
 		)
 		(uuid "47b1df4a-c084-4591-b8e3-97fd68b9682f")
 	)
-	(text "15[mV] full scale range\nwith 10V excitation voltage."
+	(text "±15[mV] full scale range\nwith 10V excitation voltage."
 		(exclude_from_sim no)
-		(at 30.48 73.66 0)
+		(at 30.48 72.39 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3095,7 +3095,7 @@
 		)
 		(uuid "da2faa73-eba5-4ca5-af1a-21895ff3fc4c")
 	)
-	(text "Torsional Sensor: RTS-5\nRated Output: 1.5 [mV/V]\nhttps://www.transducertechniques.com/rts-torque-sensor.aspx"
+	(text "Torsional Sensor: RTS-5 or RTS-10\nRated Output: 1.5 [mV/V]\nhttps://www.transducertechniques.com/rts-torque-sensor.aspx"
 		(exclude_from_sim no)
 		(at 13.335 20.32 0)
 		(effects

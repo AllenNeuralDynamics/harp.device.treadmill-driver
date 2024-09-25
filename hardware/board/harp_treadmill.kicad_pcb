@@ -11610,6 +11610,18 @@
 			(uuid "a61569b8-5746-449c-a0e8-85c835aa1db4")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SON.3dshapes/WSON-12-1EP_3x2mm_P0.5mm_EP1x2.65.wrl"
+			(hide yes)
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+		(model "/home/poofjunior/projects/kicad_libraries/kicad_component_library/kicad_component_library.3dshapes/WSON-12-1EP_3x2mm_P0.5mm_EP1x2.65.stp"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11898,6 +11910,7 @@
 			(uuid "4fa5d75f-0ff2-436c-91bf-5d4ef1540c0d")
 		)
 		(model "${KICAD6_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Vishay_IHLP-2525.wrl"
+			(hide yes)
 			(offset
 				(xyz 0 0 0)
 			)
@@ -11906,6 +11919,17 @@
 			)
 			(rotate
 				(xyz 0 0 0)
+			)
+		)
+		(model "/home/poofjunior/projects/kicad_libraries/kicad_component_library/kicad_component_library.3dshapes/IHLP2525CZ.step"
+			(offset
+				(xyz -1.5 5.325 -2.4)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 0 0)
 			)
 		)
 	)
@@ -28237,6 +28261,17 @@
 				(xyz 0 0 0)
 			)
 		)
+		(model "/home/poofjunior/projects/kicad_libraries/kicad_component_library/kicad_component_library.3dshapes/IHLP2525CZ.step"
+			(offset
+				(xyz -1.5 5.325 -2.4)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "F.Cu")
@@ -38867,15 +38902,15 @@
 			(layers "F.Cu" "F.Paste" "F.Mask")
 			(uuid "b03ba500-439b-40b7-9583-31fa94c0df6b")
 		)
-		(model "${KICAD8_3DMODEL_DIR}/Connector_Audio.3dshapes/Jack_3.5mm_CUI_SJ-3524-SMT_Horizontal.wrl"
+		(model "/home/poofjunior/projects/kicad_libraries/kicad_component_library/kicad_component_library.3dshapes/SJ-3523-SMT-TR.step"
 			(offset
-				(xyz 0 0 0)
+				(xyz 0 2.55 0)
 			)
 			(scale
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -90 0 90)
 			)
 		)
 	)
