@@ -33,10 +33,18 @@ def jrk2cmd(*args):
 def get_motor_controller_settings() -> dict:
     """load motor settings to dict."""
     # Skip writing to file by writing to stdout and collecting the output.
-    reply_str = subprocess.check_output(["jrk2cmd", "--get-settings",
-                                         "/dev/stdout"])
     yaml = YAML(typ="safe", pure=True)
-    settings = yaml.load(reply_str)
+    settings = None
+    if os.name == 'nt': # Windows requires that we write the result to a file.
+        settings_file = Path("./tmp.txt")
+        subprocess.check_output(["jrk2cmd", "--get-settings",
+                                 settings_file.resolve()])
+        settings = yaml.load(settings_file)
+        settings_file.unlink()
+    else:
+        reply_str = subprocess.check_output(["jrk2cmd", "--get-settings",
+                                            "/dev/stdout"])
+        settings = yaml.load(reply_str)
     return settings
 
 def apply_motor_controller_settings(settings: dict, device_num: int = 0):
@@ -112,7 +120,10 @@ if __name__ == "__main__":
 
     # Connect to Harp Treadmill Device.
     try:
-        device = Device(args.port, "/dev/null")
+        null_file = "/dev/null"
+        if os.name == 'nt':
+            null_file = "NUL"
+        device = Device(args.port, null_file)
     except SerialException as e:
         print("Cannot connect to Harp Treadmill device! Is it plugged in and "
               "powered on? Is the com port correct?")
