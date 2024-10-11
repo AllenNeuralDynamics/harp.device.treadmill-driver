@@ -3274,7 +3274,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Rail to Rail Instrumentation Amplifier"
 			(at 139.065 88.265 0)
 			(effects
 				(font
