@@ -48,6 +48,41 @@ namespace AllenNeuralDynamics.Treadmill
             { 40, typeof(EnableTorqueLimit) },
             { 41, typeof(TorqueLimitState) }
         };
+
+        /// <summary>
+        /// Gets the contents of the metadata file describing the <see cref="Treadmill"/>
+        /// device registers.
+        /// </summary>
+        public static readonly string Metadata = GetDeviceMetadata();
+
+        static string GetDeviceMetadata()
+        {
+            var deviceType = typeof(Device);
+            using var metadataStream = deviceType.Assembly.GetManifestResourceStream($"{deviceType.Namespace}.device.yml");
+            using var streamReader = new System.IO.StreamReader(metadataStream);
+            return streamReader.ReadToEnd();
+        }
+    }
+
+    /// <summary>
+    /// Represents an operator that returns the contents of the metadata file
+    /// describing the <see cref="Treadmill"/> device registers.
+    /// </summary>
+    [Description("Returns the contents of the metadata file describing the Treadmill device registers.")]
+    public partial class GetMetadata : Source<string>
+    {
+        /// <summary>
+        /// Returns an observable sequence with the contents of the metadata file
+        /// describing the <see cref="Treadmill"/> device registers.
+        /// </summary>
+        /// <returns>
+        /// A sequence with a single <see cref="string"/> object representing the
+        /// contents of the metadata file.
+        /// </returns>
+        public override IObservable<string> Generate()
+        {
+            return Observable.Return(Device.Metadata);
+        }
     }
 
     /// <summary>
@@ -1824,6 +1859,23 @@ namespace AllenNeuralDynamics.Treadmill
         /// 
         /// </summary>
         public int TorqueLoadCurrent;
+
+        /// <summary>
+        /// Returns a <see cref="string"/> that represents the payload of
+        /// the SensorData register.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string"/> that represents the payload of the
+        /// SensorData register.
+        /// </returns>
+        public override string ToString()
+        {
+            return "SensorDataPayload { " +
+                "Encoder = " + Encoder + ", " +
+                "Torque = " + Torque + ", " +
+                "TorqueLoadCurrent = " + TorqueLoadCurrent + " " +
+            "}";
+        }
     }
 
     /// <summary>
