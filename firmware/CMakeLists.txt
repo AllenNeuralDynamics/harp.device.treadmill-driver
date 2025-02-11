@@ -6,6 +6,9 @@ add_definitions(-DGIT_HASH="${COMMIT_ID}") # Usable in source code.
 
 set(DEBUG 0)
 
+add_definitions(-DUSBD_MANUFACTURER="Allen Institute")
+add_definitions(-DUSBD_PRODUCT="treadmill-driver")
+
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
 project(treadmill)
