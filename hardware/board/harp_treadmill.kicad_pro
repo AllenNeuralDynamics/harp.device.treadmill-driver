@@ -58,36 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        "copper_edge_clearance|174350000|77125000|61b2d768-22f9-42b3-a654-aab1f49b88a3|3d49f315-8774-4d8f-ab16-c7f36d4e84d5",
-        "copper_edge_clearance|174350000|77125000|61b2d768-22f9-42b3-a654-aab1f49b88a3|499a6905-8aa2-4f19-a88f-8ee736859d7d",
-        "copper_edge_clearance|174350000|77390000|61b2d768-22f9-42b3-a654-aab1f49b88a3|146c4e85-cfbc-4612-adf1-6da94e4a949e",
-        "copper_edge_clearance|174350000|77390000|61b2d768-22f9-42b3-a654-aab1f49b88a3|53cfd673-55c9-4833-8712-0a87381f4e16",
-        "copper_edge_clearance|174350000|77650000|61b2d768-22f9-42b3-a654-aab1f49b88a3|98fc8b9c-bc7a-4350-b210-0dabc9ffaffe",
-        "copper_edge_clearance|174387500|77687500|61b2d768-22f9-42b3-a654-aab1f49b88a3|3ace7cf7-15e8-4b9a-a79b-82d9cfc357f3",
-        "copper_edge_clearance|174725000|75680000|61b2d768-22f9-42b3-a654-aab1f49b88a3|b2f342d3-3909-4af8-b618-d12cb9b8438b",
-        "extra_footprint|103000000|127000000|8337a19b-43a3-4a4c-a616-aaa89c067119|00000000-0000-0000-0000-000000000000",
-        "extra_footprint|103000000|33000000|6c1bd8b7-7e8d-44d8-952e-78d73abb2a92|00000000-0000-0000-0000-000000000000",
-        "extra_footprint|170200000|118050000|eee8514a-8a7b-4012-a6f5-8fdf658d09cf|00000000-0000-0000-0000-000000000000",
-        "extra_footprint|170600000|126000000|53c30c00-ccad-4c95-b32f-b97a47de651c|00000000-0000-0000-0000-000000000000",
-        "extra_footprint|177000000|127000000|c1eb8a01-162a-412a-8853-713472dfe272|00000000-0000-0000-0000-000000000000",
-        "extra_footprint|177000000|33000000|7462beca-6730-4a70-8b28-c9acfa49ff1d|00000000-0000-0000-0000-000000000000",
-        "footprint_type_mismatch|140000000|46300000|4559b0e2-aca5-4f75-83e1-a1e7caab4cb2|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|170200000|117975000|eee8514a-8a7b-4012-a6f5-8fdf658d09cf|00000000-0000-0000-0000-000000000000",
-        "lib_footprint_mismatch|170600000|126006728|53c30c00-ccad-4c95-b32f-b97a47de651c|00000000-0000-0000-0000-000000000000",
-        "silk_edge_clearance|100000000|103840000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|407f7e23-9cec-4a54-b334-d47b685d2afa",
-        "silk_edge_clearance|100000000|112460000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|d3604241-2630-46e1-9bf7-caf2a113bb3b",
-        "silk_edge_clearance|100000000|38440000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|765153fd-53e6-45d5-8797-5d5576ad890c",
-        "silk_edge_clearance|100000000|57560000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|37b2c559-9c65-42f5-ab6c-1431a4b48eea",
-        "silk_edge_clearance|100000000|72245000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|b93e21d6-426b-4b45-afa8-6121fe6a6c55",
-        "silk_edge_clearance|100000000|87865000|a66d8222-d94b-4723-aac1-28b4e9c9dad0|de770a3a-f8b0-4976-9cbb-c1888130fe3b",
-        "silk_edge_clearance|180000000|110400000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|2cea693f-6159-4e36-b642-0d907ba8dc27",
-        "silk_edge_clearance|180000000|119600000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|d3dc0981-201f-4a67-b64b-700ea4c9c353",
-        "silk_edge_clearance|180000000|40900000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|bf7cfe6b-2f18-4294-98ff-5558fa087bc1",
-        "silk_edge_clearance|180000000|47100000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|347c36c0-9c01-4b8c-973a-6ebb81e05428",
-        "silk_edge_clearance|180000000|75420000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|e6cfe2dd-3827-4af5-baa1-535fa46340bf",
-        "silk_edge_clearance|180000000|84580000|33a3bc57-3c95-4889-a1d7-a7da2cc21096|9b36cbd2-b904-4794-bdee-8d28e80e9a0b"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -98,16 +69,19 @@
         "copper_edge_clearance": "error",
         "copper_sliver": "warning",
         "courtyards_overlap": "error",
+        "creepage": "error",
         "diff_pair_gap_out_of_range": "error",
         "diff_pair_uncoupled_length_too_long": "error",
         "drill_out_of_range": "error",
         "duplicate_footprints": "warning",
         "extra_footprint": "warning",
         "footprint": "error",
+        "footprint_filters_mismatch": "ignore",
         "footprint_symbol_mismatch": "warning",
         "footprint_type_mismatch": "error",
         "hole_clearance": "error",
         "hole_near_hole": "error",
+        "hole_to_hole": "error",
         "holes_co_located": "warning",
         "invalid_outline": "error",
         "isolated_copper": "warning",
@@ -118,9 +92,11 @@
         "lib_footprint_mismatch": "warning",
         "malformed_courtyard": "error",
         "microvia_drill_out_of_range": "error",
+        "mirrored_text_on_front_layer": "warning",
         "missing_courtyard": "ignore",
         "missing_footprint": "warning",
         "net_conflict": "warning",
+        "nonmirrored_text_on_back_layer": "warning",
         "npth_inside_courtyard": "ignore",
         "padstack": "error",
         "pth_inside_courtyard": "ignore",
@@ -132,10 +108,13 @@
         "solder_mask_bridge": "ignore",
         "starved_thermal": "error",
         "text_height": "warning",
+        "text_on_edge_cuts": "error",
         "text_thickness": "warning",
         "through_hole_pad_without_hole": "error",
         "too_many_vias": "error",
+        "track_angle": "error",
         "track_dangling": "warning",
+        "track_segment_length": "error",
         "track_width": "error",
         "tracks_crossing": "error",
         "unconnected_items": "error",
@@ -148,6 +127,7 @@
         "min_clearance": 0.127,
         "min_connection": 0.0,
         "min_copper_edge_clearance": 0.381,
+        "min_groove_width": 0.0,
         "min_hole_clearance": 0.127,
         "min_hole_to_hole": 0.127,
         "min_microvia_diameter": 0.4572,
@@ -167,10 +147,11 @@
       },
       "teardrop_options": [
         {
-          "td_onpadsmd": true,
+          "td_onpthpad": true,
           "td_onroundshapesonly": false,
+          "td_onsmdpad": true,
           "td_ontrackend": false,
-          "td_onviapad": true
+          "td_onvia": true
         }
       ],
       "teardrop_parameters": [
@@ -209,7 +190,10 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.3048,
+        0.381,
+        0.762
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -252,6 +236,7 @@
       "mfg": "",
       "mpn": ""
     },
+    "layer_pairs": [],
     "layer_presets": [],
     "viewports": []
   },
@@ -446,10 +431,15 @@
       "duplicate_sheet_names": "error",
       "endpoint_off_grid": "warning",
       "extra_units": "error",
+      "footprint_filter": "ignore",
+      "footprint_link_issues": "warning",
+      "four_way_junction": "ignore",
       "global_label_dangling": "warning",
       "hier_label_mismatch": "error",
       "label_dangling": "error",
+      "label_multiple_wires": "warning",
       "lib_symbol_issues": "warning",
+      "lib_symbol_mismatch": "warning",
       "missing_bidi_pin": "warning",
       "missing_input_pin": "warning",
       "missing_power_pin": "error",
@@ -462,9 +452,15 @@
       "pin_not_driven": "error",
       "pin_to_pin": "warning",
       "power_pin_not_driven": "error",
+      "same_local_global_label": "warning",
+      "similar_label_and_power": "warning",
       "similar_labels": "warning",
+      "similar_power": "warning",
       "simulation_model_issue": "ignore",
+      "single_global_label": "ignore",
       "unannotated": "error",
+      "unconnected_wire_endpoint": "warning",
+      "undefined_netclass": "error",
       "unit_value_mismatch": "error",
       "unresolved_variable": "error",
       "wire_dangling": "error"
@@ -476,7 +472,7 @@
   },
   "meta": {
     "filename": "harp_treadmill.kicad_pro",
-    "version": 1
+    "version": 3
   },
   "net_settings": {
     "classes": [
@@ -491,6 +487,7 @@
         "microvia_drill": 0.254,
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.1524,
         "via_diameter": 0.4572,
@@ -508,6 +505,7 @@
         "microvia_drill": 0.254,
         "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.4,
         "via_diameter": 0.4572,
@@ -516,7 +514,7 @@
       }
     ],
     "meta": {
-      "version": 3
+      "version": 4
     },
     "net_colors": null,
     "netclass_assignments": null,
@@ -544,7 +542,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "exports/harp_treadmill_v1.3.0/",
+      "plot": "exports/harp_treadmill_v1.4.0/",
       "pos_files": "exports/harp_treadmill_v1.3.0/position_files/",
       "specctra_dsn": "",
       "step": "../enclosure/cads/step/harp_treadmill_v0.2.0.step",
@@ -723,6 +721,7 @@
       ],
       "filter_string": "",
       "group_symbols": true,
+      "include_excluded_from_bom": false,
       "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
@@ -766,6 +765,7 @@
     },
     "page_layout_descr_file": "",
     "plot_directory": "../../../../Downloads/treadmill_driver_draft.pdf",
+    "space_save_all_events": true,
     "spice_adjust_passive_values": false,
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
@@ -780,26 +780,6 @@
     [
       "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
       "Root"
-    ],
-    [
-      "93b3207b-e1ce-46d7-a52b-3e8fb1ae6901",
-      "Torque Transducer Sensing"
-    ],
-    [
-      "4d27c546-69b8-415d-ad57-797194b34e8d",
-      "Magnetic Brake Control"
-    ],
-    [
-      "1f049e4e-eb8d-47d9-901f-1dd446bfea55",
-      "Power Supplies"
-    ],
-    [
-      "f31b18d7-1913-4a8e-8821-b91c30d18d00",
-      "Harp Core RP2040 + Isolated USB"
-    ],
-    [
-      "45528c19-905b-4605-ba1b-282fdcb272c9",
-      "Encoder"
     ]
   ],
   "text_variables": {}
